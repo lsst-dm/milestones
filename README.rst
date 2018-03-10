@@ -28,13 +28,23 @@ Output formats
 - LDM-503 milestone summary section.
 - LDM-564 release list.
 
+Formatting note
+===============
+
+All text fields are assumed to contain text which might be displayed by LaTeX.
+
 Milestone terminology
 =====================
 
 Code:
 
-  The “activity ID” or “task code” from PMCS, e.g. “LDM-503-1”, “DM-NCSA-23”,
-  “CAMM6995”, etc. We use this for cross-referencing data sources.
+   The “activity ID” or “task code” from PMCS, e.g. “LDM-503-01”, “DM-NCSA-23”,
+   “CAMM6995”, etc. We use this for cross-referencing data sources.
+
+   Note that we normalize the LDM-503-n milestones to have two digit numbers
+   (ie, “LDM-503-01”, not “LDM-503-1”). This follows the convention used in
+   PMCS. (For whatever reason, other milestones have not been normalized in
+   the same way — PMCS uses e.g. “DM-AP-1”).
 
 Name:
 
@@ -62,13 +72,17 @@ Description:
 
 Comment:
 
-   Any additional information provided for this milestone.
+   Any additional information provided for this milestone. Expected to contain
+   things like implementation notes for LDM-503.
 
-   Again, this will come from this repository. It should include references to
-   other milestone IDs where applicable (e.g. “DRP-MS-INT-1”), and may include
-   any other pertinent information.
+   Will be sourced from this repository.
 
    May be blank.
+
+AKA:
+
+  “Also Known As”. Any other IDs by which this milestone might be identified
+  (e.g. “DRP-MS-INT-1”).
 
 Test Spec:
 

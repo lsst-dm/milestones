@@ -1,0 +1,389 @@
+{
+    "LDM-503-01": {
+        "test_spec": "",
+        "description": "SUIT continues PDAC development, adding the WISE data, further exercising the DAX dbserv and imgserv APIs, and taking advantage of metaserv once it becomes available",
+        "comments": "From DAX: need to be clear about which WISE datasets are to be loaded: the data wrangling effort required to download, inspect, convert, partition, and load each additional dataset is cumulatively non-trivial for DAX"
+    },
+    "LDM-503-02": {
+        "test_spec": "\\citeds{LDM-534} v3.1 \\S3.1 (DRP-00)",
+        "description": "Validate the data products with the LSST stack match or improve upon HSC products.  Validate the ops platform in NCSA, including installing the stack, starting & stopping production. Generate a validation data set for weekly integration and other tests.",
+        "comments": ""
+    },
+    "LDM-503-03": {
+        "test_spec": "\\citeds{LDM-533} v1.1 \\S3.1 (AG-00)",
+        "description": "Validate the alert generation stack performance on several DECam & HSC datasets.",
+        "comments": "Validate the alert generation stack performance on several DECam and HSC datasets. \"Stack\" is probably ill-defined here: is this simply testing science logic, or are we going after a wider integration exercise? "
+    },
+    "LDM-503-04": {
+        "test_spec": "",
+        "description": "The production Aux Tel data acquisition hardware should be available in Tucson. We will prepare by testing the adjacent archive systems.",
+        "comments": "A minimal DM-only system that can archive mocked-up images and demonstrate that they can be retrieved, with provenance and metadata."
+    },
+    "LDM-503-04b": {
+        "test_spec": "",
+        "description": "The production Aux Tel data acquisition hardware should be available in Tucson. We will demonstrate integration with the adjacent archive systems.",
+        "comments": "A minimal system that can archive simulated images from the Aux Tel DAQ and demonstrate that they can be retrieved."
+    },
+    "LDM-503-05": {
+        "test_spec": "",
+        "description": "Validate alert distribution system and mini-broker fed by live or simulated live data.",
+        "comments": "Can we test a SUIT interface to the broker at this point? I believe it's not scheduled until later in construction."
+    },
+    "LDM-503-06": {
+        "test_spec": "",
+        "description": "Test the operation of the DM system prior to ComCam availability in Tucson. Note the LSE-79 requirements for DM services in support of ComCam in table 8. They're required by Nov 2019/Feb 2020; it may be more appropriate to test some of them at a later date?\"",
+        "comments": "\"The DM system\" should use some further definition: what do we want to test here? Data flow from ComCam to the Data Backbone, or science processing of ComCam data? Note the LSE-79 requirements for DM services in support of ComCam in table 8. They're required by Nov 2019/Feb 2020; it may be more appropriate to test some of them at a later date?"
+    },
+    "LDM-503-07": {
+        "test_spec": "",
+        "description": "Partial camera data should be available to DM July 31st. We plan to test DM stack with it.",
+        "comments": ""
+    },
+    "LDM-503-08": {
+        "test_spec": "",
+        "description": "Demonstrate that we can acquire (and process?) data from the Spectrograph.",
+        "comments": "Per LSE-79, AuxTel delivery in Nov 2017 (ie, a year before this milestone) includes: EFD ETL service, Aux Telescope Archiving Service, Data backbone in support of Aux Telescope archiving. Do we need to schedule another test to cover that?"
+    },
+    "LDM-503-09": {
+        "test_spec": "",
+        "description": "Test how the system will run during commissioning.",
+        "comments": "Focus on ISR: we should test whatever we have available. See LSE-79 for a list of requirements."
+    },
+    "LDM-503-10": {
+        "test_spec": "",
+        "description": "There is a project Milestone that DAQ/DM/Networks are available March 15th. We need to run tests in Feb to show this is ready.",
+        "comments": ""
+    },
+    "LDM-503-11a": {
+        "test_spec": "",
+        "description": "ComCam will be in use in Nov. The DM system must be ready to deal with it.",
+        "comments": "\"The DM system\" should use some further definition: what do we want to test here? Data flow from ComCam to the Data Backbone, or science processing of ComCam data? Note the LSE-79 requirements for DM services in support of ComCam in table 8. They're required by Nov 2019/Feb 2020; it may be more appropriate to test some of them at a later date?"
+    },
+    "LDM-503-11": {
+        "test_spec": "",
+        "description": "More complete commissioning rehearsal: how do the scientists look at data? How do they provide feedback to the telescope? How do we create/update calibrations?",
+        "comments": ""
+    },
+    "LDM-503-12": {
+        "test_spec": "",
+        "description": "Dress rehearsal: commissioning starts in April  so by this stage we should be ready to do everything needed.",
+        "comments": ""
+    },
+    "LDM-503-13": {
+        "test_spec": "",
+        "description": "ComCam data will now be available. Demonstrate its use in producing a data release.",
+        "comments": "Note that LSE-79 requires a suite of DM services in support of the full camera in May 2020. It seems inappropriate to test them as part of a commissioning ops rehearsal, but they are well before this data. Do we need another test milestone?"
+    },
+    "LDM-503-14": {
+        "test_spec": "",
+        "description": "Science Verification starts in April. Demonstrate that all required DM software is available.",
+        "comments": "SV will include calculating all KPMs to demonstrate that we are reaching the science requirements. That obviously means we'll need code which is both capable of reaching those requirements, and calculating the KPMs."
+    },
+    "LDM-503-15": {
+        "test_spec": "",
+        "description": "Science Verification data will now be available. Demonstate its use in producting a data release.",
+        "comments": ""
+    },
+    "LDM-503-16": {
+        "test_spec": "",
+        "description": "Test readiness for operations.",
+        "comments": ""
+    },
+    "LDM-503-17": {
+        "test_spec": "",
+        "description": "Confirm readiness for operations.",
+        "comments": ""
+    },
+    "CAMM6995": {
+        "test_spec": "",
+        "description": "",
+        "comments": ""
+    },
+    "Milestone ID": {},
+    "DM-NCSA-27": {},
+    "LSST-1160": {},
+    "DM-NCSA-28": {},
+    "LSST-1190": {},
+    "DM-DAX-1": {},
+    "DM-DAX-2": {},
+    "DM-DAX-3": {},
+    "DM-DAX-4": {},
+    "DM-SUIT-1": {},
+    "DM-SUIT-2": {},
+    "DM-SUIT-3": {},
+    "DM-SUIT-4": {},
+    "DM-SQRE-1": {},
+    "DM-AP-1": {
+        "aka": "SFM1",
+        "name": "Basic single frame measurement pipeline."
+    },
+    "DM-DAX-5": {},
+    "DM-DRP-1": {
+        "aka": "DRP-MS-INT-1",
+        "name": "HSC merger complete: all functionality deployed for the most recent HSC data release processing is now available within the LSST stack."
+    },
+    "DM-DRP-2": {
+        "aka": "DRP-MS-QA-1",
+        "name": "Basic visualization and quality assessment tools operational on HSC-scale data volumes."
+    },
+    "DM-NCSA-1": {},
+    "DM-NCSA-2": {},
+    "DM-NCSA-3": {},
+    "DM-SUIT-5": {},
+    "DM-AP-2": {
+        "aka": "DIFF1",
+        "name": "Alard & Lupton-style image differencing."
+    },
+    "DM-AP-3": {
+        "aka": "DIFFMEAS1",
+        "name": "Point source & dipole measurement on difference images."
+    },
+    "DM-AP-4": {},
+    "DM-AP-5": {},
+    "DM-DAX-6": {},
+    "DM-DRP-3": {
+        "aka": "DRP-MS-COADD-1",
+        "name": "PSF-homogenized coadd construction."
+    },
+    "DM-NCSA-29": {},
+    "LSST-1200": {},
+    "DM-DAX-7": {},
+    "DM-NCSA-4": {},
+    "DM-NCSA-5": {},
+    "DM-NCSA-6": {},
+    "DM-NCSA-7": {},
+    "DM-NET-1": {},
+    "DM-DAX-11": {},
+    "DM-NCSA-30": {},
+    "DM-NCSA-31": {},
+    "LSST-1220": {},
+    "DM-AP-6": {
+        "aka": "ALERTDIST1",
+        "name": "Alert format defined & queue system available."
+    },
+    "DM-NCSA-8": {},
+    "DM-NCSA-9": {},
+    "DM-SUIT-18": {},
+    "DM-AP-7": {
+        "aka": "ISR1",
+        "name": "Basic instrument signature removal (ISR) capability."
+    },
+    "DM-DRP-38": {
+        "aka": "DRP-MS-CPP-2",
+        "name": "Camera package supporting the Commissioning Camera."
+    },
+    "DM-DRP-4": {
+        "aka": "DRP-MS-CPP-6",
+        "name": "Calibration product generation in support of basic ISR."
+    },
+    "DM-NCSA-10": {},
+    "DM-NCSA-11": {},
+    "DM-DRP-5": {
+        "aka": "DRP-MS-CPP-3",
+        "name": "Camera package supporting the LSST Camera."
+    },
+    "DM-SUIT-6": {},
+    "DM-SUIT-7": {},
+    "DM-SUIT-8": {},
+    "DM-DRP-6": {
+        "aka": "DRP-MS-CPP-1",
+        "name": "Camera package supporting the Auxiliary Telescope."
+    },
+    "DM-DRP-7": {
+        "aka": "DRP-MS-CPP-4",
+        "name": "Coordinate transformation tool provided for use with the Collimated Beam Projector."
+    },
+    "DM-DRP-8": {
+        "aka": "DRP-MS-CPP-5",
+        "name": "Calibration product generation for the Auxiliary Telescope."
+    },
+    "DM-DRP-9": {
+        "aka": "DRP-MS-CPP-9",
+        "name": "Data reduction pipeline for the Auxiliary Telescope."
+    },
+    "DM-NCSA-12": {},
+    "DM-NCSA-13": {},
+    "DM-NCSA-14": {},
+    "DM-NCSA-15": {},
+    "DM-NET-2": {},
+    "DM-NET-3": {},
+    "DM-NET-4": {},
+    "DM-SUIT-9": {},
+    "DM-AP-8": {
+        "aka": "ISR2",
+        "name": "Advanced ISR, including ghost and linear feature masking, correction for the Brighter-Fatter effect and compensation for pixel response non-uniformity."
+    },
+    "DM-AP-9": {},
+    "DM-DRP-10": {
+        "aka": "DRP-MS-CPP-8",
+        "name": "Calibration products include an optical ghost model."
+    },
+    "DM-DRP-11": {
+        "aka": "DRP-MS-OBJCHAR-8",
+        "name": "Pipelines code provides supports for database ingestion of results."
+    },
+    "DM-DRP-12": {
+        "aka": "DRP-MS-IMCHAR-6",
+        "name": "Background estimation over the full visit."
+    },
+    "DM-DRP-13": {
+        "aka": "DRP-MS-IMCHAR-2",
+        "name": "PSF estimation over the full visit."
+    },
+    "DM-DRP-14": {
+        "aka": "DRP-MS-OBJCHAR-9",
+        "name": "Insertion of simulated sources into the data stream to check pipeline performance."
+    },
+    "DM-DRP-15": {
+        "aka": "DRP-MS-COADD-3",
+        "name": "All varieties of coadd required for object detection and characterization are now produced during normal pipeline operation (although not necessarily at the ultimately required level of fidelity)."
+    },
+    "DM-DRP-16": {
+        "aka": "DRP-MS-IMCHAR-1",
+        "name": "Global photometric fitting (e.g. Burke et al. Forward Global Calibration Method)."
+    },
+    "DM-DRP-17": {
+        "aka": "DRP-MS-IMCHAR-4",
+        "name": "Simultaneous photometric and astrometric fitting to multiple exposures."
+    },
+    "DM-DRP-18": {
+        "aka": "DRP-MS-DET-1",
+        "name": "Initial multi-band deblending algorithm available."
+    },
+    "DM-DRP-19": {
+        "aka": "DRP-MS-QA-2",
+        "name": "QA metrics are generated during pipeline execution."
+    },
+    "DM-DRP-37": {
+        "aka": "DRP-MS-COADD-2",
+        "name": "Artefact rejection and background matching during coadd construction."
+    },
+    "DM-NCSA-16": {},
+    "DM-NCSA-17": {},
+    "DM-NCSA-18": {},
+    "DM-NCSA-19": {},
+    "DM-DAX-8": {},
+    "DM-DAX-9": {},
+    "DM-SQRE-2": {},
+    "DM-STAFF": {},
+    "DM-AP-10": {
+        "aka": "SFM2",
+        "name": "Advanced single frame measurement pipeline for Alert Production."
+    },
+    "DM-NCSA-20": {},
+    "DM-NCSA-21": {},
+    "DM-NCSA-22": {},
+    "DM-SUIT-10": {},
+    "DM-NET-5": {},
+    "DM-DRP-21": {
+        "aka": "DRP-MS-IMCHAR-5",
+        "name": "Integrated image characterization pipeline for Data Release Production."
+    },
+    "DM-DRP-22": {
+        "aka": "DRP-MS-COADD-4",
+        "name": "Template generation integrated with Data Release Production pipelines."
+    },
+    "DM-DRP-23": {
+        "aka": "DRP-MS-CPP-10",
+        "name": "Atmospheric characterization based on data from the Auxiliary Telescope now available."
+    },
+    "DM-DRP-26": {
+        "aka": "DRP-MS-DET-3",
+        "name": "Overlap resolution at tract & patch boundaries."
+    },
+    "DM-DAX-10": {},
+    "DM-SUIT-11": {},
+    "DM-SUIT-12": {},
+    "DM-SUIT-13": {},
+    "DM-SUIT-14": {},
+    "DM-AP-11": {
+        "aka": "DIFF2",
+        "name": "Difference imaging includes noise decorrelation and correction for differential chromatic refraction."
+    },
+    "DM-DRP-20": {
+        "aka": "DRP-MS-CPP-7",
+        "name": "Refined set of LSST calibration products."
+    },
+    "DM-DRP-24": {
+        "aka": "DRP-MS-IMCHAR-3",
+        "name": "Physically motivated PSF model, including separate characterization of contributions from the atmosphere and the telescope system."
+    },
+    "DM-DRP-27": {
+        "aka": "DRP-MS-DET-2",
+        "name": "Object generation: association and assembly of (DIA, coadd, etc) sources to form objects."
+    },
+    "DM-DRP-28": {
+        "aka": "DRP-MS-COADD-5",
+        "name": "Difference images are now a first-class data product during data release processing."
+    },
+    "DM-DRP-29": {
+        "aka": "DRP-MS-OBJCHAR-3",
+        "name": "Moving point source model fitting now available."
+    },
+    "DM-DRP-30": {
+        "aka": "DRP-MS-OBJCHAR-2",
+        "name": "Forced photometry is now performed on individual processed visit images during data releases."
+    },
+    "DM-SQRE-3": {},
+    "DM-DRP-25": {
+        "aka": "DRP-MS-OBJCHAR-1",
+        "name": "Prototype multi-epoch fitting system available."
+    },
+    "DM-AP-12": {
+        "aka": "DIFF3",
+        "name": "Difference imaging is now agnostic to the PSF of the template image."
+    },
+    "DM-AP-13": {
+        "aka": "DIFFMEAS2",
+        "name": "Trailed source measurement on difference images."
+    },
+    "DM-AP-14": {
+        "aka": "ALERTDIST2",
+        "name": "Alert filtering system available."
+    },
+    "DM-DRP-32": {
+        "aka": "DRP-MS-OBJCHAR-6",
+        "name": "Object classification system available."
+    },
+    "DM-DRP-34": {
+        "aka": "DRP-MS-OBJCHAR-5",
+        "name": "Selection maps are generated during data releases."
+    },
+    "DM-DRP-35": {
+        "aka": "DRP-MS-DET-4",
+        "name": "Simultaneous measurement across a suite of coadds representing different bandpasses, epocs, and flavors."
+    },
+    "DM-NCSA-23": {},
+    "DM-SUIT-15": {},
+    "DM-SUIT-16": {},
+    "DM-DRP-33": {
+        "aka": "DRP-MS-COADD-6",
+        "name": "Generation of coadded images suitable for use in EPO activities."
+    },
+    "DM-AP-15": {
+        "aka": "INTEGRATION1",
+        "name": "Alert distribution system fully integrated."
+    },
+    "DM-SUIT-17": {},
+    "DM-SQRE-4": {},
+    "DM-DRP-31": {
+        "aka": "DRP-MS-OBJCHAR-7",
+        "name": "A photometric redshift is now provided for each object."
+    },
+    "DM-AP-16": {
+        "aka": "INTEGRATION2",
+        "name": "Full integration of the Alert Production system within the operational environment."
+    },
+    "DM-AP-17": {
+        "aka": "MOPS",
+        "name": "Moving object processing system (MOPS) available."
+    },
+    "DM-DRP-36": {
+        "aka": "DRP-MS-OBJCHAR-4",
+        "name": "MOPS integrated to data release processing."
+    },
+    "DM-NCSA-24": {},
+    "DM-NCSA-25": {},
+    "DM-SQRE-5": {},
+    "DM-NCSA-26": {}
+}
