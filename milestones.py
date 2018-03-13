@@ -4,6 +4,7 @@ import sys
 import milestones
 import milestones.standalone
 import milestones.ldm503
+import milestones.ldm564
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Prepare DM milestone summaries.")
@@ -29,6 +30,10 @@ def parse_args():
     ldm503.add_argument("--commentary", help="Output location for milestone commentary.")
     ldm503.set_defaults(func=milestones.ldm503.generate)
 
+    ldm564 = subparsers.add_parser("ldm564", help="Output for LDM-564.")
+    ldm564.add_argument("--releases", help="Output location for summary of releases.")
+    ldm564.set_defaults(func=milestones.ldm564.generate)
+
     args = parser.parse_args()
     return args
 
@@ -40,5 +45,3 @@ if __name__ == "__main__":
     except AttributeError:
         print("Please select a supported target.")
         sys.exit(1)
-
-#    print(milestones.format_gantt(mc.filter("LDM-503"), preamble=milestones.GANTT_PREAMBLE_STANDALONE, postamble=milestones.GANTT_POSTAMBLE_STANDALONE))
