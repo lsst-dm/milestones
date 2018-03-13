@@ -36,8 +36,7 @@ if __name__ == "__main__":
     args = parse_args()
     mc = milestones.MilestoneCollection.from_files(args.pmcs_data, args.local_data)
     try:
-        print(args)
-        print(args.func(args, mc))
+        args.func(args, mc)
     except AttributeError:
         print("Please select a supported target.")
         sys.exit(1)
