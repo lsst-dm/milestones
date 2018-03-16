@@ -1,7 +1,7 @@
 from io import StringIO
 
 from . import GANTT_MILESTONES
-from .gantt import format_gantt
+from .gantt import generate_gantt_embedded
 from .utility import write_output
 
 __all__ = ["generate"]
@@ -41,6 +41,8 @@ def milestone_map(mc):
             print(ms.code + " : " + prems.code)
 
 def generate(args, mc):
+    if args.gantt:
+        write_output(args.gantt, generate_gantt_embedded(mc))
     if args.releases:
         write_output(args.releases, generate_releases(mc))
     if args.map:

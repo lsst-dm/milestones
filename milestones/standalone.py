@@ -1,5 +1,4 @@
-from . import GANTT_MILESTONES
-from .gantt import format_gantt
+from .gantt import format_gantt, GANTT_MILESTONES
 from .utility import write_output
 
 __all__ = ["generate"]

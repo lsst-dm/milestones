@@ -1,37 +1,9 @@
 from io import StringIO
 
-from . import GANTT_MILESTONES
-from .gantt import format_gantt
+from .gantt import generate_gantt_embedded
 from .utility import write_output
 
 __all__ = ["generate"]
-
-GANTT_PREAMBLE = """
-\\begin{ganttchart}[
-    expand chart=\\textwidth,
-    title label font=\\sffamily\\bfseries,
-    milestone label font=\\scriptsize,
-    progress label text={#1},
-    milestone progress label node/.append style={right=0.9cm},
-    y unit chart=0.5cm,
-    y unit title=0.8cm
-]{1}{115}
-  \\gantttitle{}{6} \\gantttitle{2018}{12} \\gantttitle{2019}{12}
-  \\gantttitle{2020}{12} \\gantttitle{2021}{12} \\gantttitle{2022}{12}
-  \\gantttitle{Operations}{49} \\
-  \\ganttnewline\n
-"""
-
-GANTT_POSTAMBLE = """
-\\end{ganttchart}
-"""
-
-def generate_gantt(mc):
-    milestones = set()
-    for ms in GANTT_MILESTONES:
-        milestones = milestones.union(mc.filter(ms))
-    return format_gantt(sorted(milestones, key=lambda x: (x.due, x.code)),
-                        GANTT_PREAMBLE, GANTT_POSTAMBLE)
 
 def generate_table(mc):
     output = StringIO()
@@ -65,7 +37,7 @@ def generate_commentary(mc):
 
 def generate(args, mc):
     if args.gantt:
-        write_output(args.gantt, generate_gantt(mc))
+        write_output(args.gantt, generate_gantt_embedded(mc))
     if args.table:
         write_output(args.table, generate_table(mc))
     if args.commentary:
