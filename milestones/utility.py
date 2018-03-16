@@ -4,27 +4,13 @@ import sys
 import time
 from contextlib import contextmanager
 
-__all__ = ["open_without_bom",
-           "get_latest_pmcs_path",
+__all__ = ["get_latest_pmcs_path",
            "get_local_data_path",
            "write_output"]
 
-BOM = "\ufeff"
-
-@contextmanager
-def open_without_bom(filename):
-    """
-    Open the file, discarding the first character if it is a UTF-8 BOM (\ufeff).
-    """
-    with open(filename) as f:
-        bom = f.read(1)
-        if bom != BOM:
-            f.seek(0)
-        yield f
-
 # Input filename format:
 #
-# YYYYMM-<datatype>.csv
+# YYYYMM-<datatype>.xls
 #
 # Where YYYY is the year, MM is the month and <datatype> is either "BL" (for
 # baseline) or "ME" (for forecast).
@@ -35,7 +21,7 @@ def get_latest_pmcs_path(path=None):
     """
     if not path:
         path = os.path.join(os.path.dirname(__file__), "..", "data", "pmcs")
-    return sorted(glob.glob(os.path.join(path, "??????-ME.csv")))[-1]
+    return sorted(glob.glob(os.path.join(path, "??????-ME.xls")))[-1]
 
 def get_local_data_path(path=os.path.dirname(__file__)):
     return os.path.join(os.path.dirname(__file__), "..", "data", "local.json")

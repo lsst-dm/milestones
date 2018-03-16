@@ -8,7 +8,7 @@ import milestones.ldm564
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Prepare DM milestone summaries.")
-    parser.add_argument("--pmcs-data", help="Path to PMCS CSV extract. "
+    parser.add_argument("--pmcs-data", help="Path to PMCS Excel extract. "
                         "[Default={}]".format(milestones.get_latest_pmcs_path()),
                         default=milestones.get_latest_pmcs_path())
     parser.add_argument("--local-data", help="Path to local annotations. "

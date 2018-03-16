@@ -1,5 +1,6 @@
 from .gantt import *
 from .milestone import *
+from .milestonecollection import *
 from .utility import *
 
 # Milestones with these prefixes are included when generating Gantt charts.
