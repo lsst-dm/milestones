@@ -61,7 +61,7 @@ def format_gantt(milestones, preamble, postamble, start=datetime(2017, 7, 1)):
 
     for ms in sorted(milestones, key=lambda x: x.due):
         ms_uniq_id = get_milestone_name(ms.code)
-        output.write(ms.format_template("\\ganttmilestone[name={ms_uniq_id},progress label text={name}\\phantom{{#1}},progress=100]{{{code}}}{{{month_no}}} \\ganttnewline\n",
+        output.write(ms.format_template("\\ganttmilestone[name={ms_uniq_id},progress label text={short_name}\\phantom{{#1}},progress=100]{{{code}}}{{{month_no}}} \\ganttnewline\n",
                                         ms_uniq_id=ms_uniq_id, month_no=get_month_number(start, ms.due)))
     for ms in sorted(milestones, key=lambda x: x.due):
         for succ in ms.successors:

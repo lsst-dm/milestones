@@ -21,7 +21,8 @@ class MilestoneCollection(object):
             local = json.load(f)
         for ms in milestones:
             if ms.code in local:
-                for attribute in ["name", "description", "comment", "aka", "test_spec"]:
+                for attribute in ["name", "description", "comment", "aka",
+                                  "test_spec", "short_name"]:
                     try:
                         setattr(ms, attribute, local[ms.code][attribute])
                     except KeyError:

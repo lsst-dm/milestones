@@ -22,7 +22,8 @@
     "LDM-503-04b": {
         "test_spec": "",
         "description": "The production Aux Tel data acquisition hardware should be available in Tucson. We will demonstrate integration with the adjacent archive systems.",
-        "comment": "A minimal system that can archive simulated images from the Aux Tel DAQ and demonstrate that they can be retrieved."
+        "comment": "A minimal system that can archive simulated images from the Aux Tel DAQ and demonstrate that they can be retrieved.",
+        "short_name": "AuxTel DAQ Interface Verification and Spectrograph Ops Rehearsal"
     },
     "LDM-503-05": {
         "test_spec": "",
