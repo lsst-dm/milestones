@@ -32,7 +32,7 @@
     },
     "LDM-503-06": {
         "test_spec": "",
-        "description": "Test the operation of the DM system prior to ComCam availability in Tucson. Note the LSE-79 requirements for DM services in support of ComCam in table 8. They're required by Nov 2019/Feb 2020; it may be more appropriate to test some of them at a later date?\"",
+        "description": "Test the operation of the DM system prior to ComCam availability in Tucson.",
         "comment": "\"The DM system\" should use some further definition: what do we want to test here? Data flow from ComCam to the Data Backbone, or science processing of ComCam data? Note the LSE-79 requirements for DM services in support of ComCam in table 8. They're required by Nov 2019/Feb 2020; it may be more appropriate to test some of them at a later date?"
     },
     "LDM-503-07": {
