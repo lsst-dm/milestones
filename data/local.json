@@ -106,9 +106,18 @@
     "DM-NCSA-28": {},
     "LSST-1190": {},
     "DM-DAX-1": {},
-    "DM-DAX-2": {},
-    "DM-DAX-3": {},
-    "DM-DAX-4": {},
+    "DM-DAX-2": {
+        "name": "Query service suporting IVOA TAP protocol, w/ support for asynchronous queries",
+        "comment": "PMCS calls this: dbserv V1 API (TAP, w/ async. requests)"
+    },
+    "DM-DAX-3": {
+        "name": "Image cutout service supporting IVOA SODA protocol",
+        "comment": "PMCS calls this: imgserv V1 API (SODA)"
+    },
+    "DM-DAX-4": {
+        "name": "Metadata service suporting IVOA SIAv2 protocol",
+        "comment": "PMCS calls this: metaserv V1 API (SIAv2)"
+    },
     "DM-SUIT-1": {},
     "DM-SUIT-2": {},
     "DM-SUIT-3": {},
