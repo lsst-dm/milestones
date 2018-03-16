@@ -23,7 +23,13 @@ def generate_releases(mc):
             output.write("\\begin{itemize}\n")
             for prems in sorted(predecessors, key=lambda x: (x.due, x.code)):
                 output.write(prems.format_template(
-                    "\item{{{code}: {name} (\\textit{{Due: {due}}})}}\n"))
+                    "\item{{{code}: {name} \\textit{{(Due: {due}"))
+                if prems.completed:
+                    output.write("; completed {}".format(
+                                 prems.completed.strftime("%Y-%m-%d")))
+                else:
+                    output.write("; currently incomplete")
+                output.write(")}}\n")
             output.write("\\end{itemize}\n")
     return output.getvalue()
 
