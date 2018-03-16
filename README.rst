@@ -5,38 +5,75 @@ LSST DM Milestone Munger
 Given inputs from PMCS and elsewhere, transform them into LaTeX snippets or
 other formats suitable for inclusion in DM documentation.
 
-Sources of milestone information
-================================
+Usage
+=====
 
-- Exports from Primavera/PMCS;
+Execute ``milestones.py``. For example::
 
-  - Note that from PMCS we can dump from either the “baseline” or “forecast”
-    projects.
-  - Baseline provides the latest thinking about the schedule, but is devoid of
-    completion status.
-  - Forecast is updated later, but contains completion dates.
+  $ python milestones.py --help
+  usage: milestones.py [-h] [--pmcs-data PMCS_DATA] [--local-data LOCAL_DATA]
+                       {standalone,ldm503,ldm564} ...
 
-- Dump of the old Google ``master milestone list``;
-- Annotations stored in this package.
+  Prepare DM milestone summaries.
 
-Output formats
-==============
+  optional arguments:
+    -h, --help            show this help message and exit
+    --pmcs-data PMCS_DATA
+                          Path to PMCS Excel extract. [Default=...]
+    --local-data LOCAL_DATA
+                          Path to local annotations. [Default=...]
 
-- Gantt chart-like figure, to be included in the ``lsst-dm/images`` repository
-  and embedded in LDM-503 and perhaps elsewhere.
-- LDM-503 schedule table.
-- LDM-503 milestone summary section.
-- LDM-564 release list.
+  Output targets.:
+    {standalone,ldm503,ldm564}
+      standalone          Output standalone material.
+      ldm503              Output for LDM-503.
+      ldm564              Output for LDM-564.
 
-Formatting note
-===============
+Each target (``standalone``, ``ldm503``, etc) may take further command
+line options to specify its output.
 
-All text fields are assumed to contain text which might be displayed by LaTeX.
+Data
+====
 
-Milestone terminology
-=====================
+Milestone summaries are generated based on two sources of input data:
 
-Code:
+- An Excel sheet, extracted from PMCS (Primavera);
+- A JSON file, ``data/local.json``, containing additional information
+  contained in this package.
+
+The Excel sheet is generated from within Primavera as follows:
+
+- Load the project to be exported;
+- Select File→Export;
+- Select “Spreadsheet - (XLS)” and hit “Next”;
+- Select “Activities” and “Activity Relationships” and hit “Next”;
+- Select the open project, and hit “Next”;
+- Select template “DM All Milestones” and hit “Next”;
+- Review the name of the file to be exported, and hit “Next”;
+- Hit “Finish”;
+- Commit the file to the ``data/pmcs`` directory of this repository.
+
+The PMCS export files should be named according to the pattern
+``YYYYMM-<type>.xls``, where ``YYYY`` is the (calendar) year, ``MM`` the
+month, and ``<type>`` is either ``ME`` (representing the forecast project for
+a particular month ending) or ``BL`` (for the baseline project for a
+particular month). For example, ``201802-ME.xls`` is the forecast for
+month-ending February 2018.
+
+Note that LSST convention is that the forecast projects contain information
+about the completion status of activities, so they are almost always more
+useful than the baseline projects.
+
+The ``local.json`` annotations may be edited as needed and the results
+committed to this repository.
+
+Milestone semantics
+===================
+
+Milestones — or rather, instances of the ``Milestone`` class provided in
+this package — have a number of associated attributes. These are:
+
+``code``
 
    The “activity ID” or “task code” from PMCS, e.g. “LDM-503-01”, “DM-NCSA-23”,
    “CAMM6995”, etc. We use this for cross-referencing data sources.
@@ -46,69 +83,74 @@ Code:
    PMCS. (For whatever reason, other milestones have not been normalized in
    the same way — PMCS uses e.g. “DM-AP-1”).
 
-Name:
+
+``name``
 
    A short summary of the milestone, e.g. “System First Light”, “Start of Full
    Science Operations”.
 
    In most cases, this corresponds to the “activity name” in PMCS. However, on
    occasion, this has been used as a reference to some other lookup table
-   (e.g. “DRP-MS-INT-1”). The lookup table is (currently) stored on GDocs; we
-   should automatically replace these with helpful names based on that.
+   (e.g. “DRP-MS-INT-1”). In these cases, we set the milestone name to some
+   more descriptive value (stored in the ``local.json`` in this package), and
+   the Milestone's ``aka`` attribute (see below) to a list of alternative IDs.
 
-Description:
+``description``
 
-   A lengthier overview of the milestone.
+   A lengthier overview of the milestone. May be blank.
 
-   For LDM-503-n (level 2) milestones, this was provided in the original
-   LDM-503 text and should be recorded in this repository.
+   Descriptions are provided in the ``local.json`` file in this packge.
 
-   For other milestones (DM level 3 & 4, other subsystems), it may not be
-   available (the “description” field in the GDocs sheet was used to populate
-   the “name” in PMCS; more detailed descriptions were not required). If
-   available, it will also be recorded in this repository.
-
-   May be blank.
-
-Comment:
+``comment``
 
    Any additional information provided for this milestone. Expected to contain
-   things like implementation notes for LDM-503.
+   things like implementation notes for LDM-503. May be blank.
 
-   Will be sourced from this repository.
+   Will be sourced from ``local.json``.
 
-   May be blank.
-
-AKA:
+``aka``
 
   “Also Known As”. Any other IDs by which this milestone might be identified
   (e.g. “DRP-MS-INT-1”).
 
-Test Spec:
+  Will be sourced from ``local.json``. Should always be an iterable, but may
+  be empty.
+
+``test_spec``
 
    A reference to the *document handle*, *version*, *section* and *name* of the
    test specification which is used to test this milestone, if applicable.
 
    The master copy of this information lives in this repository.
 
-Predecessors:
+``predecessors``
 
    A list of the codes of milestones which must be completed before this one.
 
    Sourced from PMCS. Should always be an iterable, but may be empty.
 
-Successors:
+``successors``
 
    A list of milestone codes for which this milestone is a prerequisite.
 
    Sourced from PMCS. Should always be an iterable, but may be empty.
 
-Due date:
+``due``
 
    The date by which the milestone is scheduled for completion.
 
-Completion date:
+   Sourced from PMCS.
 
-   The date by which the milestone was recorded as completed.
+``completed``
 
-   ``None`` if the milestone remains incomplete.
+   The date on which the milestone was recorded as completed, or ``None`` if
+   the milestone remains incomplete.
+
+   Sourced from PMCS.
+
+``short_name``
+
+   A shortened form of the milestone name, which may be useful e.g. when using
+   it to label figures. If not set, it defaults to being equal to ``name``.
+
+   Source from ``local.json``.

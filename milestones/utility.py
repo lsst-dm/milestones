@@ -20,11 +20,13 @@ def get_latest_pmcs_path(path=None):
     By default, fetch the latest forecast.
     """
     if not path:
-        path = os.path.join(os.path.dirname(__file__), "..", "data", "pmcs")
+        path = os.path.normpath(os.path.join(os.path.dirname(__file__),
+                                             "..", "data", "pmcs"))
     return sorted(glob.glob(os.path.join(path, "??????-ME.xls")))[-1]
 
 def get_local_data_path(path=os.path.dirname(__file__)):
-    return os.path.join(os.path.dirname(__file__), "..", "data", "local.json")
+    return os.path.normpath(os.path.join(os.path.dirname(__file__),
+                                         "..", "data", "local.json"))
 
 def write_output(filename, content):
     with open(filename, 'w') as f:
