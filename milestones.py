@@ -32,6 +32,7 @@ def parse_args():
 
     ldm564 = subparsers.add_parser("ldm564", help="Output for LDM-564.")
     ldm564.add_argument("--releases", help="Output location for summary of releases.")
+    ldm564.add_argument("--map", help="Dump milestone map to stdout.")
     ldm564.set_defaults(func=milestones.ldm564.generate)
 
     args = parser.parse_args()

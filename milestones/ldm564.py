@@ -27,6 +27,15 @@ def generate_releases(mc):
             output.write("\\end{itemize}\n")
     return output.getvalue()
 
+def milestone_map(mc):
+    for ms in sorted(mc.filter("LDM-503"), key=lambda x: (x.due, x.code)):
+        predecessors = [prems for prems in mc.filter("DM-")
+                        if prems.code in ms.predecessors]
+        for prems in sorted(predecessors, key=lambda x: (x.due, x.code)):
+            print(ms.code + " : " + prems.code)
+
 def generate(args, mc):
     if args.releases:
         write_output(args.releases, generate_releases(mc))
+    if args.map:
+        milestone_map(mc)
