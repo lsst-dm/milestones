@@ -52,7 +52,7 @@
     },
     "LDM-503-10": {
         "test_spec": "",
-        "description": "There is a project Milestone that DAQ/DM/Networks are available March 15th. We need to run tests in Feb to show this is ready.",
+        "description": "There is a project milestone that DAQ/DM/Networks are available late 2019. We will run a full scale data acquisition test in to show this is ready.",
         "comment": ""
     },
     "LDM-503-11a": {
@@ -82,7 +82,7 @@
     },
     "LDM-503-15": {
         "test_spec": "",
-        "description": "Science Verification data will now be available. Demonstate its use in producting a data release.",
+        "description": "Science Verification data will now be available. Demonstrate its use in producing a data release.",
         "comment": ""
     },
     "LDM-503-16": {
@@ -107,7 +107,7 @@
     "LSST-1190": {},
     "DM-DAX-1": {},
     "DM-DAX-2": {
-        "name": "Query service suporting IVOA TAP protocol, w/ support for asynchronous queries",
+        "name": "Query service supporting IVOA TAP protocol, w/ support for asynchronous queries",
         "comment": "PMCS calls this: dbserv V1 API (TAP, w/ async. requests)"
     },
     "DM-DAX-3": {
@@ -115,7 +115,7 @@
         "comment": "PMCS calls this: imgserv V1 API (SODA)"
     },
     "DM-DAX-4": {
-        "name": "Metadata service suporting IVOA SIAv2 protocol",
+        "name": "Metadata service supporting IVOA SIAv2 protocol",
         "comment": "PMCS calls this: metaserv V1 API (SIAv2)"
     },
     "DM-SUIT-1": {},
@@ -266,7 +266,7 @@
     },
     "DM-DRP-37": {
         "aka": ["DRP-MS-COADD-2"],
-        "name": "Artefact rejection and background matching during coadd construction."
+        "name": "Artifact rejection and background matching during coadd construction."
     },
     "DM-NCSA-16": {},
     "DM-NCSA-17": {},
