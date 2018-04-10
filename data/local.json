@@ -45,6 +45,11 @@
         "description": "Demonstrate that we can acquire (and process?) data from the Spectrograph.",
         "comment": "Per LSE-79, AuxTel delivery in Nov 2017 (ie, a year before this milestone) includes: EFD ETL service, Aux Telescope Archiving Service, Data backbone in support of Aux Telescope archiving. Do we need to schedule another test to cover that?"
     },
+    "LDM-503-08b": {
+        "test_spec": "",
+        "description": "Demonstrate the ability to read data from the CCOB with 9 rafts, store it at the Data Facility and make it available on some cluster for analysis.",
+        "comment": "This was added as part of DM-13073 to show we can process optical bench data specifically CCOB 9 raft setup. "
+    },
     "LDM-503-09": {
         "test_spec": "",
         "description": "Test how the system will run during commissioning.",
@@ -54,6 +59,11 @@
         "test_spec": "",
         "description": "There is a project milestone that DAQ/DM/Networks are available late 2019. We will run a full scale data acquisition test in to show this is ready.",
         "comment": ""
+    },
+    "LDM-503-10b": {
+        "test_spec": "",
+        "description": "Demonstrate the ability to read data from the CCOB with 21 rafts, store at the Data Facility and make it available on some cluster for analysis.",
+        "comment": "This was added as part of DM-13073 to show we can process optical bench data specifically CCOB 21 raft setup. This extends LDM-503-8b."
     },
     "LDM-503-11a": {
         "test_spec": "",
