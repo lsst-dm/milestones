@@ -45,6 +45,12 @@
         "description": "Demonstrate that we can acquire (and process?) data from the Spectrograph.",
         "comment": "Per LSE-79, AuxTel delivery in Nov 2017 (ie, a year before this milestone) includes: EFD ETL service, Aux Telescope Archiving Service, Data backbone in support of Aux Telescope archiving. Do we need to schedule another test to cover that?"
     },
+    "LDM-503-8b": {
+        "name": "Small Scale CCOB Data Access",
+        "test_spec": "",
+        "description": "Demonstrate the ability to read data from the CCOB with 9 rafts, store it at the Data Facility and make it available on some cluster for analysis.",
+        "comment": "This was added as part of DM-13073 to show we can process optical bench data specifically CCOB 9 raft setup. "
+    },
     "LDM-503-09": {
         "test_spec": "",
         "description": "Test how the system will run during commissioning.",
@@ -52,8 +58,14 @@
     },
     "LDM-503-10": {
         "test_spec": "",
-        "description": "There is a project Milestone that DAQ/DM/Networks are available March 15th. We need to run tests in Feb to show this is ready.",
+        "description": "There is a project milestone that DAQ/DM/Networks are available late 2019. We will run a full scale data acquisition test in to show this is ready.",
         "comment": ""
+    },
+    "LDM-503-10b": {
+        "name": "Large Scale CCOB Data Access",
+        "test_spec": "",
+        "description": "Demonstrate the ability to read data from the CCOB with 21 rafts, store at the Data Facility and make it available on some cluster for analysis.",
+        "comment": "This was added as part of DM-13073 to show we can process optical bench data specifically CCOB 21 raft setup. This extends LDM-503-8b."
     },
     "LDM-503-11a": {
         "test_spec": "",
@@ -82,7 +94,7 @@
     },
     "LDM-503-15": {
         "test_spec": "",
-        "description": "Science Verification data will now be available. Demonstate its use in producting a data release.",
+        "description": "Science Verification data will now be available. Demonstrate its use in producing a data release.",
         "comment": ""
     },
     "LDM-503-16": {
@@ -107,7 +119,7 @@
     "LSST-1190": {},
     "DM-DAX-1": {},
     "DM-DAX-2": {
-        "name": "Query service suporting IVOA TAP protocol, w/ support for asynchronous queries",
+        "name": "Query service supporting IVOA TAP protocol, w/ support for asynchronous queries",
         "comment": "PMCS calls this: dbserv V1 API (TAP, w/ async. requests)"
     },
     "DM-DAX-3": {
@@ -115,7 +127,7 @@
         "comment": "PMCS calls this: imgserv V1 API (SODA)"
     },
     "DM-DAX-4": {
-        "name": "Metadata service suporting IVOA SIAv2 protocol",
+        "name": "Metadata service supporting IVOA SIAv2 protocol",
         "comment": "PMCS calls this: metaserv V1 API (SIAv2)"
     },
     "DM-SUIT-1": {},
@@ -266,7 +278,7 @@
     },
     "DM-DRP-37": {
         "aka": ["DRP-MS-COADD-2"],
-        "name": "Artefact rejection and background matching during coadd construction."
+        "name": "Artifact rejection and background matching during coadd construction."
     },
     "DM-NCSA-16": {},
     "DM-NCSA-17": {},
