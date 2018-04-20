@@ -34,12 +34,26 @@ def extract_task_details(task_sheet):
     for rownum in range(START_ROW, task_sheet.nrows):
         code = fetcher("task_code", task_sheet.row(rownum))
         name = fetcher("task_name", task_sheet.row(rownum))
-        base_end_date = fetcher("base_end_date", task_sheet.row(rownum))
-        try:
-            due = extract_date(base_end_date)
-        except ValueError:
-            start_date = fetcher("start_date", task_sheet.row(rownum))
-            due = extract_date(start_date)
+
+        # There are three possible end dates:
+        #
+        #   base_end_date - according to the baseline project
+        #   end_date      - the end date in the current project (which floats
+        #                   as dependencies get late, etc)
+        #   start_date    - the start date in the current project (as above,
+        #                   will be the same as the end_date for zero duration activities like
+        #                   milestones.
+        #
+        # We use the first available.
+        for date_field in ("base_end_date", "end_date", "start_date"):
+            d = fetcher(date_field, task_sheet.row(rownum))
+            try:
+                due = extract_date(d)
+            except ValueError:
+                pass
+            else:
+                break
+
         ms = Milestone(code, name, due)
         act_end_date = fetcher("act_end_date", task_sheet.row(rownum))
         if act_end_date:
