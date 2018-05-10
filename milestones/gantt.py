@@ -28,9 +28,9 @@ GANTT_PREAMBLE_EMBEDDED = """
     title label font=\\sffamily\\bfseries,
     milestone label font=\\scriptsize,
     progress label text={#1},
-    milestone progress label node/.append style={right=0.9cm},
-    y unit chart=0.5cm,
-    y unit title=0.8cm
+    milestone progress label node/.append style={right=1.4cm},
+    y unit chart=0.4cm,
+    y unit title=0.7cm
 ]{1}{115}
   \\gantttitle{}{6} \\gantttitle{2018}{12} \\gantttitle{2019}{12}
   \\gantttitle{2020}{12} \\gantttitle{2021}{12} \\gantttitle{2022}{12}
