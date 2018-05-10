@@ -1,4 +1,7 @@
 {
+    "LSST-1510": {
+        "short_name": "Start Early System I&T"
+    },
     "LDM-503-01": {
         "test_spec": "",
         "description": "SUIT continues PDAC development, adding the WISE data, further exercising the DAX dbserv and imgserv APIs, and taking advantage of metaserv once it becomes available",
@@ -45,7 +48,7 @@
         "description": "Demonstrate that we can acquire (and process?) data from the Spectrograph.",
         "comment": "Per LSE-79, AuxTel delivery in Nov 2017 (ie, a year before this milestone) includes: EFD ETL service, Aux Telescope Archiving Service, Data backbone in support of Aux Telescope archiving. Do we need to schedule another test to cover that?"
     },
-    "LDM-503-8b": {
+    "LDM-503-08b": {
         "name": "Small Scale CCOB Data Access",
         "test_spec": "",
         "description": "Demonstrate the ability to read data from the CCOB with 9 rafts, store it at the Data Facility and make it available on some cluster for analysis.",
@@ -55,6 +58,9 @@
         "test_spec": "",
         "description": "Test how the system will run during commissioning.",
         "comment": "Focus on ISR: we should test whatever we have available. See LSE-79 for a list of requirements."
+    },
+    "LDM-503-09a": {
+        "description": "Scientific pipelines release in support of operations rehearsal LDM-503-09. Accompanied by characterization report."
     },
     "LDM-503-10": {
         "test_spec": "",
@@ -77,6 +83,9 @@
         "description": "More complete commissioning rehearsal: how do the scientists look at data? How do they provide feedback to the telescope? How do we create/update calibrations?",
         "comment": ""
     },
+    "LDM-503-11b": {
+        "description": "Scientific pipelines release in support of operations rehearsal LDM-503-11. Accompanied by characterization report."
+    },
     "LDM-503-12": {
         "test_spec": "",
         "description": "Dress rehearsal: commissioning starts in April  so by this stage we should be ready to do everything needed.",
@@ -85,7 +94,11 @@
     "LDM-503-13": {
         "test_spec": "",
         "description": "ComCam data will now be available. Demonstrate its use in producing a data release.",
-        "comment": "Note that LSE-79 requires a suite of DM services in support of the full camera in May 2020. It seems inappropriate to test them as part of a commissioning ops rehearsal, but they are well before this data. Do we need another test milestone?"
+        "comment": "Note that LSE-79 requires a suite of DM services in support of the full camera in May 2020. It seems inappropriate to test them as part of a commissioning ops rehearsal, but they are well before this data. Do we need another test milestone?",
+        "short_name": "Ops Rehearsal for DRP #1"
+    },
+    "LDM-503-13a": {
+        "description": "Scientific pipelines release in support of operations rehearsal LDM-503-13. Accompanied by characterization report."
     },
     "LDM-503-14": {
         "test_spec": "",
@@ -95,17 +108,25 @@
     "LDM-503-15": {
         "test_spec": "",
         "description": "Science Verification data will now be available. Demonstrate its use in producing a data release.",
-        "comment": ""
+        "comment": "",
+        "short_name": "Ops Rehearsal for DRP #2"
+    },
+    "LDM-503-15a": {
+        "description": "Scientific pipelines release in support of operations rehearsal LDM-503-15. Accompanied by characterization report."
     },
     "LDM-503-16": {
         "test_spec": "",
         "description": "Test readiness for operations.",
-        "comment": ""
+        "comment": "",
+        "short_name": "Ops Rehearsal for DRP #3"
     },
     "LDM-503-17": {
         "test_spec": "",
         "description": "Confirm readiness for operations.",
         "comment": ""
+    },
+    "LDM-503-17a": {
+        "description": "Final scientific pipelines release from the DM Construction Project. Accompanied by characterization report."
     },
     "CAMM6995": {
         "test_spec": "",
