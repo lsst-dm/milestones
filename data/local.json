@@ -3,7 +3,7 @@
         "short_name": "Start Early System I&T"
     },
     "LDM-503-01": {
-        "test_spec": "",
+        "test_spec": "\\citeds{LDM-540} v1.0 \\S3.1 (LSP-00)",
         "description": "SUIT continues PDAC development, adding the WISE data, further exercising the DAX dbserv and imgserv APIs, and taking advantage of metaserv once it becomes available",
         "comment": "From DAX: need to be clear about which WISE datasets are to be loaded: the data wrangling effort required to download, inspect, convert, partition, and load each additional dataset is cumulatively non-trivial for DAX"
     },
