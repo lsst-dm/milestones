@@ -29,4 +29,10 @@ class MilestoneCollection(object):
                         setattr(ms, attribute, local[ms.code][attribute])
                     except KeyError:
                         pass
+                try:
+                    setattr(ms, "completed",
+                            datetime.strptime(local[ms.code]['completed'],
+                                              "%Y-%m-%d"))
+                except KeyError:
+                    pass
         return MilestoneCollection(milestones)
