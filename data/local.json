@@ -206,6 +206,9 @@
     "DLP-44": {
         "completed": "2018-03-31"
     },
+    "DM-DAX-11": {
+        "completed": "2018-05-31"
+    },
     "LSST-1200": {},
     "DM-DAX-7": {},
     "DM-NCSA-4": {},
@@ -213,7 +216,6 @@
     "DM-NCSA-6": {},
     "DM-NCSA-7": {},
     "DM-NET-1": {},
-    "DM-DAX-11": {},
     "DM-NCSA-30": {},
     "DM-NCSA-31": {},
     "LSST-1220": {},
