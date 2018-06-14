@@ -188,15 +188,9 @@
         "aka": ["DRP-MS-COADD-1"],
         "name": "PSF-homogenized coadd construction."
     },
-    "DM-NCSA-29": {
-        "completed": "2018-03-31"
-    },
-    "DLP-65": {
-        "completed": "2018-03-31"
-    },
-    "DLP-44": {
-        "completed": "2018-03-31"
-    },
+    "DM-NCSA-29": {},
+    "DLP-65": {},
+    "DLP-44": {},
     "DLP-442": {
         "completed": "2018-04-30"
     },
