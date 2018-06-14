@@ -25,14 +25,18 @@ class MilestoneCollection(object):
             if ms.code in local:
                 for attribute in ["name", "description", "comment", "aka",
                                   "test_spec", "short_name"]:
-                    try:
+                    if (hasattr(ms, attribute) and
+                        ms.code in local and
+                        attribute in local[ms.code]):
+                        print("NOTE: overriding %s on %s" % (attribute, ms.code))
                         setattr(ms, attribute, local[ms.code][attribute])
-                    except KeyError:
-                        pass
                 try:
+                    old_completion = ms.completed
                     setattr(ms, "completed",
                             datetime.strptime(local[ms.code]['completed'],
                                               "%Y-%m-%d"))
+                    print("NOTE: overriding completion date on %s (was %s, now %s)" %
+                          (ms.code, old_completion, local[ms.code]['completed']))
                 except KeyError:
                     pass
         return MilestoneCollection(milestones)
