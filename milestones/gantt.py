@@ -9,7 +9,7 @@ GANTT_MILESTONES = [
     "LDM-503",
     "LSST-1200",
     "T&SC-1100-0900",
-    "COMC-1264",
+#    "COMC-1264",
     "CAMM6995",
     "LSST-1220",
     "T&SC-1150-0600",
