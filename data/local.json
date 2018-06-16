@@ -18,7 +18,7 @@
         "comment": "Validate the alert generation stack performance on several DECam and HSC datasets. \"Stack\" is probably ill-defined here: is this simply testing science logic, or are we going after a wider integration exercise? "
     },
     "LDM-503-04": {
-        "test_spec": "\\citeds{LDM-538} draft version 2018-06-04\\footnote{Currently undergoing review on \\jira{RFC-488}, \\S3.1 (RAS-00)",
+        "test_spec": "\\citeds{LDM-538} draft version 2018-06-04\\footnote{Currently undergoing review on \\jira{RFC-488.}}, \\S3.1 (RAS-00)",
         "description": "Demonstrate the writing of a well-formed raw image to the permanent record of the survey and provide rapid access for Observatory Operations staff.",
         "comment": ""
     },
