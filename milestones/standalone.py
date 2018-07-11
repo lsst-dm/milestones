@@ -60,9 +60,9 @@ def dump_burndown(output, mc, start_date=None):
     # before the start date. The aim is to avoid picking up a whole bunch of
     # pre-replan milestones.
     if not start_date:
-        start_date = datetime(2017, 10, 31)
+        start_date = datetime(2016, 10, 30)
     # Last date we'll consider.
-    end_date = datetime(2022, 5, 31)
+    end_date = datetime(2022, 1, 30)
 
     milestones = set()
     for my_filter in ("DM-", "DLP-"):
@@ -71,15 +71,21 @@ def dump_burndown(output, mc, start_date=None):
                           (not ms.completed or ms.completed > start_date))
     milestones.update(mc.filter("LDM-503"))
 
-    month_ends = pd.date_range(start_date, end_date, freq='M')
+    month_starts = []
+    for year in (range(start_date.year, end_date.year+1)):
+        for month in range(1, 13):
+            dt = datetime(year, month, 1)
+            if start_date <= dt <= end_date:
+                month_starts.append(datetime(year, month, 1))
+
     model = []
     actual = []
-    for me in month_ends:
+    for date in month_starts:
         model_remain = actual_remain = len(milestones)
         for ms in milestones:
-            if ms.due <= me:
+            if ms.due <= date:
                 model_remain -= 1
-            if ms.completed and ms.completed <= me:
+            if ms.completed and ms.completed <= date:
                 actual_remain -= 1
         model.append(model_remain)
         try:
@@ -87,15 +93,29 @@ def dump_burndown(output, mc, start_date=None):
             # last month in whch at least one milestone was completed. This
             # isn't necessarily strictly correct, but it's not bad.
             if actual_remain < actual[-1]:
-                last_achieved_month = me
+                last_achieved_month = date
         except IndexError:
             pass
         actual.append(actual_remain)
 
-    plt.plot(month_ends, model, label="Schedule")
+    plt.plot(month_starts, model, label="Schedule")
+
 
     achieved_months = pd.date_range(start_date, last_achieved_month, freq='M')
     plt.plot(achieved_months, actual[:len(achieved_months)], label="Achieved")
+
+    glide_slope = [len(milestones) - i * (len(milestones) / len(month_starts)) for i in range(len(month_starts))]
+    plt.plot(month_starts, glide_slope, label="Glide slope")
+
+    obsolete_ms = [
+        "DLP-538", "DLP-541", "DLP-808", "DLP-799", "DLP-458", "DM-NCSA-5", "DM-NCSA-7"
+    ]
+
+    flat = [actual[len(achieved_months)] - len(obsolete_ms) for i in range(len(month_starts))]
+
+    timescale = month_starts[len(achieved_months)-3:len(achieved_months)+2]
+    plt.plot(timescale, flat[:5], label="Corrected")
+
     plt.xlabel("Date")
     plt.ylabel("Open Milestones")
     plt.legend()
