@@ -31,6 +31,9 @@ def generate_releases(mc):
                     output.write("; currently incomplete")
                 output.write(")}}\n")
             output.write("\\end{itemize}\n")
+        else:
+            output.write("""\nNo new functionality is associated with this milestone, which """
+                         """represents a refined or improved version of earlier deliveries.\n""")
     return output.getvalue()
 
 def milestone_map(mc):
