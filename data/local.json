@@ -60,7 +60,7 @@
         "comment": "Focus on ISR: we should test whatever we have available. See LSE-79 for a list of requirements."
     },
     "LDM-503-09a": {
-        "description": "Scientific pipelines release in support of operations rehearsal LDM-503-09. Accompanied by characterization report."
+        "description": "Science Pipelines release in support of operations rehearsal LDM-503-09. Release contents described in \\citeds{LDM-564}. Will be accompanied by a characterization report."
     },
     "LDM-503-10": {
         "test_spec": "",
@@ -84,11 +84,11 @@
         "comment": ""
     },
     "LDM-503-11b": {
-        "description": "Scientific pipelines release in support of operations rehearsal LDM-503-11. Accompanied by characterization report."
+        "description": "Science Pipelines release in support of operations rehearsal LDM-503-11. Release contents described in \\citeds{LDM-564}. Will be accompanied by a characterization report."
     },
     "LDM-503-12": {
         "test_spec": "",
-        "description": "Dress rehearsal: commissioning starts in April  so by this stage we should be ready to do everything needed.",
+        "description": "Dress rehearsal: commissioning starts in April so by this stage we should be ready to do everything needed.",
         "comment": ""
     },
     "LDM-503-13": {
@@ -98,7 +98,7 @@
         "short_name": "Ops Rehearsal for DRP #1"
     },
     "LDM-503-13a": {
-        "description": "Scientific pipelines release in support of operations rehearsal LDM-503-13. Accompanied by characterization report."
+        "description": "Science Pipelines release in support of operations rehearsal LDM-503-13. Release contents described in \\citeds{LDM-564}. Will be accompanied by a characterization report."
     },
     "LDM-503-14": {
         "test_spec": "",
@@ -112,7 +112,7 @@
         "short_name": "Ops Rehearsal for DRP #2"
     },
     "LDM-503-15a": {
-        "description": "Scientific pipelines release in support of operations rehearsal LDM-503-15. Accompanied by characterization report."
+        "description": "Science Pipelines release in support of operations rehearsal LDM-503-15. Release contents described in \\citeds{LDM-564}. Will be accompanied by a characterization report."
     },
     "LDM-503-16": {
         "test_spec": "",
@@ -126,7 +126,7 @@
         "comment": ""
     },
     "LDM-503-17a": {
-        "description": "Final scientific pipelines release from the DM Construction Project. Accompanied by characterization report."
+        "description": "Final Science Pipelines release from the DM Construction Project. Release contents described in \\citeds{LDM-564}. Will be accompanied by a characterization report."
     },
     "CAMM6995": {
         "test_spec": "",
