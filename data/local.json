@@ -30,8 +30,7 @@
    },
     "LDM-503-05": {
         "test_spec": "",
-        "description": "Validate alert distribution system and mini-broker fed by live or simulated live data.",
-        "comment": "Can we test a SUIT interface to the broker at this point? I believe it's not scheduled until later in construction."
+        "description": "Validate alert distribution system and mini-broker fed by live or simulated live data."
     },
     "LDM-503-06": {
         "test_spec": "",
