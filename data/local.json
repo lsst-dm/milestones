@@ -49,9 +49,9 @@
     },
     "LDM-503-08b": {
         "name": "Small Scale CCOB Data Access",
-        "test_spec": "",
-        "description": "Demonstrate the ability to read data from the CCOB with 9 rafts, store it at the Data Facility and make it available on some cluster for analysis.",
-        "comment": "This was added as part of DM-13073 to show we can process optical bench data specifically CCOB 9 raft setup. "
+        "test_spec": "\\citeds{LDM-538} v1.0 \\S4.2 (RAS-00-05)",
+        "description": "Demonstrate the integration of he CCOB with the permanent record of the survey.  The archive or permanent record of the survey includes site file systems with multiple copies, immutable data and entries in the consolidated database for later retrieval and search needs.",
+        "comment": "A minimal system that can archive CCOB devices from the AuxTel DAQ in Tucson and demonstrate that they can be retrieved."
     },
     "LDM-503-09": {
         "test_spec": "",
