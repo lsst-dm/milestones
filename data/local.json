@@ -24,7 +24,7 @@
    },
    "LDM-503-04b": {
        "test_spec": "\\citeds{LDM-538} v1.0 \\S4.4 (RAS-00-20)",
-       "description": "Demonstrate the integration of writing the well formed FITS file with the permenant record of the survey.  The archive or permanent reecord of the survey includes site file systems with multiple copies, immutable data and entries in the consolidated database for later retrieval and search needs. ",
+       "description": "Demonstrate the integration of writing the well formed FITS file with the permanent record of the survey.  The archive or permanent record of the survey includes site file systems with multiple copies, immutable data and entries in the consolidated database for later retrieval and search needs. ",
        "comment": "A minimal system that can archive simulated images from the AuxTel DAQ and demonstrate that they can be retrieved.",
        "short_name": "AuxTel DAQ Interface Verification and Spectrograph Ops Rehearsal"
    },
@@ -49,8 +49,8 @@
     "LDM-503-08b": {
         "name": "Small Scale CCOB Data Access",
         "test_spec": "\\citeds{LDM-538} v1.0 \\S4.2 (RAS-00-05)",
-        "description": "Demonstrate the integration of he CCOB with the permanent record of the survey.  The archive or permanent record of the survey includes site file systems with multiple copies, immutable data and entries in the consolidated database for later retrieval and search needs.",
-        "comment": "A minimal system that can archive CCOB devices from the AuxTel DAQ in Tucson and demonstrate that they can be retrieved."
+        "description": "Demonstrate the integration of the CCOB with the permanent record of the survey.  The archive or permanent record of the survey includes site file systems with multiple copies, immutable data and entries in the consolidated database for later retrieval and search needs.",
+        "comment": "A minimal system that can archive images and metadata from the CCOB and demonstrate that they can be retrieved."
     },
     "LDM-503-09": {
         "test_spec": "",
