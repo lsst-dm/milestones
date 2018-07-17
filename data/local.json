@@ -29,7 +29,7 @@
        "short_name": "AuxTel DAQ Interface Verification and Spectrograph Ops Rehearsal"
    },
     "LDM-503-05": {
-        "test_spec": "",
+        "test_spec": "\\citeds{LDM-533} draft version of 2018-07-16\\footnote{Git revision \texttt{4291d80}} \\S\\S 4.7--4.9 (test cases LVV-T216, LVV-T217, LVV-T218)",
         "description": "Validate alert distribution system and mini-broker fed by live or simulated live data."
     },
     "LDM-503-06": {
