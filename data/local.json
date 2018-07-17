@@ -44,8 +44,7 @@
     },
     "LDM-503-08": {
         "test_spec": "",
-        "description": "Demonstrate that we can acquire (and process?) data from the Spectrograph.",
-        "comment": "Per LSE-79, AuxTel delivery in Nov 2017 (ie, a year before this milestone) includes: EFD ETL service, Aux Telescope Archiving Service, Data backbone in support of Aux Telescope archiving. Do we need to schedule another test to cover that?"
+        "description": "Demonstrate that we can acquire (and process, depending on capabilities at time of test execution) data from the Spectrograph."
     },
     "LDM-503-08b": {
         "name": "Small Scale CCOB Data Access",
