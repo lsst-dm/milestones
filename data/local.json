@@ -18,12 +18,12 @@
         "comment": "Validate the alert generation stack performance on several DECam and HSC datasets. \"Stack\" is probably ill-defined here: is this simply testing science logic, or are we going after a wider integration exercise? "
     },
 	"LDM-503-04": {
-       "test_spec": "\\citeds{LDM-538} draft version 2018-06-04\\footnote{Currently undergoing review on \\jira{RFC-488.}}, \\S4.1 (RAS-00-00)",
+       "test_spec": "\\citeds{LDM-538} v1.0 \\S4.1 (RAS-00-00)",
        "description": "Demonstrate the writing of a well-formed raw image with proper headers.",
        "comment": "A minimal system that can be used to generate a raw image and then create a FITS file with headers."
    },
    "LDM-503-04b": {
-       "test_spec": "\\citeds{LDM-538} draft version 2018-06-04\\footnote{Currently undergoing review on \\jira{RFC-488.}}, \\S4.3 (RAS-00-20)",
+       "test_spec": "\\citeds{LDM-538} v1.0 \\S4.4 (RAS-00-20)",
        "description": "Demonstrate the integration of writing the well formed FITS file with the permenant record of the survey.  The archive or permanent reecord of the survey includes site file systems with multiple copies, immutable data and entries in the consolidated database for later retrieval and search needs. ",
        "comment": "A minimal system that can archive simulated images from the AuxTel DAQ and demonstrate that they can be retrieved.",
        "short_name": "AuxTel DAQ Interface Verification and Spectrograph Ops Rehearsal"
