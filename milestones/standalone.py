@@ -12,7 +12,7 @@ GANTT_PREAMBLE = """
 \\documentclass{article}
 \\usepackage[
     paperwidth=30cm,
-    paperheight=22.00cm,  % Manually tweaked to fit chart
+    paperheight=22.50cm,  % Manually tweaked to fit chart
     left=0mm,
     top=0mm,
     bottom=0mm,
