@@ -10,7 +10,7 @@ GANTT_MILESTONES = [
     "LSST-1200",
     "T&SC-1100-0900",
 #    "COMC-1264",
-    "CAMM6995",
+#    "CAMM6995",  Dropped following LCR-1288.
     "LSST-1220",
     "T&SC-1150-0600",
     "LSST-1510",
