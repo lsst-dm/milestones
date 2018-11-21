@@ -58,7 +58,8 @@
         "comment": "Focus on ISR: we should test whatever we have available. See LSE-79 for a list of requirements."
     },
     "LDM-503-09a": {
-        "description": "Science Pipelines release in support of operations rehearsal LDM-503-09. Release contents described in \\citeds{LDM-564}. Will be accompanied by a characterization report."
+        "test_spec": "\\citeds{DMTR-111}",
+        "description": "Major Science Pipelines release in support of activities in late 2018 and early 2019. The contents of the release are described in \\citeds{LDM-564}. The release will be accompanied by a characterization report."
     },
     "LDM-503-10": {
         "test_spec": "",
