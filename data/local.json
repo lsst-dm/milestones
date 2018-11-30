@@ -38,7 +38,7 @@
         "comment": "\"The DM system\" should use some further definition: what do we want to test here? Data flow from ComCam to the Data Backbone, or science processing of ComCam data? Note the LSE-79 requirements for DM services in support of ComCam in table 8. They're required by Nov 2019/Feb 2020; it may be more appropriate to test some of them at a later date?"
     },
     "LDM-503-07": {
-        "test_spec": "Will be covered by \\citeds{LDM-534}; detailed test specification still under development.",
+        "test_spec": "a future version of \\citeds{LDM-534}; the detailed test specification is still under development",
         "description": "This test will demonstrate that camera test stand data can be made available and processed through the ``Butler'' data access abstraction",
         "comment": ""
     },
