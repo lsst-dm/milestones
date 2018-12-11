@@ -1,5 +1,6 @@
 import numpy
 import sys
+import re
 import xlrd
 from datetime import datetime
 
@@ -26,6 +27,12 @@ def extract_date(value):
         return datetime.strptime(value, "%m/%d/%Y %I:%M:%S %p")
     except ValueError:
         return datetime.strptime(value, "%m/%d/%Y")
+
+def extract_wbs(value):
+    try:
+        return re.match(r"LSST ME \d\d-\d\d\.(\d\dC?\.\d\d)", value).groups()[0]
+    except AttributeError:
+        return None
 
 def extract_task_details(task_sheet):
     assert(task_sheet.name == TASK_SHEET_NAME)
@@ -58,6 +65,11 @@ def extract_task_details(task_sheet):
         act_end_date = fetcher("act_end_date", task_sheet.row(rownum))
         if act_end_date:
             ms.completed = extract_date(act_end_date)
+
+        wbs = fetcher("wbs_id", task_sheet.row(rownum))
+        if wbs:
+            ms.wbs = extract_wbs(wbs)
+
         milestones.add(ms)
     return milestones
 

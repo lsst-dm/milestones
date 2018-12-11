@@ -23,6 +23,7 @@ def parse_args():
     standalone = subparsers.add_parser("standalone", help="Output standalone material.")
     standalone.add_argument("--gantt", help="Output location for Gantt chart.")
     standalone.add_argument("--burndown", help="Output location for burndown plot.")
+    standalone.add_argument("--future", help="Output location for milestone forecast.")
     standalone.set_defaults(func=milestones.standalone.generate)
 
     ldm503 = subparsers.add_parser("ldm503", help="Output for LDM-503.")
