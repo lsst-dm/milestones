@@ -33,10 +33,12 @@ class MilestoneCollection(object):
                 try:
                     old_completion = ms.completed
                     setattr(ms, "completed",
-                            datetime.strptime(local[ms.code]['completed'],
+                            datetime.strptime(local[ms.code]["completed"],
                                               "%Y-%m-%d"))
                     print("NOTE: overriding completion date on %s (was %s, now %s)" %
                           (ms.code, old_completion, local[ms.code]['completed']))
                 except KeyError:
                     pass
+                if "jira" in local[ms.code]:
+                    ms.jira = local[ms.code]["jira"]
         return MilestoneCollection(milestones)

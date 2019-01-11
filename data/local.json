@@ -35,7 +35,8 @@
     "LDM-503-06": {
         "test_spec": "",
         "description": "Test the operation of the DM system prior to ComCam availability in Tucson.",
-        "comment": "\"The DM system\" should use some further definition: what do we want to test here? Data flow from ComCam to the Data Backbone, or science processing of ComCam data? Note the LSE-79 requirements for DM services in support of ComCam in table 8. They're required by Nov 2019/Feb 2020; it may be more appropriate to test some of them at a later date?"
+        "comment": "\"The DM system\" should use some further definition: what do we want to test here? Data flow from ComCam to the Data Backbone, or science processing of ComCam data? Note the LSE-79 requirements for DM services in support of ComCam in table 8. They're required by Nov 2019/Feb 2020; it may be more appropriate to test some of them at a later date?",
+        "jira": "DM-17119"
     },
     "LDM-503-07": {
         "test_spec": "\\citeds{DMTR-112}",
@@ -44,88 +45,109 @@
     },
     "LDM-503-08": {
         "test_spec": "",
-        "description": "Demonstrate that we can acquire (and process, depending on capabilities at time of test execution) data from the Spectrograph."
+        "description": "Demonstrate that we can acquire (and process, depending on capabilities at time of test execution) data from the Spectrograph.",
+        "jira": "DM-17131"
     },
     "LDM-503-08b": {
         "name": "Small Scale CCOB Data Access",
         "test_spec": "\\citeds{LDM-538} v1.0 \\S4.2 (RAS-00-05)",
         "description": "Demonstrate the integration of the CCOB with the permanent record of the survey.  The archive or permanent record of the survey includes site file systems with multiple copies, immutable data and entries in the consolidated database for later retrieval and search needs.",
-        "comment": "A minimal system that can archive images and metadata from the CCOB and demonstrate that they can be retrieved."
+        "comment": "A minimal system that can archive images and metadata from the CCOB and demonstrate that they can be retrieved.",
+        "jira": "DM-17118"
     },
     "LDM-503-09": {
         "test_spec": "",
         "description": "Test how the system will run during commissioning.",
-        "comment": "Focus on ISR: we should test whatever we have available. See LSE-79 for a list of requirements."
+        "comment": "Focus on ISR: we should test whatever we have available.  See LSE-79 for a list of requirements.",
+        "jira": "DM-17120"
     },
     "LDM-503-09a": {
         "test_spec": "\\citeds{DMTR-111}",
-        "description": "Major Science Pipelines release in support of activities in late 2018 and early 2019. The contents of the release are described in \\citeds{LDM-564}. The release will be accompanied by a characterization report."
+        "description": "Major Science Pipelines release in support of activities in late 2018 and early 2019. The contents of the release are described in \\citeds{LDM-564}. The release will be accompanied by a characterization report.",
+        "jira": "DM-17121"
     },
     "LDM-503-10": {
         "test_spec": "",
         "description": "There is a project milestone that DAQ/DM/Networks are available late 2019. We will run a full scale data acquisition test in to show this is ready.",
-        "comment": ""
+        "comment": "",
+        "jira": "DM-17122"
     },
     "LDM-503-10b": {
         "name": "Large Scale CCOB Data Access",
         "test_spec": "",
         "description": "Demonstrate the ability to read data from the CCOB with 21 rafts, store at the Data Facility and make it available on some cluster for analysis.",
-        "comment": "This was added as part of DM-13073 to show we can process optical bench data specifically CCOB 21 raft setup. This extends LDM-503-8b."
+        "comment": "This was added as part of DM-13073 to show we can process optical bench data specifically CCOB 21 raft setup. This extends LDM-503-8b.",
+        "jira": "DM-17123"
     },
     "LDM-503-11a": {
         "test_spec": "",
         "description": "ComCam will be in use in Nov. The DM system must be ready to deal with it.",
-        "comment": "\"The DM system\" should use some further definition: what do we want to test here? Data flow from ComCam to the Data Backbone, or science processing of ComCam data? Note the LSE-79 requirements for DM services in support of ComCam in table 8. They're required by Nov 2019/Feb 2020; it may be more appropriate to test some of them at a later date?"
+        "comment": "\"The DM system\" should use some further definition: what do we want to test here? Data flow from ComCam to the Data Backbone, or science processing of ComCam data? Note the LSE-79 requirements for DM services in support of ComCam in table 8. They're required by Nov 2019/Feb 2020; it may be more appropriate to test some of them at a later date?",
+        "jira": "DM-17125"
     },
     "LDM-503-11": {
         "test_spec": "",
         "description": "More complete commissioning rehearsal: how do the scientists look at data? How do they provide feedback to the telescope? How do we create/update calibrations?",
-        "comment": ""
+        "comment": "",
+        "jira": "DM-17124"
     },
     "LDM-503-11b": {
-        "description": "Science Pipelines release in support of operations rehearsal LDM-503-11. Release contents described in \\citeds{LDM-564}. Will be accompanied by a characterization report."
+        "description": "Science Pipelines release in support of operations rehearsal LDM-503-11. Release contents described in \\citeds{LDM-564}. Will be accompanied by a characterization report.",
+        "jira": "DM-17126"
     },
     "LDM-503-12": {
         "test_spec": "",
         "description": "Dress rehearsal: commissioning starts in April so by this stage we should be ready to do everything needed.",
-        "comment": ""
+        "comment": "",
+        "jira": "DM-17127"
+    },
+    "LDM-503-12a": {
+        "jira": "DM-17128"
     },
     "LDM-503-13": {
         "test_spec": "",
         "description": "ComCam data will now be available. Demonstrate its use in producing a data release.",
         "comment": "Note that LSE-79 requires a suite of DM services in support of the full camera in May 2020. It seems inappropriate to test them as part of a commissioning ops rehearsal, but they are well before this data. Do we need another test milestone?",
-        "short_name": "Ops Rehearsal for DRP #1"
+        "short_name": "Ops Rehearsal for DRP #1",
+        "jira": "DM-17130"
     },
     "LDM-503-13a": {
-        "description": "Science Pipelines release in support of operations rehearsal LDM-503-13. Release contents described in \\citeds{LDM-564}. Will be accompanied by a characterization report."
+        "description": "Science Pipelines release in support of operations rehearsal LDM-503-13. Release contents described in \\citeds{LDM-564}. Will be accompanied by a characterization report.",
+        "jira": "DM-17129"
     },
     "LDM-503-14": {
         "test_spec": "",
         "description": "Science Verification starts in April. Demonstrate that all required DM software is available.",
-        "comment": "SV will include calculating all KPMs to demonstrate that we are reaching the science requirements. That obviously means we'll need code which is both capable of reaching those requirements, and calculating the KPMs."
+        "comment": "SV will include calculating all KPMs to demonstrate that we are reaching the science requirements. That obviously means we'll need code which is both capable of reaching those requirements, and calculating the KPMs.",
+        "jira": "DM-17133"
     },
     "LDM-503-15": {
         "test_spec": "",
         "description": "Science Verification data will now be available. Demonstrate its use in producing a data release.",
         "comment": "",
-        "short_name": "Ops Rehearsal for DRP #2"
+        "short_name": "Ops Rehearsal for DRP #2",
+        "jira": "DM-17135"
     },
     "LDM-503-15a": {
-        "description": "Science Pipelines release in support of operations rehearsal LDM-503-15. Release contents described in \\citeds{LDM-564}. Will be accompanied by a characterization report."
+        "description": "Science Pipelines release in support of operations rehearsal LDM-503-15. Release contents described in \\citeds{LDM-564}. Will be accompanied by a characterization report.",
+        "jira": "DM-17137"
     },
     "LDM-503-16": {
         "test_spec": "",
         "description": "Test readiness for operations.",
         "comment": "",
-        "short_name": "Ops Rehearsal for DRP #3"
+        "short_name": "Ops Rehearsal for DRP #3",
+        "jira": "DM-17139"
     },
     "LDM-503-17": {
         "test_spec": "",
         "description": "Confirm readiness for operations.",
-        "comment": ""
+        "comment": "",
+        "jira": "DM-17141"
     },
     "LDM-503-17a": {
-        "description": "Final Science Pipelines release from the DM Construction Project. Release contents described in \\citeds{LDM-564}. Will be accompanied by a characterization report."
+        "description": "Final Science Pipelines release from the DM Construction Project. Release contents described in \\citeds{LDM-564}. Will be accompanied by a characterization report.",
+        "jira": "DM-17143"
     },
     "CAMM6995": {
         "test_spec": "",
