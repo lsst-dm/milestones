@@ -6,7 +6,7 @@ def escape_latex(text):
 class Milestone(object):
     def __init__(self, code, name, due, description="", comment="",
                  aka="", test_spec="", short_name=None, predecessors=None,
-                 successors=None, completed=None, wbs=None):
+                 successors=None, completed=None, wbs=None, jira=None):
         self.code = code
         self.name = name
         self._short_name = short_name
@@ -19,6 +19,7 @@ class Milestone(object):
         self.successors = set(successors) if successors else set()
         self.completed = completed
         self.wbs = wbs
+        self.jira = jira
 
     @property
     def short_name(self):

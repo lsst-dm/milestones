@@ -1,9 +1,11 @@
 from csv import DictWriter
 from datetime import datetime, timedelta
 from io import StringIO
+from os import environ
 
 import pandas as pd
 import matplotlib.pyplot as plt
+import requests
 
 from .gantt import format_gantt, GANTT_MILESTONES
 from .utility import write_output
@@ -173,6 +175,20 @@ def future(milestones):
         writer.writerow(to_write)
     return output.getvalue()
 
+def set_jira_due_dates(mc):
+    def set_jira_due_date(issue_id, due_date):
+        API_ENDPOINT = "https://jira.lsstcorp.org/rest/api/latest/"
+        user, pw = environ["JIRA_USER"], environ["JIRA_PW"]
+        formatted_date = due_date.strftime("%Y-%m-%d")
+        data = {"fields": {"duedate": formatted_date}}
+        print("Setting due date on", issue_id, "to", formatted_date)
+        r = requests.put(API_ENDPOINT + "issue/" + issue_id,
+                         auth=(user, pw), json=data)
+
+    for ms in mc.milestones:
+        if ms.jira and ms.due:
+            set_jira_due_date(ms.jira, ms.due)
+
 def generate(args, mc):
     if args.gantt:
         write_output(args.gantt, generate_gantt(mc))
@@ -180,3 +196,5 @@ def generate(args, mc):
         dump_burndown(args.burndown, mc)
     if args.future:
         write_output(args.future, future(mc.milestones))
+    if args.jira:
+        set_jira_due_dates(mc)

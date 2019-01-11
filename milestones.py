@@ -24,6 +24,7 @@ def parse_args():
     standalone.add_argument("--gantt", help="Output location for Gantt chart.")
     standalone.add_argument("--burndown", help="Output location for burndown plot.")
     standalone.add_argument("--future", help="Output location for milestone forecast.")
+    standalone.add_argument("--jira", action="store_true", help="Set due dates in Jira.")
     standalone.set_defaults(func=milestones.standalone.generate)
 
     ldm503 = subparsers.add_parser("ldm503", help="Output for LDM-503.")
