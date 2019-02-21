@@ -16,6 +16,13 @@ venv:
 		pip install -r requirements.txt; \
 	)
 
+.PHONY: jira
+jira: venv
+	( \
+		source $(VENVDIR)/bin/activate; \
+		python milestones.py standalone --jira; \
+	)
+
 .PHONY: clean
 clean:
 	rm -rf $(VENVDIR)
