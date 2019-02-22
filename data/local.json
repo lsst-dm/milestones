@@ -4,33 +4,29 @@
     },
     "LDM-503-01": {
         "test_spec": "\\citeds{LDM-540} v1.0 \\S3.1 (LSP-00)",
-        "description": "SUIT continues PDAC development, adding the WISE data, further exercising the DAX dbserv and imgserv APIs, and taking advantage of metaserv once it becomes available",
-        "comment": "From DAX: need to be clear about which WISE datasets are to be loaded: the data wrangling effort required to download, inspect, convert, partition, and load each additional dataset is cumulatively non-trivial for DAX"
+        "description": "This test demonstrates the deployment of the Portal and API Aspects of the LSST Science Platform \\citedsp{LSE-319, LDM-542, LDM-554} to serve all-sky precursor data, including catalogs totaling of order 50--100 billion rows, in a prototype LSST Data Access Center hosted in the LSST Data Facility at NCSA."
     },
     "LDM-503-02": {
         "test_spec": "\\citeds{LDM-534} v3.1 \\S3.1 (DRP-00)",
-        "description": "Validate the data products with the LSST stack match or improve upon HSC products.  Validate the ops platform in NCSA, including installing the stack, starting & stopping production. Generate a validation data set for weekly integration and other tests.",
-        "comment": ""
+        "description": "This test demonstrates the successful execution of a prototype Data Release Production science payload \\citedsp{LDM-148, LDM-151}, processing data from precursor surveys at a relatively small scale using compute resources at the LSST Data Facility at NCSA."
     },
     "LDM-503-03": {
         "test_spec": "\\citeds{LDM-533} v1.1 \\S3.1 (AG-00)",
-        "description": "Validate the alert generation stack performance on several DECam & HSC datasets.",
-        "comment": "Validate the alert generation stack performance on several DECam and HSC datasets. \"Stack\" is probably ill-defined here: is this simply testing science logic, or are we going after a wider integration exercise? "
+        "description": "This test demonstrates the successful execution of a prototype Alert Generation science payload \\citedsp{LDM-148, LDM-151}, processing data from precursor surveys at a relatively small scale using compute resources at the LSST Data Facility at NCSA."
     },
 	"LDM-503-04": {
        "test_spec": "\\citeds{LDM-538} v1.0 \\S4.1 (RAS-00-00)",
-       "description": "Demonstrate the writing of a well-formed raw image with proper headers.",
-       "comment": "A minimal system that can be used to generate a raw image and then create a FITS file with headers."
+       "description": "This test demonstrates that LSST data acquisition system can capture raw data from instrumentation and construct a well-formed image with proper headers."
    },
    "LDM-503-04b": {
        "test_spec": "\\citeds{LDM-538} v1.0 \\S4.4 (RAS-00-20)",
-       "description": "Demonstrate the integration of writing the well formed FITS file with the permanent record of the survey.  The archive or permanent record of the survey includes site file systems with multiple copies, immutable data and entries in the consolidated database for later retrieval and search needs. ",
-       "comment": "A minimal system that can archive simulated images from the AuxTel DAQ and demonstrate that they can be retrieved.",
+       "description": "This tests demonstrates that the well-formed image generated in LDM-503-04 can be written to the permanent record of the survey.",
+       "comment": "The archive or permanent record of the survey includes site filesystems with multiple copies, immutable data and entries in the consolidated database for later retrieval and search needs.",
        "short_name": "AuxTel DAQ Interface Verification and Spectrograph Ops Rehearsal"
    },
     "LDM-503-05": {
-        "test_spec": "\\citeds{LDM-533} draft version of 2018-07-16\\footnote{Git revision \\texttt{4291d80}.} \\S\\S 4.7--4.9 (test cases LVV-T216, LVV-T217, LVV-T218)",
-        "description": "Validate alert distribution system and mini-broker fed by live or simulated live data."
+        "test_spec": "\\citeds{LDM-533} v2.0 \\S\\S 4.7--4.9 (test cases LVV-T216, LVV-T217, LVV-T218)",
+        "description": "This test demonstrates that a full-LSST-scale (10,000 messages every 39 seconds) alert stream can be distributed to end users. It further shows that simple filters based on alert contents can be applied to that stream."
     },
     "LDM-503-06": {
         "test_spec": "",
@@ -41,34 +37,34 @@
     },
     "LDM-503-07": {
         "test_spec": "\\citeds{DMTR-112}",
-        "description": "This test will demonstrate that camera test stand data can be made available and processed through the ``Butler'' data access abstraction",
+        "description": "This test demonstrates that the LSST Science Pipelines can be successfully used to load and perform basic processing of data from the LSST Camera test systems. In the process, it establishes that data is properly made available at the LSST Data Facility at NCSA, and is accessible through the LSST Science Platform.",
         "comment": "",
         "jira_testplan": "DM-16072"
     },
     "LDM-503-08": {
         "test_spec": "",
-        "description": "Demonstrate that we can acquire (and process, depending on capabilities at time of test execution) data from the Spectrograph.",
+        "description": "This test demonstrates data acquisition from the Auxiliary Telescope spectrograph, transmission of all image files with associated metadata to NCSA for screening, and then further processing if needed.",
+        "comment": "As the capabilities of the spectragraph grow data can be automatically ingested into the Data Backbone for permanent record of the survey after being sent to NCSA.",
         "jira": "DM-17131",
         "jira_testplan": "DM-16455"
     },
     "LDM-503-08b": {
         "name": "Small Scale CCOB Data Access",
         "test_spec": "\\citeds{LDM-538} v1.0 \\S4.2 (RAS-00-05)",
-        "description": "Demonstrate the integration of the CCOB with the permanent record of the survey.  The archive or permanent record of the survey includes site file systems with multiple copies, immutable data and entries in the consolidated database for later retrieval and search needs.",
-        "comment": "A minimal system that can archive images and metadata from the CCOB and demonstrate that they can be retrieved.",
+        "description": "This test demonstrates the integration of the CCOB with the permanent record of the survey.",
+        "comment": "The archive or permanent record of the survey includes site filesystems with multiple copies, immutable data and entries in the consolidated database for later retrieval and search needs.",
         "jira": "DM-17118",
         "jira_testplan": "DM-16073"
     },
     "LDM-503-09": {
         "test_spec": "",
-        "description": "Test how the system will run during commissioning.",
-        "comment": "Focus on ISR: we should test whatever we have available.  See LSE-79 for a list of requirements.",
+        "description": "This milestone represents the completion of a multi-day exercise in which (simulated) observations are performed and data is processed in as close to an operational mode as is possible at this stage in construction. In particular, it will demonstrate transfer, archiving and intestion of raw data; offline processing of calibration and science data; and curation of the resultant data products.",
         "jira": "DM-17120",
         "jira_testplan": "DM-16075"
     },
     "LDM-503-09a": {
         "test_spec": "\\citeds{DMTR-111}",
-        "description": "Major Science Pipelines release in support of activities in late 2018 and early 2019. The contents of the release are described in \\citeds{LDM-564}. The release will be accompanied by a characterization report.",
+        "description": "This milestone describes a software release of the LSST Science Pipelines in support of activities in late 2018 and early 2019. The contents of the release are described in \\citeds{LDM-564}. The release will be accompanied by a characterization report.",
         "jira": "DM-17121",
         "jira_testplan": "DM-16076"
     },
@@ -102,19 +98,20 @@
     },
     "LDM-503-11": {
         "test_spec": "",
-        "description": "More complete commissioning rehearsal: how do the scientists look at data? How do they provide feedback to the telescope? How do we create/update calibrations?",
+        "description": "This milestone builds upon LDM-503-09 representing a more mature multi-day exercise simulating operational observing with LSST. It will particularly focus on workflows and procedures which are expected to be important during commissioning.",
         "comment": "",
         "jira": "DM-17124",
         "jira_testplan": "DM-16195"
     },
     "LDM-503-11b": {
         "description": "Science Pipelines release in support of operations rehearsal LDM-503-11. Release contents described in \\citeds{LDM-564}. Will be accompanied by a characterization report.",
+        "description": "This milestone describes a software release of the LSST Science Pipelines in support of activities in late 2019 and early 2020. The contents of the release are described in \\citeds{LDM-564}. The release will be accompanied by a characterization report.",
         "jira": "DM-17126",
         "jira_testplan": "DM-16197"
     },
     "LDM-503-12": {
         "test_spec": "",
-        "description": "Dress rehearsal: commissioning starts in April so by this stage we should be ready to do everything needed.",
+        "description": "This milestone builds upon LDM-503-11, and serves to demonstrate that all necessary procedures and workflows are in place to support commissioning activities.",
         "comment": "",
         "jira": "DM-17127",
         "jira_testplan": "DM-16198"
@@ -125,54 +122,51 @@
     },
     "LDM-503-13": {
         "test_spec": "",
-        "description": "ComCam data will now be available. Demonstrate its use in producing a data release.",
-        "comment": "Note that LSE-79 requires a suite of DM services in support of the full camera in May 2020. It seems inappropriate to test them as part of a commissioning ops rehearsal, but they are well before this data. Do we need another test milestone?",
+        "description": "This milestone builds upon LDM-503-12, but with its scope extended beyond procedures which are necessary in commissioning to cover the operational era.",
         "short_name": "Ops Rehearsal for DRP #1",
         "jira": "DM-17130",
         "jira_testplan": "DM-16201"
     },
     "LDM-503-13a": {
-        "description": "Science Pipelines release in support of operations rehearsal LDM-503-13. Release contents described in \\citeds{LDM-564}. Will be accompanied by a characterization report.",
+        "description": "This milestone describes a software release of the LSST Science Pipelines in support of activities in late 2020 and early 2021. The contents of the release are described in \\citeds{LDM-564}. The release will be accompanied by a characterization report.",
         "jira": "DM-17129",
         "jira_testplan": "DM-16200"
     },
     "LDM-503-14": {
         "test_spec": "",
-        "description": "Science Verification starts in April. Demonstrate that all required DM software is available.",
-        "comment": "SV will include calculating all KPMs to demonstrate that we are reaching the science requirements. That obviously means we'll need code which is both capable of reaching those requirements, and calculating the KPMs.",
+        "description": "This milestone represents the point at which all code and/or services which are supplied by DM in support of science verification will be tested and demonstrated to meet their requirements.",
+        "comment": "In addition to delivering operational code and services, it will also be necessary to deliver the code which demonstrates that the system provided meets the requirements placed upon it.",
         "jira": "DM-17133",
         "jira_testplan": "DM-17132"
     },
     "LDM-503-15": {
         "test_spec": "",
-        "description": "Science Verification data will now be available. Demonstrate its use in producing a data release.",
-        "comment": "",
+        "description": "This milestone builds upon LDM-503-13, and will demonstrate the production of a data release under simulated operational conditions using data from science verification activities.",
         "short_name": "Ops Rehearsal for DRP #2",
         "jira": "DM-17135",
         "jira_testplan": "DM-17134"
     },
     "LDM-503-15a": {
-        "description": "Science Pipelines release in support of operations rehearsal LDM-503-15. Release contents described in \\citeds{LDM-564}. Will be accompanied by a characterization report.",
+        "description": "This milestone describes a software release of the LSST Science Pipelines in support of activities in late 2021 and early 2022. The contents of the release are described in \\citeds{LDM-564}. The release will be accompanied by a characterization report.",
         "jira": "DM-17137",
         "jira_testplan": "DM-17136"
     },
     "LDM-503-16": {
         "test_spec": "",
-        "description": "Test readiness for operations.",
-        "comment": "",
+        "description": "This milestone builds upon LDM-503-15 to demonstrate the production of a complete data release under simulated operational conditions.",
         "short_name": "Ops Rehearsal for DRP #3",
         "jira": "DM-17139",
         "jira_testplan": "DM-17138"
     },
     "LDM-503-17": {
         "test_spec": "",
-        "description": "Confirm readiness for operations.",
+        "description": "This milestone builds upon LDM-503-16 to demonstrate successful operation of all aspects of the DM subsystem under simulated operational conditions.",
         "comment": "",
         "jira": "DM-17141",
         "jira_testplan": "DM-17140"
     },
     "LDM-503-17a": {
-        "description": "Final Science Pipelines release from the DM Construction Project. Release contents described in \\citeds{LDM-564}. Will be accompanied by a characterization report.",
+        "description": "This milestone describes the final Science Pipelines release from the DM Construction Project. The contents of the release are described in \\citeds{LDM-564}. The release will be accompanied by a characterization report.",
         "jira": "DM-17143",
         "jira_testplan": "DM-17142"
     },
