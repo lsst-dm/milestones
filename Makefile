@@ -16,6 +16,13 @@ venv:
 		pip install -r requirements.txt; \
 	)
 
+future.csv: venv
+	( \
+		source $(VENVDIR)/bin/activate; \
+		python milestones.py standalone --future future.csv; \
+	)
+
+
 .PHONY: jira
 jira: venv
 	( \
