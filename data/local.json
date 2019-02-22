@@ -14,16 +14,16 @@
         "test_spec": "\\citeds{LDM-533} v1.1 \\S3.1 (AG-00)",
         "description": "This test demonstrates the successful execution of a prototype Alert Generation science payload \\citedsp{LDM-148, LDM-151}, processing data from precursor surveys at a relatively small scale using compute resources at the LSST Data Facility at NCSA."
     },
-	"LDM-503-04": {
-       "test_spec": "\\citeds{LDM-538} v1.0 \\S4.1 (RAS-00-00)",
-       "description": "This test demonstrates that LSST data acquisition system can capture raw data from instrumentation and construct a well-formed image with proper headers."
-   },
-   "LDM-503-04b": {
-       "test_spec": "\\citeds{LDM-538} v1.0 \\S4.4 (RAS-00-20)",
-       "description": "This tests demonstrates that the well-formed image generated in LDM-503-04 can be written to the permanent record of the survey.",
-       "comment": "The archive or permanent record of the survey includes site filesystems with multiple copies, immutable data and entries in the consolidated database for later retrieval and search needs.",
-       "short_name": "AuxTel DAQ Interface Verification and Spectrograph Ops Rehearsal"
-   },
+    "LDM-503-04": {
+        "test_spec": "\\citeds{LDM-538} v1.0 \\S4.1 (RAS-00-00)",
+        "description": "This test demonstrates that LSST data acquisition system can capture raw data from instrumentation and construct a well-formed image with proper headers."
+    },
+    "LDM-503-04b": {
+        "test_spec": "\\citeds{LDM-538} v1.0 \\S4.4 (RAS-00-20)",
+        "description": "This tests demonstrates that the well-formed image generated in LDM-503-04 can be written to the permanent record of the survey.",
+        "comment": "The archive or permanent record of the survey includes site filesystems with multiple copies, immutable data and entries in the consolidated database for later retrieval and search needs.",
+        "short_name": "AuxTel DAQ Interface Verification and Spectrograph Ops Rehearsal"
+    },
     "LDM-503-05": {
         "test_spec": "\\citeds{LDM-533} v2.0 \\S\\S 4.7--4.9 (test cases LVV-T216, LVV-T217, LVV-T218)",
         "description": "This test demonstrates that a full-LSST-scale (10,000 messages every 39 seconds) alert stream can be distributed to end users. It further shows that simple filters based on alert contents can be applied to that stream."
@@ -199,16 +199,22 @@
     "DM-SUIT-4": {},
     "DM-SQRE-1": {},
     "DM-AP-1": {
-        "aka": ["SFM1"],
+        "aka": [
+            "SFM1"
+        ],
         "name": "Basic single frame measurement pipeline."
     },
     "DM-DAX-5": {},
     "DM-DRP-1": {
-        "aka": ["DRP-MS-INT-1"],
+        "aka": [
+            "DRP-MS-INT-1"
+        ],
         "name": "HSC merger complete: all functionality deployed for the most recent HSC data release processing is now available within the LSST stack."
     },
     "DM-DRP-2": {
-        "aka": ["DRP-MS-QA-1"],
+        "aka": [
+            "DRP-MS-QA-1"
+        ],
         "name": "Basic visualization and quality assessment tools operational on HSC-scale data volumes."
     },
     "DM-NCSA-1": {},
@@ -216,18 +222,24 @@
     "DM-NCSA-3": {},
     "DM-SUIT-5": {},
     "DM-AP-2": {
-        "aka": ["DIFF1"],
+        "aka": [
+            "DIFF1"
+        ],
         "name": "Alard & Lupton-style image differencing."
     },
     "DM-AP-3": {
-        "aka": ["DIFFMEAS1"],
+        "aka": [
+            "DIFFMEAS1"
+        ],
         "name": "Point source & dipole measurement on difference images."
     },
     "DM-AP-4": {},
     "DM-AP-5": {},
     "DM-DAX-6": {},
     "DM-DRP-3": {
-        "aka": ["DRP-MS-COADD-1"],
+        "aka": [
+            "DRP-MS-COADD-1"
+        ],
         "name": "PSF-homogenized coadd construction."
     },
     "DM-NCSA-29": {},
@@ -247,47 +259,65 @@
     "DM-NCSA-31": {},
     "LSST-1220": {},
     "DM-AP-6": {
-        "aka": ["ALERTDIST1"],
+        "aka": [
+            "ALERTDIST1"
+        ],
         "name": "Alert format defined & queue system available."
     },
     "DM-NCSA-8": {},
     "DM-NCSA-9": {},
     "DM-SUIT-18": {},
     "DM-AP-7": {
-        "aka": ["ISR1"],
+        "aka": [
+            "ISR1"
+        ],
         "name": "Basic instrument signature removal (ISR) capability."
     },
     "DM-DRP-38": {
-        "aka": ["DRP-MS-CPP-2"],
+        "aka": [
+            "DRP-MS-CPP-2"
+        ],
         "name": "Camera package supporting the Commissioning Camera."
     },
     "DM-DRP-4": {
-        "aka": ["DRP-MS-CPP-6"],
+        "aka": [
+            "DRP-MS-CPP-6"
+        ],
         "name": "Calibration product generation in support of basic ISR."
     },
     "DM-NCSA-10": {},
     "DM-NCSA-11": {},
     "DM-DRP-5": {
-        "aka": ["DRP-MS-CPP-3"],
+        "aka": [
+            "DRP-MS-CPP-3"
+        ],
         "name": "Camera package supporting the LSST Camera."
     },
     "DM-SUIT-6": {},
     "DM-SUIT-7": {},
     "DM-SUIT-8": {},
     "DM-DRP-6": {
-        "aka": ["DRP-MS-CPP-1"],
+        "aka": [
+            "DRP-MS-CPP-1"
+        ],
         "name": "Camera package supporting the Auxiliary Telescope."
     },
     "DM-DRP-7": {
-        "aka": ["DRP-MS-CPP-4"],
+        "aka": [
+            "DRP-MS-CPP-4"
+        ],
         "name": "Coordinate transformation tool provided for use with the Collimated Beam Projector."
     },
     "DM-DRP-8": {
-        "aka": ["DRP-MS-CPP-5"],
+        "aka": [
+            "DRP-MS-CPP-5"
+        ],
         "name": "Calibration product generation for the Auxiliary Telescope."
     },
     "DM-DRP-9": {
-        "aka": ["DRP-MS-CPP-9"],
+        "aka": [
+            "DRP-MS-CPP-9"
+        ],
         "name": "Data reduction pipeline for the Auxiliary Telescope."
     },
     "DM-NCSA-12": {},
@@ -299,52 +329,76 @@
     "DM-NET-4": {},
     "DM-SUIT-9": {},
     "DM-AP-8": {
-        "aka": ["ISR2"],
+        "aka": [
+            "ISR2"
+        ],
         "name": "Advanced ISR, including ghost and linear feature masking, correction for the Brighter-Fatter effect and compensation for pixel response non-uniformity."
     },
     "DM-AP-9": {},
     "DM-DRP-10": {
-        "aka": ["DRP-MS-CPP-8"],
+        "aka": [
+            "DRP-MS-CPP-8"
+        ],
         "name": "Calibration products include an optical ghost model."
     },
     "DM-DRP-11": {
-        "aka": ["DRP-MS-OBJCHAR-8"],
+        "aka": [
+            "DRP-MS-OBJCHAR-8"
+        ],
         "name": "Pipelines code provides supports for database ingestion of results."
     },
     "DM-DRP-12": {
-        "aka": ["DRP-MS-IMCHAR-6"],
+        "aka": [
+            "DRP-MS-IMCHAR-6"
+        ],
         "name": "Background estimation over the full visit."
     },
     "DM-DRP-13": {
-        "aka": ["DRP-MS-IMCHAR-2"],
+        "aka": [
+            "DRP-MS-IMCHAR-2"
+        ],
         "name": "PSF estimation over the full visit."
     },
     "DM-DRP-14": {
-        "aka": ["DRP-MS-OBJCHAR-9"],
+        "aka": [
+            "DRP-MS-OBJCHAR-9"
+        ],
         "name": "Insertion of simulated sources into the data stream to check pipeline performance."
     },
     "DM-DRP-15": {
-        "aka": ["DRP-MS-COADD-3"],
+        "aka": [
+            "DRP-MS-COADD-3"
+        ],
         "name": "All varieties of coadd required for object detection and characterization are now produced during normal pipeline operation (although not necessarily at the ultimately required level of fidelity)."
     },
     "DM-DRP-16": {
-        "aka": ["DRP-MS-IMCHAR-1"],
+        "aka": [
+            "DRP-MS-IMCHAR-1"
+        ],
         "name": "Global photometric fitting (e.g. Burke et al. Forward Global Calibration Method)."
     },
     "DM-DRP-17": {
-        "aka": ["DRP-MS-IMCHAR-4"],
+        "aka": [
+            "DRP-MS-IMCHAR-4"
+        ],
         "name": "Simultaneous photometric and astrometric fitting to multiple exposures."
     },
     "DM-DRP-18": {
-        "aka": ["DRP-MS-DET-1"],
+        "aka": [
+            "DRP-MS-DET-1"
+        ],
         "name": "Initial multi-band deblending algorithm available."
     },
     "DM-DRP-19": {
-        "aka": ["DRP-MS-QA-2"],
+        "aka": [
+            "DRP-MS-QA-2"
+        ],
         "name": "QA metrics are generated during pipeline execution."
     },
     "DM-DRP-37": {
-        "aka": ["DRP-MS-COADD-2"],
+        "aka": [
+            "DRP-MS-COADD-2"
+        ],
         "name": "Artifact rejection and background matching during coadd construction."
     },
     "DM-NCSA-16": {},
@@ -356,7 +410,9 @@
     "DM-SQRE-2": {},
     "DM-STAFF": {},
     "DM-AP-10": {
-        "aka": ["SFM2"],
+        "aka": [
+            "SFM2"
+        ],
         "name": "Advanced single frame measurement pipeline for Alert Production."
     },
     "DM-NCSA-20": {},
@@ -365,19 +421,27 @@
     "DM-SUIT-10": {},
     "DM-NET-5": {},
     "DM-DRP-21": {
-        "aka": ["DRP-MS-IMCHAR-5"],
+        "aka": [
+            "DRP-MS-IMCHAR-5"
+        ],
         "name": "Integrated image characterization pipeline for Data Release Production."
     },
     "DM-DRP-22": {
-        "aka": ["DRP-MS-COADD-4"],
+        "aka": [
+            "DRP-MS-COADD-4"
+        ],
         "name": "Template generation integrated with Data Release Production pipelines."
     },
     "DM-DRP-23": {
-        "aka": ["DRP-MS-CPP-10"],
+        "aka": [
+            "DRP-MS-CPP-10"
+        ],
         "name": "Atmospheric characterization based on data from the Auxiliary Telescope now available."
     },
     "DM-DRP-26": {
-        "aka": ["DRP-MS-DET-3"],
+        "aka": [
+            "DRP-MS-DET-3"
+        ],
         "name": "Overlap resolution at tract & patch boundaries."
     },
     "DM-DAX-10": {},
@@ -386,89 +450,129 @@
     "DM-SUIT-13": {},
     "DM-SUIT-14": {},
     "DM-AP-11": {
-        "aka": ["DIFF2"],
+        "aka": [
+            "DIFF2"
+        ],
         "name": "Difference imaging includes noise decorrelation and correction for differential chromatic refraction."
     },
     "DM-DRP-20": {
-        "aka": ["DRP-MS-CPP-7"],
+        "aka": [
+            "DRP-MS-CPP-7"
+        ],
         "name": "Refined set of LSST calibration products."
     },
     "DM-DRP-24": {
-        "aka": ["DRP-MS-IMCHAR-3"],
+        "aka": [
+            "DRP-MS-IMCHAR-3"
+        ],
         "name": "Physically motivated PSF model, including separate characterization of contributions from the atmosphere and the telescope system."
     },
     "DM-DRP-27": {
-        "aka": ["DRP-MS-DET-2"],
+        "aka": [
+            "DRP-MS-DET-2"
+        ],
         "name": "Object generation: association and assembly of (DIA, coadd, etc) sources to form objects."
     },
     "DM-DRP-28": {
-        "aka": ["DRP-MS-COADD-5"],
+        "aka": [
+            "DRP-MS-COADD-5"
+        ],
         "name": "Difference images are now a first-class data product during data release processing."
     },
     "DM-DRP-29": {
-        "aka": ["DRP-MS-OBJCHAR-3"],
+        "aka": [
+            "DRP-MS-OBJCHAR-3"
+        ],
         "name": "Moving point source model fitting now available."
     },
     "DM-DRP-30": {
-        "aka": ["DRP-MS-OBJCHAR-2"],
+        "aka": [
+            "DRP-MS-OBJCHAR-2"
+        ],
         "name": "Forced photometry is now performed on individual processed visit images during data releases."
     },
     "DM-SQRE-3": {},
     "DM-DRP-25": {
-        "aka": ["DRP-MS-OBJCHAR-1"],
+        "aka": [
+            "DRP-MS-OBJCHAR-1"
+        ],
         "name": "Prototype multi-epoch fitting system available."
     },
     "DM-AP-12": {
-        "aka": ["DIFF3"],
+        "aka": [
+            "DIFF3"
+        ],
         "name": "Difference imaging is now agnostic to the PSF of the template image."
     },
     "DM-AP-13": {
-        "aka": ["DIFFMEAS2"],
+        "aka": [
+            "DIFFMEAS2"
+        ],
         "name": "Trailed source measurement on difference images."
     },
     "DM-AP-14": {
-        "aka": ["ALERTDIST2"],
+        "aka": [
+            "ALERTDIST2"
+        ],
         "name": "Alert filtering system available."
     },
     "DM-DRP-32": {
-        "aka": ["DRP-MS-OBJCHAR-6"],
+        "aka": [
+            "DRP-MS-OBJCHAR-6"
+        ],
         "name": "Object classification system available."
     },
     "DM-DRP-34": {
-        "aka": ["DRP-MS-OBJCHAR-5"],
+        "aka": [
+            "DRP-MS-OBJCHAR-5"
+        ],
         "name": "Selection maps are generated during data releases."
     },
     "DM-DRP-35": {
-        "aka": ["DRP-MS-DET-4"],
+        "aka": [
+            "DRP-MS-DET-4"
+        ],
         "name": "Simultaneous measurement across a suite of coadds representing different bandpasses, epocs, and flavors."
     },
     "DM-NCSA-23": {},
     "DM-SUIT-15": {},
     "DM-SUIT-16": {},
     "DM-DRP-33": {
-        "aka": ["DRP-MS-COADD-6"],
+        "aka": [
+            "DRP-MS-COADD-6"
+        ],
         "name": "Generation of coadded images suitable for use in EPO activities."
     },
     "DM-AP-15": {
-        "aka": ["INTEGRATION1"],
+        "aka": [
+            "INTEGRATION1"
+        ],
         "name": "Alert distribution system fully integrated."
     },
     "DM-SUIT-17": {},
     "DM-SQRE-4": {},
     "DM-DRP-31": {
-        "aka": ["DRP-MS-OBJCHAR-7"],
+        "aka": [
+            "DRP-MS-OBJCHAR-7"
+        ],
         "name": "A photometric redshift is now provided for each object."
     },
     "DM-AP-16": {
-        "aka": ["INTEGRATION2"],
+        "aka": [
+            "INTEGRATION2"
+        ],
         "name": "Full integration of the Alert Production system within the operational environment."
     },
     "DM-AP-17": {
-        "aka": ["MOPS"],
+        "aka": [
+            "MOPS"
+        ],
         "name": "Moving object processing system (MOPS) available."
     },
     "DM-DRP-36": {
-        "aka": ["DRP-MS-OBJCHAR-4"],
+        "aka": [
+            "DRP-MS-OBJCHAR-4"
+        ],
         "name": "MOPS integrated to data release processing."
     },
     "DM-NCSA-24": {},
