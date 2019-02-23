@@ -20,7 +20,7 @@
     },
     "LDM-503-04b": {
         "test_spec": "\\citeds{LDM-538} v1.0 \\S4.4 (RAS-00-20)",
-        "description": "This tests demonstrates that the well-formed image generated in LDM-503-04 can be written to the permanent record of the survey.",
+        "description": "This test demonstrates that the well-formed image generated in LDM-503-04 can be written to the permanent record of the survey.",
         "comment": "The archive or permanent record of the survey includes site filesystems with multiple copies, immutable data and entries in the consolidated database for later retrieval and search needs.",
         "short_name": "AuxTel DAQ Interface Verification and Spectrograph Ops Rehearsal"
     },
@@ -30,8 +30,8 @@
     },
     "LDM-503-06": {
         "test_spec": "",
-        "description": "Test the operation of the DM system prior to ComCam availability in Tucson.",
-        "comment": "\"The DM system\" should use some further definition: what do we want to test here? Data flow from ComCam to the Data Backbone, or science processing of ComCam data? Note the LSE-79 requirements for DM services in support of ComCam in table 8. They're required by Nov 2019/Feb 2020; it may be more appropriate to test some of them at a later date?",
+        "description": "This milestone records successful transfer of an image equivalent to one raft from the DAQ at the summit to reliable storage in the LSST Data Facility at NCSA, from where it will be made available for scientific evaluation through the LSST Science Platform.",
+        "comment": "The test will include transferring raft-scale data from the Base Data Center to NCSA, and ingestion into both Data Back Bone and Butler infrastructures. The DBB will be tested to ensure that no data loss can occur (for example, because the data is replicated to multiple locations). The database management system that houses the Butler and DBB registries will also be tested to demonstrate that it can recover in the event of data being lost.",
         "jira": "DM-17119",
         "jira_testplan": "DM-16074"
     },
