@@ -72,6 +72,9 @@
         "comment": "",
         "jira": "DM-17122"
     },
+    "LDM-503-10a": {
+        "jira": "DM-19209"
+    },
     "LDM-503-10b": {
         "name": "Large Scale CCOB Data Access",
         "test_spec": "",

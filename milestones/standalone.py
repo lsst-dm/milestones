@@ -188,6 +188,11 @@ def set_jira_due_dates(mc):
     for ms in mc.milestones:
         if ms.jira and ms.due:
             set_jira_due_date(ms.jira, ms.due)
+        elif ms.code.startswith("LDM-503"):
+            if not ms.jira:
+                print(f"WARNING: {ms.code} is not in Jira")
+            if not ms.due:
+                print(f"WARNING: {ms.code} has no due date")
 
 def generate(args, mc):
     if args.gantt:
