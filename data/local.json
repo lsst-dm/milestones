@@ -89,7 +89,7 @@
         "description": "Demonstrate the ability to read data from the CCOB with 21 rafts, store at the Data Facility and make it available on some cluster for analysis.",
         "comment": "This was added as part of DM-13073 to show we can process optical bench data specifically CCOB 21 raft setup. This extends LDM-503-8b.",
         "jira": "DM-17123",
-        "jira_testplan": "DM-19164"
+        "jira_testplan": "DM-16194"
     },
     "LDM-503-11a": {
         "test_spec": "",
