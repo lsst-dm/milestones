@@ -41,4 +41,6 @@ class MilestoneCollection(object):
                     pass
                 if "jira" in local[ms.code]:
                     ms.jira = local[ms.code]["jira"]
+                if "jira_testplan" in local[ms.code]:
+                    ms.jira_testplan = local[ms.code]["jira_testplan"]
         return MilestoneCollection(milestones)
