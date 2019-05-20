@@ -81,7 +81,9 @@
     },
     "LDM-503-10a": {
         "jira": "DM-19209",
-        "jira_testplan": "DM-19211"
+        "jira_testplan": "DM-19211",
+        "name": "LSP with Auth and TAP",
+        "description": "To be added on \\jira{DM-19208}."
     },
     "LDM-503-10b": {
         "name": "Large Scale CCOB Data Access",
