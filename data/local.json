@@ -70,8 +70,8 @@
     },
     "LDM-503-10": {
         "test_spec": "",
-        "description": "There is a project milestone that DAQ/DM/Networks are available late 2019. We will run a full scale data acquisition test in to show this is ready.",
-        "comment": "",
+        "description": "Test of the extended data acquisition (DAQ) network in Chile from the Summit to the Base Data Center.",
+        "comment": "This milestone will take simulated data from the DAQ at the Summit and use the DWDM network environment to place data on DM machines at Base Data Center (BDC), essentially extending the DAQ extended network to the BDC. The test machines at the BDC will be a L1 handoff environment and a single forwarder",
         "jira": "DM-17122",
         "jira_testplan": "DM-16193"
     },
@@ -84,8 +84,8 @@
     "LDM-503-10b": {
         "name": "Large Scale CCOB Data Access",
         "test_spec": "",
-        "description": "Demonstrate the ability to read data from the CCOB with 21 rafts, store at the Data Facility and make it available on some cluster for analysis.",
-        "comment": "This was added as part of DM-13073 to show we can process optical bench data specifically CCOB 21 raft setup. This extends LDM-503-8b.",
+        "description": "Demonstrate the ability to transfer data from the CCOB with 21 rafts from SLAC and ingested at NCSA and make available through an instance of the LSP",
+        "comment": "This is a data transfer of data from SLAC or some other site with 21-raft-sized images to NCSA, ingest it into a Butler environment and place the file into file systems readable by the LSP.  The CCOB device might NOT be available, but as 21 raft size data will be available from a test stand at SLAC, we will use a generic test stand data transfer method (e.g., rsync) to bring designated data to NCSA, ingest it, and place into appropriate filesystems, and make available through the LSP.",
         "jira": "DM-17123",
         "jira_testplan": "DM-16194"
     },
@@ -98,8 +98,8 @@
     },
     "LDM-503-11": {
         "test_spec": "",
-        "description": "This milestone builds upon LDM-503-09 representing a more mature multi-day exercise simulating operational observing with LSST. It will particularly focus on workflows and procedures which are expected to be important during commissioning.",
-        "comment": "",
+        "description": "This milestone builds upon LDM-503-09 representing a more mature multi-day exercise simulating operational observing with LSST. It will focus on archiving ComCam data from the the L1 Test Stand.",
+        "comment": "This is a test on the L1 test stand at NCSA to verify the image acquisition and readout from the DAQ to the Archiver at one raft image scale and rate, and the L1 handoff from the archiver to the",
         "jira": "DM-17124",
         "jira_testplan": "DM-16195"
     },
