@@ -91,8 +91,8 @@
     },
     "LDM-503-11a": {
         "test_spec": "",
-        "description": "ComCam will be in use in Nov. The DM system must be ready to deal with it.",
-        "comment": "\"The DM system\" should use some further definition: what do we want to test here? Data flow from ComCam to the Data Backbone, or science processing of ComCam data? Note the LSE-79 requirements for DM services in support of ComCam in table 8. They're required by Nov 2019/Feb 2020; it may be more appropriate to test some of them at a later date?",
+        "description": "Demonstrate that all DM functionality required to support ComCam operations has been delivered.",
+        "comment": "This includes both data flow from ComCam to the Data Backbone, and scientific processing of ComCam data.",
         "jira": "DM-17125",
         "jira_testplan": "DM-16196"
     },
@@ -117,6 +117,8 @@
         "jira_testplan": "DM-16198"
     },
     "LDM-503-12a": {
+        "description": "Demonstrate that all DM functionality required to support operations with the full LSST Camera has been delivered.",
+        "comment": "This includes both data flow from the Camera to the Data Backbone, and scientific processing of LSST data.",
         "jira": "DM-17128",
         "jira_testplan": "DM-16199"
     },
