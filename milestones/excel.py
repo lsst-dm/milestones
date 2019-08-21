@@ -26,7 +26,11 @@ def extract_date(value):
     try:
         return datetime.strptime(value, "%m/%d/%Y %I:%M:%S %p")
     except ValueError:
-        return datetime.strptime(value, "%m/%d/%Y")
+        try:
+            return datetime.strptime(value, "%m/%d/%Y")
+        except:
+            print(value)
+            raise
 
 def extract_wbs(value):
     try:
@@ -62,9 +66,21 @@ def extract_task_details(task_sheet):
                 break
 
         ms = Milestone(code, name, due)
+
+        status = fetcher("status_code", task_sheet.row(rownum))
         act_end_date = fetcher("act_end_date", task_sheet.row(rownum))
-        if act_end_date:
-            ms.completed = extract_date(act_end_date)
+        base_end_date = fetcher("base_end_date", task_sheet.row(rownum))
+        start_date = fetcher("start_date", task_sheet.row(rownum))
+
+        if status == "Completed":
+            if act_end_date:
+                ms.completed = extract_date(act_end_date)
+            elif base_end_date:
+                ms.completed = extract_date(base_end_date)
+            elif start_date:
+                ms.completed = extract_date(start_date)
+            else:
+                raise ValueError(f"{ms.code} is completed with no date")
 
         wbs = fetcher("wbs_id", task_sheet.row(rownum))
         if wbs:
