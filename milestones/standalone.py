@@ -209,6 +209,16 @@ def set_jira_due_dates(mc):
             set_jira_due_date(ms.jira_testplan,
                               ms.due - timedelta(days=45))
 
+def delayed(mc):
+    obsolete_ms = [
+        "DLP-538", "DLP-541", "DLP-458", "DM-NCSA-5", "DM-NCSA-7"
+    ]
+
+
+    for ms in mc.milestones:
+        if ms.code not in obsolete_ms and ms.due < datetime(2019, 7, 1) and not ms.completed:
+            print(ms.wbs, ms.code, ms.name, ms.due)
+
 def generate(args, mc):
     if args.gantt:
         write_output(args.gantt, generate_gantt(mc))
@@ -218,3 +228,5 @@ def generate(args, mc):
         write_output(args.future, future(mc.milestones))
     if args.jira:
         set_jira_due_dates(mc)
+    if args.delayed:
+        delayed(mc)
