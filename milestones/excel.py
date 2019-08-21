@@ -80,7 +80,7 @@ def extract_task_details(task_sheet):
             elif start_date:
                 ms.completed = extract_date(start_date)
             else:
-                raise ValueError(f"{ms.code} is completed with no date")
+                raise ValueError("%s is completed with no date" % (ms.code,))
 
         wbs = fetcher("wbs_id", task_sheet.row(rownum))
         if wbs:
