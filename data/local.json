@@ -78,7 +78,7 @@
     "LDM-503-10a": {
         "jira": "DM-19209",
         "jira_testplan": "DM-19211",
-        "name": "Science Platform authentication & authorization",
+        "name": "Science Platform: integrated TAP service with federated identity SSO A&A",
         "description": "This test demonstrates the successful integration of a single-sign-on federated authentication system, and a basic authorization system, with the three Aspects of the LSST Science Platform (Portal, Notebook, and API), with the API Aspect containing at least a TAP service.",
         "comment": "Success will be demonstrated on a Kubernetes cluster provided by NCSA.  It is not required for authorization to be applied at the database level; it is sufficient for this milestone to apply at the TAP level. Data served will remain that from the original PDAC work, i.e., SDSS Stripe 82 and/or WISE."
     },
