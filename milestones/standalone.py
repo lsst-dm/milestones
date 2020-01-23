@@ -216,7 +216,7 @@ def delayed(mc):
 
 
     for ms in mc.milestones:
-        if ms.code not in obsolete_ms and ms.due < datetime(2019, 7, 1) and not ms.completed:
+        if ms.code not in obsolete_ms and ms.due < datetime(2020, 1, 1) and not ms.completed:
             print(ms.wbs, ms.code, ms.name, ms.due)
 
 def generate(args, mc):
