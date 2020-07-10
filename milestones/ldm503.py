@@ -20,7 +20,7 @@ def generate_commentary(mc):
         output.write(ms.format_template("\\subsection{{{name} "
                                         "(\\textbf{{{code}}})}}\n"))
         output.write(ms.format_template("\\label{{{code}}}\n\n"))
-        output.write("\\subsubsection{Specification}\n\n")
+        output.write("\\subsubsection{Execution Procedure}\n\n")
         if ms.test_spec:
             output.write(ms.format_template("This test will be executed "
                                             "following the procedure defined "
