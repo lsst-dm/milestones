@@ -5,6 +5,7 @@ from .utility import write_output
 
 __all__ = ["ldm564"]
 
+
 def generate_releases(mc):
     output = StringIO()
     for ms in sorted(mc.filter("LDM-503"), key=lambda x: (x.due, x.code)):

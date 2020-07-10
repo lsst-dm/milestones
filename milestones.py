@@ -4,9 +4,6 @@ import argparse
 import sys
 
 import milestones
-#import milestones.standalone
-#import milestones.ldm503
-#import milestones.ldm564
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Prepare DM milestone summaries.")

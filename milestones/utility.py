@@ -2,7 +2,6 @@ import glob
 import os
 import sys
 import time
-from contextlib import contextmanager
 
 __all__ = ["get_latest_pmcs_path",
            "get_local_data_path",

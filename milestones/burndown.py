@@ -1,14 +1,7 @@
-from csv import DictWriter
-from datetime import datetime, timedelta
-from io import StringIO
-from os import environ
+from datetime import datetime
 
 import pandas as pd
 import matplotlib.pyplot as plt
-import requests
-
-from .gantt import format_gantt, GANTT_MILESTONES
-from .utility import write_output
 
 __all__ = ["burndown"]
 
@@ -72,11 +65,11 @@ def burndown(args, mc):
 #    glide_slope = [len(milestones) - i * (len(milestones) / len(month_starts)) for i in range(len(month_starts))]
 #    plt.plot(month_starts, glide_slope, label="Glide slope")
 
-    obsolete_ms = [
-        "DLP-538", "DLP-541", "DLP-808", "DLP-799", "DLP-458", "DM-NCSA-5", "DM-NCSA-7"
-    ]
-
-    flat = [actual[len(achieved_months)] - len(obsolete_ms) for i in range(len(month_starts))]
+#    obsolete_ms = [
+#        "DLP-538", "DLP-541", "DLP-808", "DLP-799", "DLP-458", "DM-NCSA-5", "DM-NCSA-7"
+#    ]
+#
+##    flat = [actual[len(achieved_months)] - len(obsolete_ms) for i in range(len(month_starts))]
 
     # Obsolete illustration, removed.
 #    timescale = month_starts[len(achieved_months)-3:len(achieved_months)+2]

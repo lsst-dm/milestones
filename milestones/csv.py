@@ -1,20 +1,13 @@
 from csv import DictWriter
 from datetime import datetime, timedelta
 from io import StringIO
-from os import environ
 
-import pandas as pd
-import matplotlib.pyplot as plt
-import requests
-
-from .gantt import format_gantt, GANTT_MILESTONES
 from .utility import write_output
 
 __all__ = ["csv"]
 
 def csv(args, mc):
     milestones = mc.milestones
-    wbs = {milestone.wbs for milestone in milestones}
     start = sorted(milestones, key=lambda x: x.due)[0].due
     end = sorted(milestones, key=lambda x: x.due)[-1].due
 
