@@ -1,10 +1,12 @@
+from datetime import datetime
+
 import argparse
 import sys
 
 import milestones
-import milestones.standalone
-import milestones.ldm503
-import milestones.ldm564
+#import milestones.standalone
+#import milestones.ldm503
+#import milestones.ldm564
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Prepare DM milestone summaries.")
@@ -15,30 +17,57 @@ def parse_args():
                         "[Default={}]".format(milestones.get_local_data_path()),
                         default=milestones.get_local_data_path())
 
-    # We'll use a separate sub-parser for each document we're targeting.
-    # Ideally, these would be plugins from the document packages themselves,
-    # but for simplicity they are here for now.
     subparsers = parser.add_subparsers(title="Output targets.")
 
-    standalone = subparsers.add_parser("standalone", help="Output standalone material.")
-    standalone.add_argument("--gantt", help="Output location for Gantt chart.")
-    standalone.add_argument("--burndown", help="Output location for burndown plot.")
-    standalone.add_argument("--future", help="Output location for milestone forecast.")
-    standalone.add_argument("--jira", action="store_true", help="Set due dates in Jira.")
-    standalone.add_argument("--delayed", action="store_true", help="Display a list of delayed milestones.")
-    standalone.set_defaults(func=milestones.standalone.generate)
+    gantt = subparsers.add_parser("gantt", help="Generate Gantt chart.")
+    gantt.add_argument("--embedded", help="Format for embedding in another document", action="store_true")
+    gantt.add_argument("--output", help="Filename for output", default="gantt.tex")
+    gantt.set_defaults(func=milestones.gantt)
 
-    ldm503 = subparsers.add_parser("ldm503", help="Output for LDM-503.")
-    ldm503.add_argument("--table", help="Output location for milestone table.")
-    ldm503.add_argument("--gantt", help="Output location for Gantt chart.")
-    ldm503.add_argument("--commentary", help="Output location for milestone commentary.")
-    ldm503.set_defaults(func=milestones.ldm503.generate)
+    burndown = subparsers.add_parser("burndown", help="Generate milestone burndown chart.")
+    filename, burndown_start, burndown_end = "burndown.png", "2016-10-30", "2022-06-30"
+    burndown.add_argument("--start-date", type=datetime.fromisoformat, default=burndown_start,
+                          help=f"Start date for the burndown chart (YYYY-MM-DD); default={burndown_start}.")
+    burndown.add_argument("--end-date", type=datetime.fromisoformat, default=burndown_end,
+                          help=f"Start date for the burndown chart (YYYY-MM-DD); default={burndown_end}.")
+    burndown.add_argument("--output", help="Filename for output; default={filename}.", default=filename)
+    burndown.set_defaults(func=milestones.burndown)
 
-    ldm564 = subparsers.add_parser("ldm564", help="Output for LDM-564.")
-    ldm564.add_argument("--releases", help="Output location for summary of releases.")
-    ldm564.add_argument("--gantt", help="Output location for Gantt chart.")
-    ldm564.add_argument("--map", help="Dump milestone map to stdout.")
-    ldm564.set_defaults(func=milestones.ldm564.generate)
+    csv = subparsers.add_parser("csv", help="Generate a CSV version of the milestone schedule.")
+    filename = "milestones.csv"
+    csv.add_argument("--output", help=f"Filename for output; default={filename}.",
+                     default=filename)
+    csv.set_defaults(func=milestones.csv)
+
+    jira = subparsers.add_parser("jira", help="Sync milestone details to Jira.")
+    jira.set_defaults(func=milestones.jira)
+
+    delayed = subparsers.add_parser("delayed", help="Print a list of delayed milestones.")
+    as_of = datetime.now().isoformat()
+    delayed.add_argument("--as-of", type=datetime.fromisoformat, default=as_of,
+                         help=f"Print incomplete milestones due by this date; default={as_of}")
+    delayed.set_defaults(func=milestones.delayed)
+
+    predecessors = subparsers.add_parser("predecessors", help="List each milestone with its predecessors")
+    predecessors.set_defaults(func=milestones.predecessors)
+
+    ldm503 = subparsers.add_parser("ldm503", help="Generate inserts for LDM-503.")
+    table_location, text_location, gantt_location = "dmtestmilestones.tex", "testsections.tex", "dmtestgantt.tex"
+    ldm503.add_argument("--table-location", default=table_location,
+                        help=f"Ouput location for milestone table; default={table_location}.")
+    ldm503.add_argument("--text-location", default=text_location,
+                        help=f"Ouput location for milestone table; default={text_location}.")
+    ldm503.add_argument("--gantt-location", default=gantt_location,
+                        help=f"Ouput location for milestone table; default={gantt_location}.")
+    ldm503.set_defaults(func=milestones.ldm503)
+
+    ldm564 = subparsers.add_parser("ldm564", help="Generate inserts for LDM-564.")
+    releases_location, gantt_location = "featurelist.tex", "gantt.tex"
+    ldm564.add_argument("--releases-location", default=releases_location,
+                        help=f"Ouput location for release feature list; default={releases_location}.")
+    ldm564.add_argument("--gantt-location", default=gantt_location,
+                        help=f"Ouput location for milestone table; default={gantt_location}.")
+    ldm564.set_defaults(func=milestones.ldm564)
 
     args = parser.parse_args()
     return args
@@ -46,8 +75,4 @@ def parse_args():
 if __name__ == "__main__":
     args = parse_args()
     mc = milestones.MilestoneCollection.from_files(args.pmcs_data, args.local_data)
-    try:
-        args.func(args, mc)
-    except AttributeError:
-        print("Please select a supported target.")
-        sys.exit(1)
+    args.func(args, mc)

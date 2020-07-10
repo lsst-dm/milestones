@@ -16,8 +16,7 @@ __all__ = ["get_latest_pmcs_path",
 # baseline) or "ME" (for forecast).
 
 def get_latest_pmcs_path(path=None):
-    """
-    By default, fetch the latest forecast.
+    """By default, fetch the latest forecast.
     """
     if not path:
         path = os.path.normpath(os.path.join(os.path.dirname(__file__),
