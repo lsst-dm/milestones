@@ -70,6 +70,9 @@ def parse_args():
     ldm564.set_defaults(func=milestones.ldm564)
 
     args = parser.parse_args()
+    if not hasattr(args, "func"):
+        parser.print_usage()
+        sys.exit(1)
     return args
 
 if __name__ == "__main__":
