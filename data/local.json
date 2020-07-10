@@ -46,7 +46,8 @@
         "description": "This test demonstrates data acquisition from the Auxiliary Telescope spectrograph, transmission of all image files with associated metadata to NCSA for screening, and then further processing if needed.",
         "comment": "As the capabilities of the spectragraph grow data can be automatically ingested into the Data Backbone for permanent record of the survey after being sent to NCSA.",
         "jira": "DM-17131",
-        "jira_testplan": "DM-16455"
+        "jira_testplan": "DM-16455",
+        "completed": "2019-12-30"
     },
     "LDM-503-08b": {
         "name": "Small Scale CCOB Data Access",
@@ -80,7 +81,8 @@
         "jira_testplan": "DM-19211",
         "name": "Science Platform: TAP service with federated SSO A&A",
         "description": "This test demonstrates the successful integration of a single-sign-on federated authentication system, and a basic authorization system, with the three Aspects of the LSST Science Platform (Portal, Notebook, and API), with the API Aspect containing at least a TAP service.",
-        "comment": "Success will be demonstrated on a Kubernetes cluster provided by NCSA.  It is not required for authorization to be applied at the database level; it is sufficient for this milestone to apply at the TAP level. Data served will remain that from the original PDAC work, i.e., SDSS Stripe 82 and/or WISE."
+        "comment": "Success will be demonstrated on a Kubernetes cluster provided by NCSA.  It is not required for authorization to be applied at the database level; it is sufficient for this milestone to apply at the TAP level. Data served will remain that from the original PDAC work, i.e., SDSS Stripe 82 and/or WISE.",
+        "completed": "2019-12-30"
     },
     "LDM-503-10b": {
         "name": "Large Scale CCOB Data Access",
@@ -329,7 +331,9 @@
     "DM-NCSA-15": {},
     "DM-NET-2": {},
     "DM-NET-3": {},
-    "DM-NET-4": {},
+    "DM-NET-4": {
+        "completed": "2020-01-30"
+    },
     "DM-SUIT-9": {},
     "DM-AP-8": {
         "aka": [
@@ -344,11 +348,15 @@
         ],
         "name": "Calibration products include an optical ghost model."
     },
+    "DMTC-8100-2370": {
+        "completed": "2019-12-30"
+    },
     "DM-DRP-11": {
         "aka": [
             "DRP-MS-OBJCHAR-8"
         ],
-        "name": "Pipelines code provides supports for database ingestion of results."
+        "name": "Pipelines code provides supports for database ingestion of results.",
+        "completed": "2019-12-30"
     },
     "DM-DRP-12": {
         "aka": [
@@ -494,7 +502,9 @@
         ],
         "name": "Forced photometry is now performed on individual processed visit images during data releases."
     },
-    "DM-SQRE-3": {},
+    "DM-SQRE-3": {
+        "completed": "2020-01-30"
+    },
     "DM-DRP-25": {
         "aka": [
             "DRP-MS-OBJCHAR-1"
