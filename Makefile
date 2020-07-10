@@ -3,7 +3,7 @@ VENVDIR = venv
 gantt.pdf: venv
 	( \
 		source $(VENVDIR)/bin/activate; \
-		python milestones.py standalone --gantt gantt.tex; \
+		python milestones.py gantt --output=gantt.tex; \
 		xelatex gantt.tex; \
 		xelatex gantt.tex; \
 		xelatex gantt.tex; \
@@ -16,10 +16,10 @@ venv:
 		pip install -r requirements.txt; \
 	)
 
-future.csv: venv
+milestones.csv: venv
 	( \
 		source $(VENVDIR)/bin/activate; \
-		python milestones.py standalone --future future.csv; \
+		python milestones.py csv; \
 	)
 
 
@@ -27,7 +27,7 @@ future.csv: venv
 jira: venv
 	( \
 		source $(VENVDIR)/bin/activate; \
-		python milestones.py standalone --jira; \
+		python milestones.py jira; \
 	)
 
 .PHONY: clean

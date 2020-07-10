@@ -1,10 +1,10 @@
 from io import StringIO
 
-from . import GANTT_MILESTONES
-from .gantt import generate_gantt_embedded
+from .gantt import gantt_embedded
 from .utility import write_output
 
-__all__ = ["generate"]
+__all__ = ["ldm564"]
+
 
 def generate_releases(mc):
     output = StringIO()
@@ -36,17 +36,6 @@ def generate_releases(mc):
                          """represents a refined or improved version of earlier deliveries.\n""")
     return output.getvalue()
 
-def milestone_map(mc):
-    for ms in sorted(mc.filter("LDM-503"), key=lambda x: (x.due, x.code)):
-        predecessors = [prems for prems in mc.filter("DM-")
-                        if prems.code in ms.predecessors]
-        for prems in sorted(predecessors, key=lambda x: (x.due, x.code)):
-            print(ms.code + " : " + prems.code)
-
-def generate(args, mc):
-    if args.gantt:
-        write_output(args.gantt, generate_gantt_embedded(mc))
-    if args.releases:
-        write_output(args.releases, generate_releases(mc))
-    if args.map:
-        milestone_map(mc)
+def ldm564(args, mc):
+    write_output(args.releases_location, generate_releases(mc))
+    write_output(args.gantt_location, gantt_embedded(mc))
