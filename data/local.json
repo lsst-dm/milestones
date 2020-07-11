@@ -58,11 +58,11 @@
         "jira_testplan": "DM-16073"
     },
     "LDM-503-09": {
-        "test_spec": "",
         "test_spec": "\\citeds{LDM-643}",
         "description": "This milestone represents the completion of a multi-day exercise in which (simulated) observations are performed and data is processed in as close to an operational mode as is possible at this stage in construction. In particular, it will demonstrate transfer, archiving and intestion of raw data; offline processing of calibration and science data; and curation of the resultant data products.",
         "jira": "DM-17120",
-        "jira_testplan": "DM-16075"
+        "jira_testplan": "DM-16075",
+        "completed": "2019-10-07"
     },
     "LDM-503-09a": {
         "test_spec": "\\citeds{DMTR-111}",
