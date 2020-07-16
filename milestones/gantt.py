@@ -1,7 +1,9 @@
 from datetime import datetime
 from io import StringIO
 
-__all__ = ["GANTT_MILESTONES", "format_gantt"]
+from .utility import write_output
+
+__all__ = ["GANTT_MILESTONES", "gantt"]
 
 # Milestones with these prefixes are included when generating Gantt charts.
 # Note that some are not DM milestones, but are included for context.
@@ -42,12 +44,45 @@ GANTT_POSTAMBLE_EMBEDDED = """
 \\end{ganttchart}
 """
 
-def generate_gantt_embedded(mc):
-    milestones = set()
-    for ms in GANTT_MILESTONES:
-        milestones = milestones.union(mc.filter(ms))
-    return format_gantt(sorted(milestones, key=lambda x: (x.due, x.code)),
-                        GANTT_PREAMBLE_EMBEDDED, GANTT_POSTAMBLE_EMBEDDED)
+GANTT_PREAMBLE_STANDALONE = """
+\\documentclass{article}
+\\usepackage[
+    paperwidth=30cm,
+    paperheight=22.50cm,  % Manually tweaked to fit chart
+    left=0mm,
+    top=0mm,
+    bottom=0mm,
+    right=0mm,
+    noheadfoot,
+    marginparwidth=0pt,
+    includemp=false
+]{geometry}
+\\usepackage{pgfgantt}
+\\begin{document}
+\\begin{center}
+\\begin{ganttchart}[
+%    vgrid,  % disabled for aesthetic reasons
+%    hgrid,  % disabled for aesthetic reasons
+    expand chart=0.98\\textwidth,
+    title label font=\\sffamily\\bfseries,
+    milestone label font=\\sffamily\\bfseries,
+    progress label text={#1},
+    milestone progress label node/.append style={right=2.2cm},
+    milestone progress label font=\\sffamily,
+    y unit chart=0.55cm,
+    y unit title=0.8cm
+]{1}{90}
+  \\gantttitle{}{6} \\gantttitle{2018}{12} \\gantttitle{2019}{12}
+  \\gantttitle{2020}{12} \\gantttitle{2021}{12} \\gantttitle{2022}{12}
+  \\gantttitle{Operations}{24} \\
+  \\ganttnewline\n
+"""
+
+GANTT_POSTAMBLE_STANDALONE = """
+\\end{ganttchart}
+\\end{center}
+\\end{document}
+"""
 
 def format_gantt(milestones, preamble, postamble, start=datetime(2017, 7, 1)):
     def get_month_number(start, date):
@@ -71,3 +106,24 @@ def format_gantt(milestones, preamble, postamble, start=datetime(2017, 7, 1)):
 
     output.write(postamble)
     return output.getvalue()
+
+def gantt_standalone(mc):
+    milestones = set()
+    for ms in GANTT_MILESTONES:
+        milestones = milestones.union(mc.filter(ms))
+    return(format_gantt(sorted(milestones, key=lambda x: (x.due, x.code)),
+                        GANTT_PREAMBLE_STANDALONE, GANTT_POSTAMBLE_STANDALONE))
+
+def gantt_embedded(mc):
+    milestones = set()
+    for ms in GANTT_MILESTONES:
+        milestones = milestones.union(mc.filter(ms))
+    return(format_gantt(sorted(milestones, key=lambda x: (x.due, x.code)),
+                        GANTT_PREAMBLE_EMBEDDED, GANTT_POSTAMBLE_EMBEDDED))
+
+def gantt(args, mc):
+    if args.embedded:
+        tex_source = gantt_embedded(mc)
+    else:
+        tex_source = gantt_standalone(mc)
+    write_output(args.output, tex_source)

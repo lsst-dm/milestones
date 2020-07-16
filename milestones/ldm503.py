@@ -1,9 +1,9 @@
 from io import StringIO
 
-from .gantt import generate_gantt_embedded
+from .gantt import gantt_embedded
 from .utility import write_output
 
-__all__ = ["generate"]
+__all__ = ["ldm503"]
 
 def generate_table(mc):
     output = StringIO()
@@ -20,7 +20,7 @@ def generate_commentary(mc):
         output.write(ms.format_template("\\subsection{{{name} "
                                         "(\\textbf{{{code}}})}}\n"))
         output.write(ms.format_template("\\label{{{code}}}\n\n"))
-        output.write("\\subsubsection{Specification}\n\n")
+        output.write("\\subsubsection{Execution Procedure}\n\n")
         if ms.test_spec:
             output.write(ms.format_template("This test will be executed "
                                             "following the procedure defined "
@@ -35,10 +35,7 @@ def generate_commentary(mc):
             output.write(ms.format_template("{comment}\n\n"))
     return output.getvalue()
 
-def generate(args, mc):
-    if args.gantt:
-        write_output(args.gantt, generate_gantt_embedded(mc))
-    if args.table:
-        write_output(args.table, generate_table(mc))
-    if args.commentary:
-        write_output(args.commentary, generate_commentary(mc))
+def ldm503(args, mc):
+    write_output(args.table_location, generate_table(mc))
+    write_output(args.text_location, generate_commentary(mc))
+    write_output(args.gantt_location, gantt_embedded(mc))

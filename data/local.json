@@ -29,7 +29,7 @@
         "description": "This test demonstrates that a full-LSST-scale (10,000 messages every 39 seconds) alert stream can be distributed to end users. It further shows that simple filters based on alert contents can be applied to that stream."
     },
     "LDM-503-06": {
-        "test_spec": "",
+        "test_spec": "\\citeds{DMTR-171}",
         "description": "This milestone records successful transfer of an image equivalent to one raft from the DAQ at the summit to reliable storage in the LSST Data Facility at NCSA, from where it will be made available for scientific evaluation through the LSST Science Platform.",
         "comment": "The test will include transferring raft-scale data from the Base Data Center to NCSA, and ingestion into both Data Back Bone and Butler infrastructures. The DBB will be tested to ensure that no data loss can occur (for example, because the data is replicated to multiple locations). The database management system that houses the Butler and DBB registries will also be tested to demonstrate that it can recover in the event of data being lost.",
         "jira": "DM-17119",
@@ -42,25 +42,27 @@
         "jira_testplan": "DM-16072"
     },
     "LDM-503-08": {
-        "test_spec": "",
+        "test_spec": "\\citeds{DMTR-121}",
         "description": "This test demonstrates data acquisition from the Auxiliary Telescope spectrograph, transmission of all image files with associated metadata to NCSA for screening, and then further processing if needed.",
         "comment": "As the capabilities of the spectragraph grow data can be automatically ingested into the Data Backbone for permanent record of the survey after being sent to NCSA.",
         "jira": "DM-17131",
-        "jira_testplan": "DM-16455"
+        "jira_testplan": "DM-16455",
+        "completed": "2019-12-30"
     },
     "LDM-503-08b": {
         "name": "Small Scale CCOB Data Access",
-        "test_spec": "\\citeds{LDM-538} v1.0 \\S4.2 (RAS-00-05)",
+        "test_spec": "\\citeds{DMTR-102}",
         "description": "This test demonstrates the integration of the CCOB with the permanent record of the survey.",
         "comment": "The archive or permanent record of the survey includes site filesystems with multiple copies, immutable data and entries in the consolidated database for later retrieval and search needs.",
         "jira": "DM-17118",
         "jira_testplan": "DM-16073"
     },
     "LDM-503-09": {
-        "test_spec": "",
+        "test_spec": "\\citeds{LDM-643}",
         "description": "This milestone represents the completion of a multi-day exercise in which (simulated) observations are performed and data is processed in as close to an operational mode as is possible at this stage in construction. In particular, it will demonstrate transfer, archiving and intestion of raw data; offline processing of calibration and science data; and curation of the resultant data products.",
         "jira": "DM-17120",
-        "jira_testplan": "DM-16075"
+        "jira_testplan": "DM-16075",
+        "completed": "2019-10-07"
     },
     "LDM-503-09a": {
         "test_spec": "\\citeds{DMTR-111}",
@@ -69,7 +71,7 @@
         "jira_testplan": "DM-16076"
     },
     "LDM-503-10": {
-        "test_spec": "",
+        "test_spec": "\\citeds{DMTR-181}",
         "description": "Test of the extended data acquisition (DAQ) network in Chile from the Summit to the Base Data Center.",
         "comment": "This milestone will take simulated data from the DAQ at the Summit and use the DWDM network environment to place data on DM machines at Base Data Center (BDC), essentially extending the DAQ extended network to the BDC. The test machines at the BDC will be a L1 handoff environment and a single forwarder",
         "jira": "DM-17122",
@@ -78,13 +80,15 @@
     "LDM-503-10a": {
         "jira": "DM-19209",
         "jira_testplan": "DM-19211",
+        "test_spec": "\\citeds{DMTR-161}",
         "name": "Science Platform: TAP service with federated SSO A&A",
         "description": "This test demonstrates the successful integration of a single-sign-on federated authentication system, and a basic authorization system, with the three Aspects of the LSST Science Platform (Portal, Notebook, and API), with the API Aspect containing at least a TAP service.",
-        "comment": "Success will be demonstrated on a Kubernetes cluster provided by NCSA.  It is not required for authorization to be applied at the database level; it is sufficient for this milestone to apply at the TAP level. Data served will remain that from the original PDAC work, i.e., SDSS Stripe 82 and/or WISE."
+        "comment": "Success will be demonstrated on a Kubernetes cluster provided by NCSA.  It is not required for authorization to be applied at the database level; it is sufficient for this milestone to apply at the TAP level. Data served will remain that from the original PDAC work, i.e., SDSS Stripe 82 and/or WISE.",
+        "completed": "2019-12-30"
     },
     "LDM-503-10b": {
         "name": "Large Scale CCOB Data Access",
-        "test_spec": "",
+        "test_spec": "\\citeds{DMTR-182}",
         "description": "Demonstrate the ability to transfer data from the CCOB with 21 rafts from SLAC and ingested at NCSA and make available through an instance of the LSP",
         "comment": "This is a data transfer of data from SLAC or some other site with 21-raft-sized images to NCSA, ingest it into a Butler environment and place the file into file systems readable by the LSP.  The CCOB device might NOT be available, but as 21 raft size data will be available from a test stand at SLAC, we will use a generic test stand data transfer method (e.g., rsync) to bring designated data to NCSA, ingest it, and place into appropriate filesystems, and make available through the LSP.",
         "jira": "DM-17123",
@@ -98,14 +102,14 @@
         "jira_testplan": "DM-16196"
     },
     "LDM-503-11": {
-        "test_spec": "",
         "description": "This milestone builds upon LDM-503-09 representing a more mature multi-day exercise simulating operational observing with LSST. It will focus on archiving ComCam data from the the L1 Test Stand.",
         "comment": "This is a test on the L1 test stand at NCSA to verify the image acquisition and readout from the DAQ to the Archiver at one raft image scale and rate, and the L1 handoff from the archiver to the",
         "jira": "DM-17124",
-        "jira_testplan": "DM-16195"
+        "jira_testplan": "DM-16195",
+        "test_spec": "\\citeds{LDM-643}"
     },
     "LDM-503-11b": {
-        "description": "Science Pipelines release in support of operations rehearsal LDM-503-11. Release contents described in \\citeds{LDM-564}. Will be accompanied by a characterization report.",
+        "test_spec": "\\citeds{DMTR-192}",
         "description": "This milestone describes a software release of the LSST Science Pipelines in support of activities in late 2019 and early 2020. The contents of the release are described in \\citeds{LDM-564}. The release will be accompanied by a characterization report.",
         "jira": "DM-17126",
         "jira_testplan": "DM-16197"
@@ -329,7 +333,9 @@
     "DM-NCSA-15": {},
     "DM-NET-2": {},
     "DM-NET-3": {},
-    "DM-NET-4": {},
+    "DM-NET-4": {
+        "completed": "2020-01-30"
+    },
     "DM-SUIT-9": {},
     "DM-AP-8": {
         "aka": [
@@ -344,11 +350,15 @@
         ],
         "name": "Calibration products include an optical ghost model."
     },
+    "DMTC-8100-2370": {
+        "completed": "2019-12-30"
+    },
     "DM-DRP-11": {
         "aka": [
             "DRP-MS-OBJCHAR-8"
         ],
-        "name": "Pipelines code provides supports for database ingestion of results."
+        "name": "Pipelines code provides supports for database ingestion of results.",
+        "completed": "2019-12-30"
     },
     "DM-DRP-12": {
         "aka": [
@@ -494,7 +504,9 @@
         ],
         "name": "Forced photometry is now performed on individual processed visit images during data releases."
     },
-    "DM-SQRE-3": {},
+    "DM-SQRE-3": {
+        "completed": "2020-01-30"
+    },
     "DM-DRP-25": {
         "aka": [
             "DRP-MS-OBJCHAR-1"
