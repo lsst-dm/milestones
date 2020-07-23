@@ -6,6 +6,8 @@ import sys
 import milestones
 
 def parse_args():
+    default_wbs = "02C"
+
     parser = argparse.ArgumentParser(description="Prepare DM milestone summaries.")
     parser.add_argument("--pmcs-data", help="Path to PMCS Excel extract. "
                         "[Default={}]".format(milestones.get_latest_pmcs_path()),
@@ -41,6 +43,8 @@ def parse_args():
 
     delayed = subparsers.add_parser("delayed", help="Print a list of delayed milestones.")
     as_of = datetime.now().isoformat()
+    delayed.add_argument("--wbs", default=default_wbs,
+                       help=f"Include only milestones for this WBS; default={default_wbs}")
     delayed.add_argument("--as-of", type=datetime.fromisoformat, default=as_of,
                          help=f"Print incomplete milestones due by this date; default={as_of}")
     delayed.set_defaults(func=milestones.delayed)
@@ -68,8 +72,8 @@ def parse_args():
 
     graph = subparsers.add_parser("graph", help="Generate Graphviz dot showing milestone relationships.")
     graph.add_argument("--output", help="Filename for output", default="graph.dot")
-    wbs = "02C"
-    graph.add_argument("--wbs", default=wbs, help=f"Include only milestones for this WBS; default={wbs}")
+    graph.add_argument("--wbs", default=default_wbs,
+                       help=f"Include only milestones for this WBS; default={default_wbs}")
     graph.set_defaults(func=milestones.graph)
 
     args = parser.parse_args()
