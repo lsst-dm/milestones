@@ -14,6 +14,9 @@ class MilestoneCollection(object):
     def filter(self, prefix=None):
         return set(ms for ms in self.milestones if ms.code.startswith(prefix))
 
+    def for_wbs(self, wbs=None):
+        return set(ms for ms in self.milestones if ms.wbs.startswith(wbs))
+
     @staticmethod
     def from_files(pmcs_filename, local_filename):
         print("Loading PMCS data from: {}".format(pmcs_filename))
