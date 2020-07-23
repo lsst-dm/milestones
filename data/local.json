@@ -293,7 +293,9 @@
         "name": "Calibration product generation in support of basic ISR."
     },
     "DM-NCSA-10": {},
-    "DM-NCSA-11": {},
+    "DM-NCSA-11": {
+        "completed": "2020-06-30"
+    },
     "DM-DRP-5": {
         "aka": [
             "DRP-MS-CPP-3"
@@ -302,7 +304,9 @@
     },
     "DM-SUIT-6": {},
     "DM-SUIT-7": {},
-    "DM-SUIT-8": {},
+    "DM-SUIT-8": {
+        "completed": "2020-04-30"
+    },
     "DM-DRP-6": {
         "aka": [
             "DRP-MS-CPP-1"
@@ -364,7 +368,8 @@
         "aka": [
             "DRP-MS-IMCHAR-6"
         ],
-        "name": "Background estimation over the full visit."
+        "name": "Background estimation over the full visit.",
+        "completed": "2020-06-30"
     },
     "DM-DRP-13": {
         "aka": [
@@ -428,10 +433,14 @@
         ],
         "name": "Advanced single frame measurement pipeline for Alert Production."
     },
-    "DM-NCSA-20": {},
+    "DM-NCSA-20": {
+        "completed": "2020-06-30"
+    },
     "DM-NCSA-21": {},
     "DM-NCSA-22": {},
-    "DM-SUIT-10": {},
+    "DM-SUIT-10": {
+        "completed": "2020-06-30"
+    },
     "DM-NET-5": {},
     "DM-DRP-21": {
         "aka": [
@@ -584,6 +593,9 @@
         ],
         "name": "Moving object processing system (MOPS) available."
     },
+    "DM-AP-18": {
+        "completed": "2020-05-31"
+    },
     "DM-DRP-36": {
         "aka": [
             "DRP-MS-OBJCHAR-4"
@@ -593,5 +605,11 @@
     "DM-NCSA-24": {},
     "DM-NCSA-25": {},
     "DM-SQRE-5": {},
-    "DM-NCSA-26": {}
+    "DM-NCSA-26": {},
+    "F20S": {
+        "completed": "2020-06-30"
+    },
+    "DLP-876": {
+        "completed": ""
+    }
 }
