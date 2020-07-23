@@ -66,6 +66,12 @@ def parse_args():
                         help=f"Ouput location for milestone table; default={gantt_location}.")
     ldm564.set_defaults(func=milestones.ldm564)
 
+    graph = subparsers.add_parser("graph", help="Generate Graphviz dot showing milestone relationships.")
+    graph.add_argument("--output", help="Filename for output", default="graph.dot")
+    wbs = "02C"
+    graph.add_argument("--wbs", default=wbs, help=f"Include only milestones for this WBS; default={wbs}")
+    graph.set_defaults(func=milestones.graph)
+
     args = parser.parse_args()
     if not hasattr(args, "func"):
         parser.print_usage()
