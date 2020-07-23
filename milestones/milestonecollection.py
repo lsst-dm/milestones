@@ -1,4 +1,5 @@
 import json
+import sys
 
 from datetime import datetime
 
@@ -28,7 +29,7 @@ class MilestoneCollection(object):
                     if (hasattr(ms, attribute) and
                         ms.code in local and
                         attribute in local[ms.code]):
-                        print("NOTE: overriding %s on %s" % (attribute, ms.code))
+                        print(f"NOTE: overriding {attribute} on {ms.code}", file=sys.stderr)
                         setattr(ms, attribute, local[ms.code][attribute])
                 try:
                     old_completion = ms.completed
