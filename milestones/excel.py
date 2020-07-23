@@ -29,7 +29,7 @@ def extract_date(value):
         try:
             return datetime.strptime(value, "%m/%d/%Y")
         except:
-            print(value)
+            print(f"Couldn't parse '{value}' as date", file=sys.stderr)
             raise
 
 def extract_wbs(value):
