@@ -534,7 +534,7 @@
         "description": "This milestone duplicates DM-NCSA-12; we will be requesting deletion."
     },
     "DM-NCSA-31": {
-        "description": "Implement the transformed EFD schema in the consolidated database system.\n"
+        "description": "Implement the transformed EFD schema in the consolidated database system."
     },
     "DM-NCSA-8": {
         "description": "Test instance of feeds to LSST mini broker in online (live stream generated from real-time pipelines) and offline (replaying from files of alert events) modes."
@@ -560,7 +560,7 @@
         "description": "Science pipeline developers and members of the verification and validation science team use nublado to support their interactive data exploration needs relating to comcam commissioning. They are able to work effectively though in some cases their user experience can be improved. As well as access to EFD, catalogue and pixel data, they have access to any available APIs to the workflow/batch system for non-trivial data processing.  There are curated libraries of continuously integrated notebooks modeling common tasks and they is a reasonable workflow to allow Github-based collaboration on those notebooks. Users can refer to documentation for how to get started and for answers to common problems. The service is stable with minimal interruptions, but may not always scale well to large number of users. "
     },
     "DM-SQRE-5": {
-        "description": "Members of the science collaborations or other non-project staff with access to data use nublado to support their interactive scientific data exploration. They are able to share data with each other using LSP sharing mechanisms and can access data without a direct filesystem mount (eg VO services, remote Butler etc). The service scales well to large number of users provided the infrastructure is sized for them. Users can primarily rely on documentation for support, and use a helpdesk system for questions. There is robust functionality for performing large distributed catalog operations and for visually exploring LSSTCam sized images. "
+        "description": "Members of the science collaborations or other non-project staff with access to data use nublado to support their interactive scientific data exploration. They are able to share data with each other using LSP sharing mechanisms and can access data without a direct filesystem mount (eg VO services, remote Butler etc). The service scales well to large number of users provided the infrastructure is sized for them. Users can primarily rely on documentation for support, and use a helpdesk system for questions. There is robust functionality for performing large distributed catalog operations and for visually exploring LSSTCam sized images."
     },
     "DM-STAFF": {
         "description": "DM Management evaluate current DM staffing against project schedule and budget. If there is a shortfall through mid-2022 (the \u201cops gap\u201d), this is the point at which we need to fill it."
