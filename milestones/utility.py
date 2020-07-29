@@ -24,7 +24,7 @@ def get_latest_pmcs_path(path=None):
 
 def get_local_data_path(path=os.path.dirname(__file__)):
     return os.path.normpath(os.path.join(os.path.dirname(__file__),
-                                         "..", "data", "local.json"))
+                                         "..", "data", "local.yaml"))
 
 def write_output(filename, content, comment_prefix="%"):
     print(f"Writing output to {filename}")

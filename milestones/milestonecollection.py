@@ -1,4 +1,4 @@
-import json
+import yaml
 import sys
 
 from datetime import datetime
@@ -24,7 +24,7 @@ class MilestoneCollection(object):
         milestones = load_pmcs_excel(pmcs_filename)
 
         with open(local_filename) as f:
-            local = json.load(f)
+            local = yaml.safe_load(f)
         for ms in milestones:
             if ms.code in local:
                 for attribute in ["name", "description", "comment", "aka",
