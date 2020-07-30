@@ -1,34 +1,40 @@
 from io import StringIO
 
 from .gantt import gantt_embedded
-from .utility import write_output
+from .utility import write_output, escape_latex
 
 __all__ = ["ldm564"]
 
 
 def generate_releases(mc):
     output = StringIO()
-    for ms in sorted(mc.filter("LDM-503"), key=lambda x: (x.due, x.code)):
-        output.write(ms.format_template("\\subsection{{{name}: {code}}}\n"))
-        output.write("\\textit{{")
-        output.write(ms.format_template("Due: {due}; "))
+    for ms in sorted([ms for ms in mc.milestones if ms.code.startswith("LDM-503")],
+                     key=lambda x: (x.due, x.code)):
+        output.write(f"\\subsection{{{escape_latex(ms.name)}: {escape_latex(ms.code)}}}\n")
+        output.write("\\textit{")
+        output.write(f"Due: {escape_latex(ms.due.strftime('%Y-%m-%d'))}; ")
+
         if ms.completed:
-            output.write("completed {}".format(ms.completed.strftime("%Y-%m-%d")))
+            output.write(f"completed {escape_latex(ms.completed.strftime('%Y-%m-%d'))}")
         else:
             output.write("currently incomplete")
-        output.write(".}}\n")
-        predecessors = [prems for prems in mc.filter("DM-")
-                        if prems.code in ms.predecessors]
+        output.write(".}\n")
+
+        predecessors = [prems for prems in mc.milestones
+                        if prems.code.startswith("DM-")
+                        and prems.code in ms.predecessors]
+
         if predecessors:
             output.write("\\begin{itemize}\n")
             for prems in sorted(predecessors, key=lambda x: (x.due, x.code)):
-                output.write(prems.format_template(
-                    "\item{{{code}: {name} \\textit{{(Due: {due}"))
+                output.write(f"\item{{{escape_latex(prems.code)}: {escape_latex(prems.name)} "
+                             f"\\textit{{(Due: {escape_latex(prems.due.strftime('%Y-%m-%d'))}; ")
+
                 if prems.completed:
-                    output.write("; completed {}".format(
-                                 prems.completed.strftime("%Y-%m-%d")))
+                    output.write(f"completed {escape_latex(prems.completed.strftime('%Y-%m-%d'))}")
                 else:
-                    output.write("; currently incomplete")
+                    output.write("currently incomplete")
+
                 output.write(")}}\n")
             output.write("\\end{itemize}\n")
         else:

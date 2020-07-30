@@ -91,13 +91,20 @@ def format_gantt(milestones, preamble, postamble, start=datetime(2017, 7, 1)):
     def get_milestone_name(code):
         return code.lower().replace("-", "").replace("&", "")
 
+    def escape_latex(text):
+        return text.strip().replace("#", "\#").replace("&", "\&").replace("Test report: ", "")
+
     output = StringIO()
     output.write(preamble)
 
     for ms in sorted(milestones, key=lambda x: x.due):
         ms_uniq_id = get_milestone_name(ms.code)
-        output.write(ms.format_template("\\ganttmilestone[name={ms_uniq_id},progress label text={short_name}\\phantom{{#1}},progress=100]{{{code}}}{{{month_no}}} \\ganttnewline\n",
-                                        ms_uniq_id=ms_uniq_id, month_no=get_month_number(start, ms.due)))
+        output_string = (f"\\ganttmilestone[name={get_milestone_name(ms.code)}," +
+                         f"progress label text={ms.short_name}" +
+                         f"\\phantom{{#1}},progress=100]{{{ms.code}}}" +
+                         f"{{{get_month_number(start, ms.due)}}} \\ganttnewline\n")
+        output.write(escape_latex(output_string))
+
     for ms in sorted(milestones, key=lambda x: x.due):
         for succ in ms.successors:
             if succ in [milestone.code for milestone in milestones]:
@@ -107,17 +114,15 @@ def format_gantt(milestones, preamble, postamble, start=datetime(2017, 7, 1)):
     output.write(postamble)
     return output.getvalue()
 
-def gantt_standalone(mc):
-    milestones = set()
-    for ms in GANTT_MILESTONES:
-        milestones = milestones.union(mc.filter(ms))
+def gantt_standalone(milestones):
+    milestones = [ms for ms in milestones.milestones for gantt in GANTT_MILESTONES
+                  if ms.code.startswith(gantt)]
     return(format_gantt(sorted(milestones, key=lambda x: (x.due, x.code)),
                         GANTT_PREAMBLE_STANDALONE, GANTT_POSTAMBLE_STANDALONE))
 
-def gantt_embedded(mc):
-    milestones = set()
-    for ms in GANTT_MILESTONES:
-        milestones = milestones.union(mc.filter(ms))
+def gantt_embedded(milestones):
+    milestones = [ms for ms in milestones.milestones for gantt in GANTT_MILESTONES
+                  if ms.code.startswith(gantt)]
     return(format_gantt(sorted(milestones, key=lambda x: (x.due, x.code)),
                         GANTT_PREAMBLE_EMBEDDED, GANTT_POSTAMBLE_EMBEDDED))
 

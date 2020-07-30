@@ -11,12 +11,13 @@ def burndown(args, mc):
     # pre-replan milestones.
     start_date, end_date = args.start_date, args.end_date
 
-    milestones = set()
-    for my_filter in ("DM-", "DLP-"):
-        milestones.update(ms for ms in mc.filter(my_filter)
-                          if ms.due > start_date and
-                          (not ms.completed or ms.completed > start_date))
-    milestones.update(mc.filter("LDM-503"))
+    milestones = [
+        ms for ms in mc.milestones for prefix in ["DM-", "DLP-", "LDM-503-"]
+        if ms.code.startswith(prefix)
+        and ms.due > start_date
+        and (not ms.completed or ms.completed > start_date)
+    ]
+
 
     month_starts = []
     for year in (range(start_date.year, end_date.year+1)):

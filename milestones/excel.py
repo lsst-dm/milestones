@@ -42,7 +42,7 @@ def extract_wbs(value):
 
 def extract_task_details(task_sheet):
     assert(task_sheet.name == TASK_SHEET_NAME)
-    milestones = set()
+    milestones = list()
     fetcher = CellFetcher(task_sheet.row(0))
     for rownum in range(START_ROW, task_sheet.nrows):
         code = fetcher("task_code", task_sheet.row(rownum))
@@ -67,28 +67,26 @@ def extract_task_details(task_sheet):
             else:
                 break
 
-        ms = Milestone(code, name, due)
-
         status = fetcher("status_code", task_sheet.row(rownum))
         act_end_date = fetcher("act_end_date", task_sheet.row(rownum))
         base_end_date = fetcher("base_end_date", task_sheet.row(rownum))
         start_date = fetcher("start_date", task_sheet.row(rownum))
 
+        completed = None
         if status == "Completed":
             if act_end_date:
-                ms.completed = extract_date(act_end_date)
+                completed = extract_date(act_end_date)
             elif base_end_date:
-                ms.completed = extract_date(base_end_date)
+                completed = extract_date(base_end_date)
             elif start_date:
-                ms.completed = extract_date(start_date)
+                completed = extract_date(start_date)
             else:
                 raise ValueError("%s is completed with no date" % (ms.code,))
 
-        wbs = fetcher("wbs_id", task_sheet.row(rownum))
-        if wbs:
-            ms.wbs = extract_wbs(wbs)
+        wbs = extract_wbs(fetcher("wbs_id", task_sheet.row(rownum)))
 
-        milestones.add(ms)
+        milestones.append(Milestone(code, name, wbs, due, completed))
+
     return milestones
 
 def set_successors(milestones, relation_sheet):
