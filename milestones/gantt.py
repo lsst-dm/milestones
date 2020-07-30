@@ -33,10 +33,10 @@ GANTT_PREAMBLE_EMBEDDED = """
     milestone progress label node/.append style={right=1.4cm},
     y unit chart=0.4cm,
     y unit title=0.7cm
-]{1}{115}
+]{1}{125}
   \\gantttitle{}{6} \\gantttitle{2018}{12} \\gantttitle{2019}{12}
   \\gantttitle{2020}{12} \\gantttitle{2021}{12} \\gantttitle{2022}{12}
-  \\gantttitle{Operations}{49} \\
+  \\gantttitle{2023}{12} \\gantttitle{Operations}{47} \\
   \\ganttnewline\n
 """
 
@@ -71,10 +71,10 @@ GANTT_PREAMBLE_STANDALONE = """
     milestone progress label font=\\sffamily,
     y unit chart=0.55cm,
     y unit title=0.8cm
-]{1}{90}
+]{1}{102}
   \\gantttitle{}{6} \\gantttitle{2018}{12} \\gantttitle{2019}{12}
   \\gantttitle{2020}{12} \\gantttitle{2021}{12} \\gantttitle{2022}{12}
-  \\gantttitle{Operations}{24} \\
+  \\gantttitle{2023}{12} \\gantttitle{Operations}{24} \\
   \\ganttnewline\n
 """
 
