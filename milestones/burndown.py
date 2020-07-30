@@ -1,6 +1,5 @@
 from datetime import datetime
 
-import pandas as pd
 import matplotlib.pyplot as plt
 
 __all__ = ["burndown"]
@@ -46,7 +45,10 @@ def burndown(args, milestones):
 
     plt.plot(month_starts, model, label="Baseline")
 
-    achieved_months = pd.date_range(start_date, last_achieved_month, freq='M')
+    achieved_months = [mnth for mnth in month_starts if mnth <= last_achieved_month]
+    achieved_months.append(datetime(achieved_months[-1].year,
+                                    achieved_months[-1].month + 1,
+                                    achieved_months[-1].day))
     plt.plot(achieved_months, actual[:len(achieved_months)], label="Achieved")
 
     plt.xlabel("Date")
