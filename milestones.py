@@ -54,16 +54,6 @@ def parse_args():
     predecessors = subparsers.add_parser("predecessors", help="List each milestone with its predecessors")
     predecessors.set_defaults(func=milestones.predecessors)
 
-    ldm503 = subparsers.add_parser("ldm503", help="Generate inserts for LDM-503.")
-    table_location, text_location, gantt_location = "dmtestmilestones.tex", "testsections.tex", "dmtestgantt.tex"
-    ldm503.add_argument("--table-location", default=table_location,
-                        help=f"Ouput location for milestone table; default={table_location}.")
-    ldm503.add_argument("--text-location", default=text_location,
-                        help=f"Ouput location for milestone table; default={text_location}.")
-    ldm503.add_argument("--gantt-location", default=gantt_location,
-                        help=f"Ouput location for milestone table; default={gantt_location}.")
-    ldm503.set_defaults(func=milestones.ldm503)
-
     ldm564 = subparsers.add_parser("ldm564", help="Generate inserts for LDM-564.")
     releases_location, gantt_location = "featurelist.tex", "gantt.tex"
     ldm564.add_argument("--releases-location", default=releases_location,
