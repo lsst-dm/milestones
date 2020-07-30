@@ -1,6 +1,7 @@
 from datetime import datetime
 
 import argparse
+import logging
 import sys
 
 import milestones
@@ -15,6 +16,7 @@ def parse_args():
     parser.add_argument("--local-data", help="Path to local annotations. "
                         "[Default={}]".format(milestones.get_local_data_path()),
                         default=milestones.get_local_data_path())
+    parser.add_argument('--verbose', '-v', action='count', default=0)
 
     subparsers = parser.add_subparsers(title="Output targets.")
 
@@ -77,6 +79,10 @@ def parse_args():
     graph.set_defaults(func=milestones.graph)
 
     args = parser.parse_args()
+
+    log_levels = [logging.WARN, logging.INFO, logging.DEBUG, logging.NOTSET]
+    logging.basicConfig(level=log_levels[args.verbose])
+
     if not hasattr(args, "func"):
         parser.print_usage()
         sys.exit(1)

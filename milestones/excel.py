@@ -3,6 +3,7 @@ import sys
 import re
 import xlrd
 from datetime import datetime
+import logging
 
 from .milestone import Milestone
 
@@ -29,7 +30,8 @@ def extract_date(value):
         try:
             return datetime.strptime(value, "%m/%d/%Y")
         except:
-            print(f"Couldn't parse '{value}' as date", file=sys.stderr)
+            logger = logging.getLogger(__name__)
+            logger.debug(f"Couldn't parse '{value}' as date")
             raise
 
 def extract_wbs(value):

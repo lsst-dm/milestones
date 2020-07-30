@@ -1,5 +1,6 @@
 import yaml
 import sys
+import logging
 
 from datetime import datetime
 
@@ -19,8 +20,10 @@ class MilestoneCollection(object):
 
     @staticmethod
     def from_files(pmcs_filename, local_filename):
-        print("Loading PMCS data from: {}".format(pmcs_filename))
-        print("Loading local annotations from: {}".format(local_filename))
+        logger = logging.getLogger(__name__)
+
+        logger.info(f"Loading PMCS data from: {pmcs_filename}")
+        logger.info(f"Loading local annotations from: {local_filename}")
         milestones = load_pmcs_excel(pmcs_filename)
 
         with open(local_filename) as f:
