@@ -5,7 +5,7 @@ import requests
 
 __all__ = ["jira"]
 
-def jira(args, mc):
+def jira(args, milestones):
     def set_jira_due_date(issue_id, due_date):
         API_ENDPOINT = "https://jira.lsstcorp.org/rest/api/latest/"
         user, pw = environ["JIRA_USER"], environ["JIRA_PW"]
@@ -15,7 +15,7 @@ def jira(args, mc):
         requests.put(API_ENDPOINT + "issue/" + issue_id,
                      auth=(user, pw), json=data)
 
-    for ms in mc.milestones:
+    for ms in milestones:
         if ms.jira and ms.due:
             set_jira_due_date(ms.jira, ms.due)
         elif ms.code.startswith("LDM-503"):

@@ -115,20 +115,20 @@ def format_gantt(milestones, preamble, postamble, start=datetime(2017, 7, 1)):
     return output.getvalue()
 
 def gantt_standalone(milestones):
-    milestones = [ms for ms in milestones.milestones for gantt in GANTT_MILESTONES
+    milestones = [ms for ms in milestones for gantt in GANTT_MILESTONES
                   if ms.code.startswith(gantt)]
     return(format_gantt(sorted(milestones, key=lambda x: (x.due, x.code)),
                         GANTT_PREAMBLE_STANDALONE, GANTT_POSTAMBLE_STANDALONE))
 
 def gantt_embedded(milestones):
-    milestones = [ms for ms in milestones.milestones for gantt in GANTT_MILESTONES
+    milestones = [ms for ms in milestones for gantt in GANTT_MILESTONES
                   if ms.code.startswith(gantt)]
     return(format_gantt(sorted(milestones, key=lambda x: (x.due, x.code)),
                         GANTT_PREAMBLE_EMBEDDED, GANTT_POSTAMBLE_EMBEDDED))
 
-def gantt(args, mc):
+def gantt(args, milestones):
     if args.embedded:
-        tex_source = gantt_embedded(mc)
+        tex_source = gantt_embedded(milestones)
     else:
-        tex_source = gantt_standalone(mc)
+        tex_source = gantt_standalone(milestones)
     write_output(args.output, tex_source)

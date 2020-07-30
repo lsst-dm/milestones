@@ -6,9 +6,9 @@ from .utility import write_output, escape_latex
 __all__ = ["ldm564"]
 
 
-def generate_releases(mc):
+def generate_releases(milestones):
     output = StringIO()
-    for ms in sorted([ms for ms in mc.milestones if ms.code.startswith("LDM-503")],
+    for ms in sorted([ms for ms in milestones if ms.code.startswith("LDM-503")],
                      key=lambda x: (x.due, x.code)):
         output.write(f"\\subsection{{{escape_latex(ms.name)}: {escape_latex(ms.code)}}}\n")
         output.write("\\textit{")
@@ -20,7 +20,7 @@ def generate_releases(mc):
             output.write("currently incomplete")
         output.write(".}\n")
 
-        predecessors = [prems for prems in mc.milestones
+        predecessors = [prems for prems in milestones
                         if prems.code.startswith("DM-")
                         and prems.code in ms.predecessors]
 
@@ -42,6 +42,6 @@ def generate_releases(mc):
                          """represents a refined or improved version of earlier deliveries.\n""")
     return output.getvalue()
 
-def ldm564(args, mc):
-    write_output(args.releases_location, generate_releases(mc))
-    write_output(args.gantt_location, gantt_embedded(mc))
+def ldm564(args, milestones):
+    write_output(args.releases_location, generate_releases(milestones))
+    write_output(args.gantt_location, gantt_embedded(milestones))

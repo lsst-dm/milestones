@@ -6,8 +6,7 @@ from .utility import write_output
 
 __all__ = ["csv"]
 
-def csv(args, mc):
-    milestones = mc.milestones
+def csv(args, milestones):
     start = sorted(milestones, key=lambda x: x.due)[0].due
     end = sorted(milestones, key=lambda x: x.due)[-1].due
 

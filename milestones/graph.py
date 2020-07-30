@@ -20,16 +20,19 @@ def format_milestone(ms, my_wbs):
         attr_list.append("shape=rect")
     return f"  \"{ms.code}\" [{','.join(attr_list)}];\n"
 
-def graph(args, mc):
+def graph(args, milestones):
     dot_source = StringIO()
     dot_source.write("strict digraph {\n")
     seen = []
-    for ms in mc.for_wbs(args.wbs):  # All DM milestones
+    for ms in milestones:
+        if not ms.wbs.startswith(args.wbs):
+            continue
+
         if ms.code not in seen:
             dot_source.write(format_milestone(ms, args.wbs))
             seen.append(ms.code)
 
-        for candidate in mc.milestones:
+        for candidate in milestones:
             if candidate.code in ms.predecessors or candidate.code in ms.successors:
                 if candidate.code not in seen:
                     dot_source.write(format_milestone(candidate, args.wbs))

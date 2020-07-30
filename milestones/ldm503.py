@@ -5,9 +5,9 @@ from .utility import write_output, escape_latex
 
 __all__ = ["ldm503"]
 
-def generate_table(mc):
+def generate_table(milestones):
     output = StringIO()
-    for ms in sorted([ms for ms in mc.milestones if ms.code.startswith("LDM-503")],
+    for ms in sorted([ms for ms in milestones if ms.code.startswith("LDM-503")],
                      key=lambda x: (x.due, x.code)):
         output.write(f"{escape_latex(ms.code)} &\n")
         output.write(f"{escape_latex(ms.due.strftime('%Y-%m-%d'))} &\n")
@@ -15,9 +15,9 @@ def generate_table(mc):
         output.write(f"{escape_latex(ms.name)} \\\\\n\n")
     return output.getvalue()
 
-def generate_commentary(mc):
+def generate_commentary(milestones):
     output = StringIO()
-    for ms in sorted([ms for ms in mc.milestones if ms.code.startswith("LDM-503")],
+    for ms in sorted([ms for ms in milestones if ms.code.startswith("LDM-503")],
                      key=lambda x: (x.due, x.code)):
         output.write(f"\\subsection{{{escape_latex(ms.name)} (\\textbf{{{escape_latex(ms.code)}}})}}\n")
         output.write(f"\\label{{{escape_latex(ms.code)}}}\n\n")
@@ -35,7 +35,7 @@ def generate_commentary(mc):
             output.write(f"{escape_latex(ms.comment)}\n\n")
     return output.getvalue()
 
-def ldm503(args, mc):
-    write_output(args.table_location, generate_table(mc))
-    write_output(args.text_location, generate_commentary(mc))
-    write_output(args.gantt_location, gantt_embedded(mc))
+def ldm503(args, milestones):
+    write_output(args.table_location, generate_table(milestones))
+    write_output(args.text_location, generate_commentary(milestones))
+    write_output(args.gantt_location, gantt_embedded(milestones))

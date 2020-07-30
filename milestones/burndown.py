@@ -5,14 +5,14 @@ import matplotlib.pyplot as plt
 
 __all__ = ["burndown"]
 
-def burndown(args, mc):
+def burndown(args, milestones):
     # We won't consider milestones before which are due and/or completed
     # before the start date. The aim is to avoid picking up a whole bunch of
     # pre-replan milestones.
     start_date, end_date = args.start_date, args.end_date
 
     milestones = [
-        ms for ms in mc.milestones for prefix in ["DM-", "DLP-", "LDM-503-"]
+        ms for ms in milestones for prefix in ["DM-", "DLP-", "LDM-503-"]
         if ms.code.startswith(prefix)
         and ms.due > start_date
         and (not ms.completed or ms.completed > start_date)
