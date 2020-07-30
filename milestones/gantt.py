@@ -3,7 +3,7 @@ from io import StringIO
 
 from .utility import write_output
 
-__all__ = ["GANTT_MILESTONES", "gantt"]
+__all__ = ["gantt", "gantt_embedded"]
 
 # Milestones with these prefixes are included when generating Gantt charts.
 # Note that some are not DM milestones, but are included for context.
