@@ -54,14 +54,6 @@ def parse_args():
     predecessors = subparsers.add_parser("predecessors", help="List each milestone with its predecessors")
     predecessors.set_defaults(func=milestones.predecessors)
 
-    ldm564 = subparsers.add_parser("ldm564", help="Generate inserts for LDM-564.")
-    releases_location, gantt_location = "featurelist.tex", "gantt.tex"
-    ldm564.add_argument("--releases-location", default=releases_location,
-                        help=f"Ouput location for release feature list; default={releases_location}.")
-    ldm564.add_argument("--gantt-location", default=gantt_location,
-                        help=f"Ouput location for milestone table; default={gantt_location}.")
-    ldm564.set_defaults(func=milestones.ldm564)
-
     graph = subparsers.add_parser("graph", help="Generate Graphviz dot showing milestone relationships.")
     graph.add_argument("--output", help="Filename for output", default="graph.dot")
     graph.add_argument("--wbs", default=default_wbs,
