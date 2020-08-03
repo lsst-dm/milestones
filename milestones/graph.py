@@ -8,8 +8,13 @@ from .utility import write_output
 
 __all__ = ["graph"]
 
+
 def format_milestone(ms, my_wbs):
-    attr_list = ["<br/>".join(textwrap.wrap(f"label=<{html.escape(ms.code)}: {html.escape(ms.name)}>", 25))]
+    attr_list = [
+        "<br/>".join(
+            textwrap.wrap(f"label=<{html.escape(ms.code)}: {html.escape(ms.name)}>", 25)
+        )
+    ]
     if ms.completed:
         attr_list.append("style=filled")
         attr_list.append("fillcolor=green")
@@ -19,6 +24,7 @@ def format_milestone(ms, my_wbs):
     if not ms.wbs.startswith(my_wbs):
         attr_list.append("shape=rect")
     return f"  \"{ms.code}\" [{','.join(attr_list)}];\n"
+
 
 def graph(args, milestones):
     dot_source = StringIO()
@@ -38,8 +44,8 @@ def graph(args, milestones):
                     dot_source.write(format_milestone(candidate, args.wbs))
                     seen.append(candidate.code)
                 if candidate.code in ms.predecessors:
-                    dot_source.write(f"  \"{candidate.code}\" -> \"{ms.code}\";\n")
+                    dot_source.write(f'  "{candidate.code}" -> "{ms.code}";\n')
                 if candidate.code in ms.successors:
-                    dot_source.write(f"  \"{ms.code}\" -> \"{candidate.code}\";\n")
+                    dot_source.write(f'  "{ms.code}" -> "{candidate.code}";\n')
     dot_source.write("}")
     write_output(args.output, dot_source.getvalue(), comment_prefix="//")

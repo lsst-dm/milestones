@@ -15,6 +15,7 @@ RELATION_SHEET_NAME = "TASKPRED"
 # Skip the first two rows, which always contain header information.
 START_ROW = 2
 
+
 class CellFetcher(object):
     def __init__(self, hdr):
         self._hdr = [cell.value for cell in hdr]
@@ -23,16 +24,18 @@ class CellFetcher(object):
         position = self._hdr.index(field_name)
         return row[position].value
 
+
 def extract_date(value):
     try:
         return datetime.strptime(value, "%m/%d/%Y %I:%M:%S %p")
     except ValueError:
         try:
             return datetime.strptime(value, "%m/%d/%Y")
-        except:
+        except ValueError:
             logger = logging.getLogger(__name__)
             logger.debug(f"Couldn't parse '{value}' as date")
             raise
+
 
 def extract_wbs(value):
     try:
@@ -40,8 +43,9 @@ def extract_wbs(value):
     except AttributeError:
         return None
 
+
 def extract_task_details(task_sheet):
-    assert(task_sheet.name == TASK_SHEET_NAME)
+    assert task_sheet.name == TASK_SHEET_NAME
     milestones = list()
     fetcher = CellFetcher(task_sheet.row(0))
     for rownum in range(START_ROW, task_sheet.nrows):
@@ -54,8 +58,8 @@ def extract_task_details(task_sheet):
         #   end_date      - the end date in the current project (which floats
         #                   as dependencies get late, etc)
         #   start_date    - the start date in the current project (as above,
-        #                   will be the same as the end_date for zero duration activities like
-        #                   milestones.
+        #                   will be the same as the end_date for zero duration
+        #                   activities like milestones.
         #
         # We use the first available.
         for date_field in ("base_end_date", "end_date", "start_date"):
@@ -81,7 +85,7 @@ def extract_task_details(task_sheet):
             elif start_date:
                 completed = extract_date(start_date)
             else:
-                raise ValueError("%s is completed with no date" % (ms.code,))
+                raise ValueError(f"{code} is completed with no date")
 
         wbs = extract_wbs(fetcher("wbs_id", task_sheet.row(rownum)))
 
@@ -89,8 +93,9 @@ def extract_task_details(task_sheet):
 
     return milestones
 
+
 def set_successors(milestones, relation_sheet):
-    assert(relation_sheet.name == RELATION_SHEET_NAME)
+    assert relation_sheet.name == RELATION_SHEET_NAME
     pred_col = relation_sheet.row_values(0).index("pred_task_id")
     succ_col = relation_sheet.row_values(0).index("task_id")
     preds = numpy.array(relation_sheet.col_values(pred_col))[START_ROW:]
@@ -100,6 +105,7 @@ def set_successors(milestones, relation_sheet):
             ms.successors.add(succs[i])
         for i in numpy.where(succs == ms.code)[0]:
             ms.predecessors.add(preds[i])
+
 
 def load_pmcs_excel(path):
     workbook = xlrd.open_workbook(path, logfile=sys.stderr)

@@ -9,7 +9,7 @@ def predecessors(args, milestones):
                         if prems.code in ms.predecessors
                         and prems.code.startswith("DM-")]
         if not predecessors:
-            print(f"    (No prdecessors)")
+            print("    (No prdecessors)")
 
         for prems in sorted(predecessors, key=lambda x: (x.due, x.code)):
             print(f"    {prems.code} ({prems.name})")

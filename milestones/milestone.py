@@ -4,6 +4,7 @@ from typing import Set, Optional
 
 __all__ = ["Milestone"]
 
+
 @dataclass
 class Milestone(object):
     # These should come from Excel/PMCS
