@@ -39,9 +39,9 @@ def extract_date(value):
 
 def extract_wbs(value):
     try:
-        return re.match(r"LSST ME \d\d-\d\d\.(\d\dC?\.\d\d)", value).groups()[0]
+        return re.match(r"LSST ME .*(\d\dC?\.\d\d)", value).groups()[0]
     except AttributeError:
-        return None
+        return ""
 
 
 def extract_task_details(task_sheet):
