@@ -30,3 +30,20 @@ jobs:
         with:
           name: Burndown chart
           path: burndown.png
+      - name: Generate Gantt chart source
+        run: python milestones.py gantt
+      - name: Install LaTeX
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install texlive texlive-pictures
+      - name: Generate Gantt chart PDF
+        run: |
+          pdflatex gantt.tex
+          pdflatex gantt.tex
+      - name: Upload Gantt chart as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Gantt chart
+          path: |
+            gantt.pdf
+            gantt.tex
