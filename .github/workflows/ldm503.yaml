@@ -9,7 +9,7 @@ on:
             - master
 
 jobs:
-  generate-test:
+  ldm-503-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -23,10 +23,10 @@ jobs:
       - name: Install TeXLive
         run: |
           sudo apt-get update
-          sudo apt-get -y install texlive texlive-pictures
+          sudo apt-get -y install texlive texlive-pictures texlive-latex-extra texlive-fonts-extra latexmk
 
       - name: Check out LDM-503 source
-        run: GIT_LFS_SKIP_SMUDGE=1 git clone --depth 1 --recurse-submodules --shallow-submodules https://github.com/lsst/ldm-503.git
+        run: GIT_LFS_SKIP_SMUDGE=1 git clone --depth 1 --recurse-submodules --shallow-submodules -b u/swinbank/milestone-cleanup https://github.com/lsst/ldm-503.git
 
       - name: Replace LDM-503 milestones submodule
         run: |
