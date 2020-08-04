@@ -1,0 +1,32 @@
+name: Test artifact generation
+
+on:
+    push:
+        branches-ignore:
+            - master
+    pull_request:
+        branches-ignore:
+            - master
+
+jobs:
+  generate-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Check out LFS files
+        run: |
+          git lfs install
+          git config -f .lfsconfig lfs.url https://git-lfs.lsst.codes
+          git lfs pull
+      - uses: actions/setup-python@v2
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Generate burndown chart
+        run: python milestones.py burndown
+      - name: Upload burndown chart as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Burndown chart
+          path: burndown.png
