@@ -1,0 +1,45 @@
+name: Test LDM-564 generation
+
+on:
+    push:
+        branches-ignore:
+            - master
+    pull_request:
+        branches-ignore:
+            - master
+
+jobs:
+  ldm-564-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Check out LFS files
+        run: |
+          git lfs install
+          git config -f .lfsconfig lfs.url https://git-lfs.lsst.codes
+          git lfs pull
+      - uses: actions/setup-python@v2
+
+      - name: Install TeXLive
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install texlive texlive-xetex texlive-pictures texlive-latex-extra texlive-fonts-extra latexmk
+
+      - name: Check out LDM-564 source
+        run: GIT_LFS_SKIP_SMUDGE=1 git clone --depth 1 --recurse-submodules --shallow-submodules -b u/swinbank/milestone-cleanup https://github.com/lsst/ldm-564.git
+
+      - name: Replace LDM-564 milestones submodule
+        run: |
+          rm -rf milestones
+          ln -s .. ./milestones
+        working-directory: ./ldm-564
+
+      - name: Build LDM-564
+        run: make
+        working-directory: ./ldm-564
+
+      - name: Upload resulting document as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: LDM-564 PDF
+          path: ./ldm-564/LDM-564.pdf
