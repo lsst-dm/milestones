@@ -39,7 +39,7 @@ def extract_date(value):
 
 def extract_wbs(value):
     try:
-        return re.match(r"LSST ME .*(\d\dC?\.\d\d)", value).groups()[0]
+        return re.match(r"LSST ME .*(0\dC\.\d\d(\.\d\d)?)", value).groups()[0]
     except AttributeError:
         return ""
 
