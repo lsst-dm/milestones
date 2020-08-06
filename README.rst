@@ -98,7 +98,6 @@ A warning is printed in this case.
 
 The other fields are populated based on the contents of ``local.yaml``, without reference to Primavera.
 
-
 Extracting information from Primavera
 -------------------------------------
 
@@ -115,7 +114,6 @@ The Excel sheet is generated from within Primavera as follows:
 # Review the name of the file to be exported, and hit “Next”.
 # Hit “Finish”.
 # Commit the file to the ``data/pmcs`` directory of this repository.
-
 
 Command-Line Usage
 ==================
@@ -168,3 +166,9 @@ Each target has its own ``--help`` option which describes any target-specific op
                           Start date for the burndown chart (YYYY-MM-DD); default=2016-10-30.
     --end-date END_DATE   Start date for the burndown chart (YYYY-MM-DD); default=2022-06-30.
     --output OUTPUT       Filename for output; default={filename}.
+
+GitHub Artifacts
+================
+
+On push to this repository, some of the artifacts produced by the ``milestone.py`` script are automatically compiled and made available for download.
+These are available from the `Generate Artifacts workflow <https://github.com/lsst-dm/milestones/actions?query=workflow%3A%22Generate+artifacts%22>`_; choose the latest run on the branch you are interested in.
