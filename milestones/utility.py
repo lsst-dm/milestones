@@ -107,7 +107,7 @@ def load_milestones(pmcs_filename, local_data_filename):
                 "jira_testplan",
             ]:
                 if attribute in local[ms.code]:
-                    logger.info(f"WARNING: setting {attribute} on {ms.code}")
+                    logger.info(f"Setting {attribute} on {ms.code}")
                     setattr(ms, attribute, local[ms.code][attribute])
 
     return milestones
