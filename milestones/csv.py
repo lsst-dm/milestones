@@ -6,8 +6,8 @@ from .utility import write_output
 
 __all__ = ["csv"]
 
-def csv(args, mc):
-    milestones = mc.milestones
+
+def csv(args, milestones):
     start = sorted(milestones, key=lambda x: x.due)[0].due
     end = sorted(milestones, key=lambda x: x.due)[-1].due
 
@@ -20,16 +20,18 @@ def csv(args, mc):
 
     def get_month_end(dt):
         next_year, next_month = get_next_month(dt.year, dt.month)
-        return (datetime(next_year, next_month, 1) - timedelta(seconds=1))
+        return datetime(next_year, next_month, 1) - timedelta(seconds=1)
 
     milestone_map = {}
     current_date = get_month_start(start)
     while current_date <= get_month_end(end):
         milestone_map[current_date.strftime("%b %Y")] = []
         for milestone in milestones:
-            if (milestone.due >= current_date and
-                milestone.due <= get_month_end(current_date) and
-                milestone.wbs.startswith("02C")):
+            if (
+                milestone.due >= current_date
+                and milestone.due <= get_month_end(current_date)
+                and milestone.wbs.startswith("02C")
+            ):
                 milestone_map[current_date.strftime("%b %Y")].append(milestone)
 
         new_year, new_month = get_next_month(current_date.year, current_date.month)
@@ -48,10 +50,11 @@ def csv(args, mc):
                 milestone = milestone_map[field][i]
 
                 to_write[field] = "%s (%s%s)" % (
-                    milestone.code, milestone.wbs,
-                    " DONE" if milestone.completed else ""
-                    )
-            except:
+                    milestone.code,
+                    milestone.wbs,
+                    " DONE" if milestone.completed else "",
+                )
+            except Exception:
                 pass
         writer.writerow(to_write)
     write_output(args.output, output.getvalue())

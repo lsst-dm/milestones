@@ -1,0 +1,79 @@
+name: Generate artifacts
+
+on:
+    push:
+    pull_request:
+        branches-ignore:
+            - master
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Check out LFS files
+        run: |
+          git lfs install
+          git config -f .lfsconfig lfs.url https://git-lfs.lsst.codes
+          git lfs pull
+      - uses: actions/setup-python@v2
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Generate burndown chart
+        run: python milestones.py burndown
+      - name: Upload burndown chart as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Burndown chart
+          path: burndown.png
+
+      - name: Generate CSV milestone listing
+        run: python milestones.py csv
+      - name: Upload CSV as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: CSV milestone listing
+          path: milestones.csv
+
+      - name: Print list of delayed milestones
+        run: python milestones.py delayed
+
+      - name: Print milestones with predecessors
+        run: python milestones.py predecessors
+
+      - name: Generate Graphivz dot source
+        run: python milestones.py graph
+      - name: Install Graphviz
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install graphviz
+      - name: Generate milestone graph from dot
+        run: dot -Tpdf graph.dot > graph.pdf
+      - name: Upload milestone graph as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Milestone graph
+          path: |
+            graph.dot
+            graph.pdf
+
+      - name: Generate Gantt chart source
+        run: python milestones.py gantt
+      - name: Install LaTeX
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install texlive texlive-pictures
+      - name: Generate Gantt chart PDF
+        run: |
+          pdflatex gantt.tex
+          pdflatex gantt.tex
+      - name: Upload Gantt chart as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Gantt chart
+          path: |
+            gantt.pdf
+            gantt.tex
