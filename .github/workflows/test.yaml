@@ -1,15 +1,13 @@
-name: Test artifact generation
+name: Generate artifacts
 
 on:
     push:
-        branches-ignore:
-            - master
     pull_request:
         branches-ignore:
             - master
 
 jobs:
-  generate-test:
+  generate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
