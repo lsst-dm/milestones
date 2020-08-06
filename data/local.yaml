@@ -81,16 +81,7 @@ DLP-69:
 DLP-70:
   description: Miami - Atlanta, and ESNet Atlanta - Chicago 2 x 20 Gbps path diverse
     circuits available and tested at capacity.
-DLP-799:
-  description: ''
-DLP-802:
-  description: ''
-DLP-808:
-  description: ''
-DLP-837:
-  description: ''
 DLP-876:
-  completed: ''
   description: Boca Raton - Atlanta and ESNet Atlanta - Chicago 2 x 100 Gbps path
     diverse circuits available and tested at capacity.
 DLP-877:
@@ -270,7 +261,6 @@ DM-DRP-10:
 DM-DRP-11:
   aka:
   - DRP-MS-OBJCHAR-8
-  completed: '2019-12-30'
   description: The Data Release Production science payload now generates results which
     are compliant with the LSST Science Data Model, and which are suitable for database
     ingest.
@@ -278,7 +268,6 @@ DM-DRP-11:
 DM-DRP-12:
   aka:
   - DRP-MS-IMCHAR-6
-  completed: '2020-06-30'
   name: Background estimation over the full visit.
 DM-DRP-13:
   aka:
@@ -516,7 +505,6 @@ DM-NCSA-10:
   description: The capability to use the existing OCS/CCS to command data acquisition
     and hand-off to a test Observatory Operations Data Service (OODS).
 DM-NCSA-11:
-  completed: '2020-06-30'
   description: Exercise the handoff between the L1 archiving and data backbone endpoint,
     including a monitoring service that tracks files that have been transfered and
     received.
@@ -549,7 +537,6 @@ DM-NCSA-19:
     status; (2) incident repsonse system and workflow in place; (3) process(es) to
     address incidents; (4) roles staffed to be able to respond to incidents.
 DM-NCSA-20:
-  completed: '2020-06-30'
   description: Implment a Service that acquires raw data from a camera at raft scale
     and sends to NCSA for ingestion into the Data Backbone. This is a preliminary
     milestone to demonstrate initial capabilities.
@@ -595,7 +582,6 @@ DM-NCSA-9:
     of running an instance of Kafka at NCSA, so no L1 database was needed. We believe
     this was completed in August 2018.'
 DM-NET-4:
-  completed: '2020-01-30'
   description: Installed the Base LAN equipment in the Base Date Center and Base Office
     Building technical closets, and cabling connecting them for the Base Campus and
     Control Networks.  Tested with data volumes and access points equivalent to operational
@@ -652,7 +638,6 @@ DM-STAFF:
     \ and budget. If there is a shortfall through mid-2022 (the \u201Cops gap\u201D\
     ), this is the point at which we need to fill it."
 DM-SUIT-10:
-  completed: '2020-06-30'
   description: 'Portal software is adapted for deployment in Kubernetes. The set of
     container images required for deployment is documented in an LTD-style manner.
     Configuration files for Kubernetes are provided in Github and documented to a
@@ -695,7 +680,6 @@ DM-SUIT-7:
 
     Claimed in May, based on installation on lsst-lsp-int.'
 DM-SUIT-8:
-  completed: '2020-04-30'
   description: 'Portal is integrated with LSST-provided WebDAV or VOSpace service
     exposing the User File Workspace. Portal provides functions for saving image and
     catalog query results to the logged-in user''s workspace, with the user''s identity
@@ -737,7 +721,6 @@ DMTC-8100-2210:
   description: 'Contract Deliverable Report #7 100G managed ring Contract Delivery
     #7 Complete.  Covers availability and outages.'
 DMTC-8100-2370:
-  completed: '2019-12-30'
   description: Level of effort management task, annual report delivered, covering
     all activities, meetings, conferences/workshops, circuits, tools, tests, staffing,
     budget/expenditures.
@@ -765,7 +748,8 @@ F20F:
   description: Time-based milestone marking the completion of the Fall 2020 development
     cycle.
 F20S:
-  completed: '2020-06-30'
+  description: Time-based milestone marking the start of the Fall 2020 development
+    cycle.
 F21F:
   description: Time-based milestone marking the completion of the Fall 2021 development
     cycle.
@@ -843,7 +827,6 @@ LDM-503-08:
   comment: As the capabilities of the spectragraph grow data can be automatically
     ingested into the Data Backbone for permanent record of the survey after being
     sent to NCSA.
-  completed: '2019-12-30'
   description: This test demonstrates data acquisition from the Auxiliary Telescope
     spectrograph, transmission of all image files with associated metadata to NCSA
     for screening, and then further processing if needed.
@@ -861,7 +844,6 @@ LDM-503-08b:
   name: Small Scale CCOB Data Access
   test_spec: \citeds{DMTR-102}
 LDM-503-09:
-  completed: '2019-10-07'
   description: This milestone represents the completion of a multi-day exercise in
     which (simulated) observations are performed and data is processed in as close
     to an operational mode as is possible at this stage in construction. In particular,
@@ -893,7 +875,6 @@ LDM-503-10a:
     is not required for authorization to be applied at the database level; it is sufficient
     for this milestone to apply at the TAP level. Data served will remain that from
     the original PDAC work, i.e., SDSS Stripe 82 and/or WISE.
-  completed: '2019-12-30'
   description: This test demonstrates the successful integration of a single-sign-on
     federated authentication system, and a basic authorization system, with the three
     Aspects of the LSST Science Platform (Portal, Notebook, and API), with the API
