@@ -23,7 +23,7 @@ def parse_args():
     )
     parser.add_argument("--verbose", "-v", action="count", default=0)
 
-    subparsers = parser.add_subparsers(title="Output targets.")
+    subparsers = parser.add_subparsers(title="Output targets")
 
     gantt = subparsers.add_parser("gantt", help="Generate Gantt chart.")
     gantt.add_argument(
