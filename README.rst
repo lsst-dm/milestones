@@ -103,17 +103,17 @@ Extracting information from Primavera
 
 The Excel sheet is generated from within Primavera as follows:
 
-# Load the project to be exported.
-  Note that we always use the “forecast” project, not the “baseline”.
-  Look for a project named similarly to “LSST ME 20-06” (*not* “LSST BL 20-06”).
-# Select File→Export.
-# Select “Spreadsheet - (XLS)” and hit “Next”.
-# Select “Activities” and “Activity Relationships” and hit “Next”.
-# Select the open project, and hit “Next”.
-# Select template “All Milestones” and hit “Next”.
-# Review the name of the file to be exported, and hit “Next”.
-# Hit “Finish”.
-# Commit the file to the ``data/pmcs`` directory of this repository.
+#. Load the project to be exported.
+   Note that we always use the “forecast” project, not the “baseline”.
+   Look for a project named similarly to “LSST ME 20-06” (*not* “LSST BL 20-06”).
+#. Select File→Export.
+#. Select “Spreadsheet - (XLS)” and hit “Next”.
+#. Select “Activities” and “Activity Relationships” and hit “Next”.
+#. Select the open project, and hit “Next”.
+#. Select template “All Milestones” and hit “Next”.
+#. Review the name of the file to be exported, and hit “Next”.
+#. Hit “Finish”.
+#. Commit the file to the ``data/pmcs`` directory of this repository.
 
 Command-Line Usage
 ==================
