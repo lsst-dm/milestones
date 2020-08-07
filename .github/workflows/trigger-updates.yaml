@@ -14,5 +14,5 @@ jobs:
           curl --request POST \
           --header "Accept: application/vnd.github.v3+json" \
           --data '{"ref": "master"}' \
-          --header 'authorization: Bearer ${{ secrets.DOC_UPDATES }}' \
+          --header 'authorization: Bearer ${{ secrets.DOC_UPDATE }}' \
           https://api.github.com/repos/lsst-dm/dmtn-158/actions/workflows/update-milestones.yaml/dispatches
