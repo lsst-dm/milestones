@@ -1,0 +1,18 @@
+name: Trigger document updates
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger DMTN-158 update
+        run: |
+          curl --request POST \
+          --header "Accept: application/vnd.github.v3+json" \
+          --data '{"ref": "master"}' \
+          --header 'authorization: Bearer ${{ secrets.DOC_UPDATES }}' \
+          https://api.github.com/repos/lsst-dm/dmtn-158/actions/workflows/update-milestones.yaml/dispatches

@@ -1,10 +1,10 @@
 name: Generate artifacts
 
 on:
-    push:
-    pull_request:
-        branches-ignore:
-            - master
+  push:
+  pull_request:
+    branches-ignore:
+      - master
 
 jobs:
   generate:
