@@ -51,12 +51,15 @@ def write_output(filename, content, comment_prefix="%"):
 
 
 def escape_latex(text):
-    return (
-        text.strip()
-        .replace("#", r"\#")
-        .replace("&", r"\&")
-        .replace("Test report: ", "")
-    )
+    if text:
+        return (
+            text.strip()
+            .replace("#", r"\#")
+            .replace("&", r"\&")
+            .replace("Test report: ", "")
+         )
+    else:
+        return ""
 
 
 def load_milestones(pmcs_filename, local_data_filename):
