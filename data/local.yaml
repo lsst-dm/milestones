@@ -962,6 +962,12 @@ LDM-503-14:
   jira: DM-17133
   jira_testplan: DM-17132
   test_spec: ''
+LDM-503-14a:
+  description: Take the output of a DRP-like, BG3-based, SDM-ified data production and, without a great
+     deal of manual labor, make the resulting image and catalog data available to users through the
+     aspects of the LSP. This includes the generation of image metadata table content for the LSP.
+  jira: DM-26349
+  jira_testplan: DM-26340
 LDM-503-15:
   description: This milestone builds upon LDM-503-13, and will demonstrate the production
     of a data release under simulated operational conditions using data from science
@@ -997,6 +1003,30 @@ LDM-503-17a:
     The release will be accompanied by a characterization report.
   jira: DM-17143
   jira_testplan: DM-17142
+LDM-503-EFDa:
+  short_name: EFD for M1M3 on summit.
+  description: An instance of the Engineering and Facility Database at the summit capturing and
+    enabling access to all telemetry, including from an active M1M3. This may be distinct
+    from the Auxiliary Telescope EFD instance.
+    Demonstrate the ability to run for five days, allowing data retrieval and
+    plotting via notebooks.
+  jira: DM-26348
+  jira_testplan: DM-26342
+LDM-503-EFDb:
+  short_name: EFD replicated at USDF
+  description: Demonstrate that EFD data from the Summit appears at the US Data Facility.
+    Show that the Parquet files generated contain all low frequency EFD values and summaries of high
+    frequency values.
+  jira: DM-26347
+  jira_testplan: DM-26344
+LDM-503-EFDc:
+  short_name: EFD via TAP
+  description: Demonstrate that engineering data for a specific observation time can be retrieved via TAP
+    on the Science Platform or directly to a TAP tool like TopCat.
+    Test DMS-REQ-0102 (Priority 1a) to permantely archive metadata from OCS and make availble to rights holders.
+    Also test DMS-REQ-0358 (Priority 1a), demonstrating support of simultaneous queries.
+  jira: DM-26346
+  jira_testplan: DM-26345
 LSST-1510:
   short_name: Start Early System I&T
 S19F:
