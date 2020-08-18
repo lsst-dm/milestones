@@ -48,7 +48,7 @@ GANTT_PREAMBLE_STANDALONE = """
 \\documentclass{article}
 \\usepackage[
     paperwidth=30cm,
-    paperheight=22.50cm,  % Manually tweaked to fit chart
+    paperheight=23.50cm,  % Manually tweaked to fit chart
     left=0mm,
     top=0mm,
     bottom=0mm,
@@ -97,13 +97,17 @@ def format_gantt(milestones, preamble, postamble, start=datetime(2017, 7, 1)):
     output.write(preamble)
 
     for ms in sorted(milestones, key=lambda x: x.due):
+        # A comma in the name causes a problem; escape with \\
+        name = ms.short_name.replace(",", "\\,")
         output_string = (
             f"\\ganttmilestone[name={get_milestone_name(ms.code)},"
-            f"progress label text={ms.short_name}"
+            f"progress label text={name}"
             f"\\phantom{{#1}},progress=100]{{{ms.code}}}"
-            f"{{{get_month_number(start, ms.due)}}} \\ganttnewline\n"
+            f"{{{get_month_number(start, ms.due)}}} \\ganttnewline"
         )
         output.write(escape_latex(output_string))
+        # escape_latex() strips trailing newlines; add one for cosmetic reasons
+        output.write("\n")
 
     for ms in sorted(milestones, key=lambda x: x.due):
         for succ in ms.successors:
