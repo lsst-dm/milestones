@@ -52,6 +52,10 @@ def extract_task_details(task_sheet):
         code = fetcher("task_code", task_sheet.row(rownum))
         name = fetcher("task_name", task_sheet.row(rownum))
 
+        # "user_field_859" is just a magic value extracted from the spreadsheet
+        level = fetcher("user_field_859", task_sheet.row(rownum))
+        level = int(level) if level else None
+
         # There are three possible end dates:
         #
         #   base_end_date - according to the baseline project
@@ -89,7 +93,7 @@ def extract_task_details(task_sheet):
 
         wbs = extract_wbs(fetcher("wbs_id", task_sheet.row(rownum)))
 
-        milestones.append(Milestone(code, name, wbs, due, completed))
+        milestones.append(Milestone(code, name, wbs, level, due, completed))
 
     return milestones
 

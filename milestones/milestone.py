@@ -13,6 +13,7 @@ class Milestone(object):
     code: str
     name: str
     wbs: str
+    level: Optional[int]
     due: datetime
     completed: Optional[datetime] = None
 
