@@ -39,5 +39,5 @@ jobs:
         with:
           token: ${{ secrets.ROBO_JDS_PAT }}
           branch: update-milestones
-          branch-suffix: timestamp
+          branch-suffix: short-commit-hash
           title: Automatic milestone submodule update, ${{ steps.get-date.outputs.date }}
