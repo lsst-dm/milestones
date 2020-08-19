@@ -75,7 +75,7 @@ def load_milestones(pmcs_filename, local_data_filename):
         if ms.code in local:
             # These are core PMCS attributes; we should warn if we
             # over-write them.
-            for attribute in ["name", "wbs", "predecessors", "successors"]:
+            for attribute in ["name", "wbs", "level", "predecessors", "successors"]:
                 if attribute in local[ms.code]:
                     logger.warning(
                         f"Overriding PMCS {attribute} on {ms.code} "
