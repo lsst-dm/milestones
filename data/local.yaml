@@ -1,33 +1,33 @@
 A2330:
-  description: 'NCSA Level 4 milestone: Date for Authenticaton and Authorization hardware
+  description: 'Date for Authenticaton and Authorization hardware
     to ship from NCSA to Chile'
   level: 4
 A4369.9:
-  description: 'NCSA Level 4 milestone: Date for Base Data Center hardware to ship
+  description: 'Date for Base Data Center hardware to ship
     from NCSA to Chile'
   level: 4
 A4640:
-  description: 'NCSA Level 4 milestone: Date for ComCam support systems to ship from
+  description: 'Date for ComCam support systems to ship from
     NCSA to Tucson'
   level: 4
 A4670:
-  description: 'NCSA Level 4 milestone: Start of travel to Chile to install hardware
+  description: 'Start of travel to Chile to install hardware
     and systems at the Base Data Center'
   level: 4
 A4680:
-  description: 'NCSA Level 4 milestone: End of travel to Chile to install hardware
+  description: 'End of travel to Chile to install hardware
     and systems at the Base Data Center'
   level: 4
 A4750:
-  description: 'NCSA Level 4 milestone: Authorization and Authentication systems installed
+  description: 'Authorization and Authentication systems installed
     at the Summit.'
   level: 4
 A4860:
-  description: 'NCSA Level 4 milestone: ComCam Test Stand ready for access by NCSA
+  description: 'ComCam Test Stand ready for access by NCSA
     staff'
   level: 4
 A5090:
-  description: 'NCSA Level 4 milestone: Arrival at NCSA of hardware to support ComCam
+  description: 'Arrival at NCSA of hardware to support ComCam
     testing and integration'
   level: 4
 CAMM6995:
