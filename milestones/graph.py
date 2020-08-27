@@ -17,10 +17,10 @@ def format_milestone(ms, my_wbs):
     ]
     if ms.completed:
         attr_list.append("style=filled")
-        attr_list.append("fillcolor=green")
+        attr_list.append("fillcolor=powderblue")
     elif ms.due < datetime.now():
         attr_list.append("style=filled")
-        attr_list.append("fillcolor=red")
+        attr_list.append("fillcolor=orange")
     if not ms.wbs.startswith(my_wbs):
         attr_list.append("shape=rect")
     return f"  \"{ms.code}\" [{','.join(attr_list)}];\n"
