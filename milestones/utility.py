@@ -1,5 +1,6 @@
 import glob
 import os
+import re
 import sys
 import time
 import yaml
@@ -12,7 +13,7 @@ __all__ = [
     "get_latest_pmcs_path",
     "get_local_data_path",
     "write_output",
-    "escape_latex",
+    "format_latex",
     "load_milestones",
 ]
 
@@ -50,16 +51,35 @@ def write_output(filename, content, comment_prefix="%"):
         f.write(content)
 
 
-def escape_latex(text):
-    if text:
-        return (
-            text.strip()
-            .replace("#", r"\#")
-            .replace("&", r"\&")
-            .replace("Test report: ", "")
-         )
-    else:
-        return ""
+def format_latex(
+    text,
+    cite_handles=[
+        "LDM",
+        "DMTN",
+        "SQR",
+        "PSTN",
+        "SMTN",
+        "LSE",
+        "LDO",
+        "LOO",
+        "LDF",
+        "LSO",
+        "LEP",
+        "LSP",
+        "OPSTN",
+        "TEST",
+    ],
+):
+    # Automatically add citations to anything that looks like a document
+    # (Handle-NNN), unless it looks like a milestone (LDM-503-nn).
+    return re.sub(
+        f"(({'|'.join(cite_handles)})-\\d{{3}})(?!(?<=LDM-\\d{{3}})-\\w)",
+        r"\\citeds{\1}",
+        text.strip()
+        .replace("#", r"\#")
+        .replace("&", r"\&")
+        .replace("Test report: ", ""),
+    )
 
 
 def load_milestones(pmcs_filename, local_data_filename):
