@@ -772,26 +772,26 @@ IT-725-M:
     milestone DM-NET-4)
 LDM-503-01:
   description: This test demonstrates the deployment of the Portal and API Aspects
-    of the LSST Science Platform \citedsp{LSE-319, LDM-542, LDM-554} to serve all-sky
+    of the LSST Science Platform (LSE-319, LDM-542, LDM-554) to serve all-sky
     precursor data, including catalogs totaling of order 50--100 billion rows, in
     a prototype LSST Data Access Center hosted in the LSST Data Facility at NCSA.
-  test_spec: \citeds{LDM-540} v1.0 \S3.1 (LSP-00)
+  test_spec: LDM-540 v1.0 \S3.1 (LSP-00)
 LDM-503-02:
   description: This test demonstrates the successful execution of a prototype Data
-    Release Production science payload \citedsp{LDM-148, LDM-151}, processing data
+    Release Production science payload (LDM-148, LDM-151), processing data
     from precursor surveys at a relatively small scale using compute resources at
     the LSST Data Facility at NCSA.
-  test_spec: \citeds{LDM-534} v3.1 \S3.1 (DRP-00)
+  test_spec: LDM-534 v3.1 \S3.1 (DRP-00)
 LDM-503-03:
   description: This test demonstrates the successful execution of a prototype Alert
-    Generation science payload \citedsp{LDM-148, LDM-151}, processing data from precursor
+    Generation science payload (LDM-148, LDM-151), processing data from precursor
     surveys at a relatively small scale using compute resources at the LSST Data Facility
     at NCSA.
-  test_spec: \citeds{LDM-533} v1.1 \S3.1 (AG-00)
+  test_spec: LDM-533 v1.1 \S3.1 (AG-00)
 LDM-503-04:
   description: This test demonstrates that LSST data acquisition system can capture
     raw data from instrumentation and construct a well-formed image with proper headers.
-  test_spec: \citeds{LDM-538} v1.0 \S4.1 (RAS-00-00)
+  test_spec: LDM-538 v1.0 \S4.1 (RAS-00-00)
 LDM-503-04b:
   comment: The archive or permanent record of the survey includes site filesystems
     with multiple copies, immutable data and entries in the consolidated database
@@ -799,12 +799,12 @@ LDM-503-04b:
   description: This test demonstrates that the well-formed image generated in LDM-503-04
     can be written to the permanent record of the survey.
   short_name: AuxTel DAQ Interface Verification and Spectrograph Ops Rehearsal
-  test_spec: \citeds{LDM-538} v1.0 \S4.4 (RAS-00-20)
+  test_spec: LDM-538 v1.0 \S4.4 (RAS-00-20)
 LDM-503-05:
   description: This test demonstrates that a full-LSST-scale (10,000 messages every
     39 seconds) alert stream can be distributed to end users. It further shows that
     simple filters based on alert contents can be applied to that stream.
-  test_spec: \citeds{LDM-533} v2.0 \S\S 4.7--4.9 (test cases LVV-T216, LVV-T217, LVV-T218)
+  test_spec: LDM-533 v2.0 \S\S 4.7--4.9 (test cases LVV-T216, LVV-T217, LVV-T218)
 LDM-503-06:
   comment: The test will include transferring raft-scale data from the Base Data Center
     to NCSA, and ingestion into both Data Back Bone and Butler infrastructures. The
@@ -818,7 +818,7 @@ LDM-503-06:
     the LSST Science Platform.
   jira: DM-17119
   jira_testplan: DM-16074
-  test_spec: \citeds{DMTR-171}
+  test_spec: DMTR-171
 LDM-503-07:
   comment: ''
   description: This test demonstrates that the LSST Science Pipelines can be successfully
@@ -826,7 +826,7 @@ LDM-503-07:
     In the process, it establishes that data is properly made available at the LSST
     Data Facility at NCSA, and is accessible through the LSST Science Platform.
   jira_testplan: DM-16072
-  test_spec: \citeds{DMTR-112}
+  test_spec: DMTR-112
 LDM-503-08:
   comment: As the capabilities of the spectragraph grow data can be automatically
     ingested into the Data Backbone for permanent record of the survey after being
@@ -836,7 +836,7 @@ LDM-503-08:
     for screening, and then further processing if needed.
   jira: DM-17131
   jira_testplan: DM-16455
-  test_spec: \citeds{DMTR-121}
+  test_spec: DMTR-121
 LDM-503-08b:
   comment: The archive or permanent record of the survey includes site filesystems
     with multiple copies, immutable data and entries in the consolidated database
@@ -846,7 +846,7 @@ LDM-503-08b:
   jira: DM-17118
   jira_testplan: DM-16073
   name: Small Scale CCOB Data Access
-  test_spec: \citeds{DMTR-102}
+  test_spec: DMTR-102
 LDM-503-09:
   description: This milestone represents the completion of a multi-day exercise in
     which (simulated) observations are performed and data is processed in as close
@@ -855,15 +855,15 @@ LDM-503-09:
     of calibration and science data; and curation of the resultant data products.
   jira: DM-17120
   jira_testplan: DM-16075
-  test_spec: \citeds{LDM-643}
+  test_spec: LDM-643
 LDM-503-09a:
   description: This milestone describes a software release of the LSST Science Pipelines
     in support of activities in late 2018 and early 2019. The contents of the release
-    are described in \citeds{LDM-564}. The release will be accompanied by a characterization
+    are described in LDM-564. The release will be accompanied by a characterization
     report.
   jira: DM-17121
   jira_testplan: DM-16076
-  test_spec: \citeds{DMTR-111}
+  test_spec: DMTR-111
 LDM-503-10:
   comment: This milestone will take simulated data from the DAQ at the Summit and
     use the DWDM network environment to place data on DM machines at Base Data Center
@@ -873,7 +873,7 @@ LDM-503-10:
     Summit to the Base Data Center.
   jira: DM-17122
   jira_testplan: DM-16193
-  test_spec: \citeds{DMTR-181}
+  test_spec: DMTR-181
 LDM-503-10a:
   comment: Success will be demonstrated on a Kubernetes cluster provided by NCSA.  It
     is not required for authorization to be applied at the database level; it is sufficient
@@ -886,7 +886,7 @@ LDM-503-10a:
   jira: DM-19209
   jira_testplan: DM-19211
   name: 'Science Platform: TAP service with federated SSO A&A'
-  test_spec: \citeds{DMTR-161}
+  test_spec: DMTR-161
 LDM-503-10b:
   comment: This is a data transfer of data from SLAC or some other site with 21-raft-sized
     images to NCSA, ingest it into a Butler environment and place the file into file
@@ -900,17 +900,21 @@ LDM-503-10b:
   jira: DM-17123
   jira_testplan: DM-16194
   name: Large Scale CCOB Data Access
-  test_spec: \citeds{DMTR-182}
+  test_spec: DMTR-182
 LDM-503-11:
   comment: This is a test on the L1 test stand at NCSA to verify the image acquisition
     and readout from the DAQ to the Archiver at one raft image scale and rate, and
     the L1 handoff from the archiver to the
-  description: This milestone builds upon LDM-503-09 representing a more mature multi-day
-    exercise simulating operational observing with LSST. It will focus on archiving
-    ComCam data from the the L1 Test Stand.
+  description: "Template generation, including code required to build templates in\
+    \ both Data Release and Alert Production science payloads, can now product templates\
+    \ which are corrected for the effects of Differential Chromatic Refraction (DCR),\
+    \ as described in LDM-151 \xA76.18. Further, noise in image differences can be\
+    \ \u201Cdecorrelated\u201D, as described in LDM-151 \xA76.19.1. Both of these\
+    \ represents initial capabilities, providing realistic interfaces, data-flows\
+    \ and products; ongoing refinement of the algorithms being used is expected."
   jira: DM-17124
   jira_testplan: DM-16195
-  test_spec: \citeds{LDM-643}
+  test_spec: LDM-643
 LDM-503-11a:
   comment: This includes both data flow from ComCam to the Data Backbone, and scientific
     processing of ComCam data.
@@ -922,11 +926,11 @@ LDM-503-11a:
 LDM-503-11b:
   description: This milestone describes a software release of the LSST Science Pipelines
     in support of activities in late 2019 and early 2020. The contents of the release
-    are described in \citeds{LDM-564}. The release will be accompanied by a characterization
+    are described in LDM-564. The release will be accompanied by a characterization
     report.
   jira: DM-17126
   jira_testplan: DM-16197
-  test_spec: \citeds{DMTR-192}
+  test_spec: DMTR-192
 LDM-503-12:
   comment: ''
   description: This milestone builds upon LDM-503-11, and serves to demonstrate that
@@ -952,7 +956,7 @@ LDM-503-13:
 LDM-503-13a:
   description: This milestone describes a software release of the LSST Science Pipelines
     in support of activities in late 2020 and early 2021. The contents of the release
-    are described in \citeds{LDM-564}. The release will be accompanied by a characterization
+    are described in LDM-564. The release will be accompanied by a characterization
     report.
   jira: DM-17129
   jira_testplan: DM-16200
@@ -984,7 +988,7 @@ LDM-503-15:
 LDM-503-15a:
   description: This milestone describes a software release of the LSST Science Pipelines
     in support of activities in late 2021 and early 2022. The contents of the release
-    are described in \citeds{LDM-564}. The release will be accompanied by a characterization
+    are described in LDM-564. The release will be accompanied by a characterization
     report.
   jira: DM-17137
   jira_testplan: DM-17136
@@ -1004,7 +1008,7 @@ LDM-503-17:
   test_spec: ''
 LDM-503-17a:
   description: This milestone describes the final Science Pipelines release from the
-    DM Construction Project. The contents of the release are described in \citeds{LDM-564}.
+    DM Construction Project. The contents of the release are described in LDM-564.
     The release will be accompanied by a characterization report.
   jira: DM-17143
   jira_testplan: DM-17142
