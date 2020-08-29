@@ -21,19 +21,20 @@ __all__ = [
 ]
 
 DOC_HANDLES = [
-    "LDM",
     "DMTN",
-    "SQR",
-    "PSTN",
-    "SMTN",
-    "LSE",
-    "LDO",
-    "LOO",
+    "DMTR",
     "LDF",
-    "LSO",
+    "LDM",
+    "LDO",
     "LEP",
+    "LOO",
+    "LSE",
+    "LSO",
     "LSP",
     "OPSTN",
+    "PSTN",
+    "SMTN",
+    "SQR",
     "TEST",
 ]
 
