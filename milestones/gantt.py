@@ -1,7 +1,7 @@
 from datetime import datetime
 from io import StringIO
 
-from .utility import write_output, escape_latex
+from .utility import write_output, format_latex
 
 __all__ = ["gantt", "gantt_embedded"]
 
@@ -105,8 +105,8 @@ def format_gantt(milestones, preamble, postamble, start=datetime(2017, 7, 1)):
             f"\\phantom{{#1}},progress=100]{{{ms.code}}}"
             f"{{{get_month_number(start, ms.due)}}} \\ganttnewline"
         )
-        output.write(escape_latex(output_string))
-        # escape_latex() strips trailing newlines; add one for cosmetic reasons
+        output.write(format_latex(output_string))
+        # format_latex() strips trailing newlines; add one for cosmetic reasons
         output.write("\n")
 
     for ms in sorted(milestones, key=lambda x: x.due):
