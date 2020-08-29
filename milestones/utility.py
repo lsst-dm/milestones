@@ -10,12 +10,33 @@ from datetime import datetime
 from .excel import load_pmcs_excel
 
 __all__ = [
+    "add_latex_citations",
+    "add_rst_citations",
+    "escape_latex",
+    "format_latex",
     "get_latest_pmcs_path",
     "get_local_data_path",
-    "write_output",
-    "format_latex",
     "load_milestones",
+    "write_output",
 ]
+
+DOC_HANDLES = [
+    "LDM",
+    "DMTN",
+    "SQR",
+    "PSTN",
+    "SMTN",
+    "LSE",
+    "LDO",
+    "LOO",
+    "LDF",
+    "LSO",
+    "LEP",
+    "LSP",
+    "OPSTN",
+    "TEST",
+]
+
 
 # Input filename format:
 #
@@ -51,35 +72,35 @@ def write_output(filename, content, comment_prefix="%"):
         f.write(content)
 
 
-def format_latex(
-    text,
-    cite_handles=[
-        "LDM",
-        "DMTN",
-        "SQR",
-        "PSTN",
-        "SMTN",
-        "LSE",
-        "LDO",
-        "LOO",
-        "LDF",
-        "LSO",
-        "LEP",
-        "LSP",
-        "OPSTN",
-        "TEST",
-    ],
-):
+def escape_latex(text):
+    return (
+        text.strip()
+        .replace("#", r"\#")
+        .replace("&", r"\&")
+        .replace("Test report: ", "")
+    )
+
+
+def add_citations(text, cite_handles, replacement_pattern):
     # Automatically add citations to anything that looks like a document
     # (Handle-NNN), unless it looks like a milestone (LDM-503-nn).
     return re.sub(
         f"(({'|'.join(cite_handles)})-\\d{{3}})(?!(?<=LDM-\\d{{3}})-\\w)",
-        r"\\citeds{\1}",
-        text.strip()
-        .replace("#", r"\#")
-        .replace("&", r"\&")
-        .replace("Test report: ", ""),
+        replacement_pattern,
+        text,
     )
+
+
+def add_latex_citations(text, cite_handles):
+    return add_citations(text, cite_handles, r"\\citeds{\1}")
+
+
+def format_latex(text, cite_handles=DOC_HANDLES):
+    return escape_latex(add_latex_citations(text, DOC_HANDLES))
+
+
+def add_rst_citations(text, cite_handles=DOC_HANDLES):
+    return add_citations(text, cite_handles, r"\1 :cite:`\1`")
 
 
 def load_milestones(pmcs_filename, local_data_filename):
