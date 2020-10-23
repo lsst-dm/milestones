@@ -116,5 +116,6 @@ def parse_args():
 
 if __name__ == "__main__":
     args = parse_args()
+    print("Working with "+args.pmcs_data)
     milestones = milestones.load_milestones(args.pmcs_data, args.local_data)
     args.func(args, milestones)
