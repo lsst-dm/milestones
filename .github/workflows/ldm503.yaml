@@ -34,7 +34,7 @@ jobs:
 
       - name: Build LDM-503 docker
         run: |
-          docker run --rm -v `pwd`:/ldm-503 -w /workspace lsstsqre/lsst-texmf:latest sh -c 'make'
+          docker run --rm -v `pwd` -w /workspace lsstsqre/lsst-texmf:latest sh -c 'make'
 
 
       - name: Upload resulting document as artifact
