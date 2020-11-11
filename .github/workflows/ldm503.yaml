@@ -22,11 +22,6 @@ jobs:
         with:
           python-version: 3.7
 
-      - name: Install TeXLive
-        run: |
-          sudo apt-get update
-          sudo apt-get -y install texlive texlive-pictures texlive-latex-extra texlive-fonts-extra latexmk
-
       - name: Check out LDM-503 source
         run: GIT_LFS_SKIP_SMUDGE=1 git clone --depth 1 --recurse-submodules --shallow-submodules https://github.com/lsst/ldm-503.git
 
@@ -34,12 +29,13 @@ jobs:
         run: |
           rm -rf milestones
           ln -s .. ./milestones
+          make generated
         working-directory: ./ldm-503
 
-      - name: Build LDM-503
+      - name: Build LDM-503 docker
+        run: |
+          docker run --rm -v `pwd`:/workspace -w /workspace lsstsqre/lsst-texmf:latest sh -c 'make'
 
-        run: make
-        working-directory: ./ldm-503
 
       - name: Upload resulting document as artifact
         uses: actions/upload-artifact@v2
