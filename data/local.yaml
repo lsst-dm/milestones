@@ -523,6 +523,7 @@ DM-NCSA-14:
   description: Provide a data Backbone endpoint in Chile, allowing distribution over
     a wide-area network and ingestion at NCSA.
 DM-NCSA-15:
+  completed: '2020-05-29'
   description: Demonstrate the ability to process offline Spectrograph data using
     a science pipeline in  the Batch Processing Service. Output(s) will be available
     in the Data Backbone.
