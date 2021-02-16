@@ -806,7 +806,7 @@ LDM-503-05:
     39 seconds) alert stream can be distributed to end users. It further shows that
     simple filters based on alert contents can be applied to that stream.
   test_spec: LDM-533 v2.0 \S\S 4.7--4.9 (test cases LVV-T216, LVV-T217, LVV-T218)
-  reqs_tested: DMS-REQ-0002
+  requirements: DMS-REQ-0002
 LDM-503-06:
   comment: The test will include transferring raft-scale data from the Base Data Center
     to NCSA, and ingestion into both Data Back Bone and Butler infrastructures. The
@@ -821,7 +821,7 @@ LDM-503-06:
   jira: DM-17119
   jira_testplan: DM-16074
   test_spec: DMTR-171
-  reqs_tested: DMS-REQ-0018, DMS-REQ-0020, DMS-REQ-0024, DMS-REQ-0068, DMS-REQ-0315
+  requirements: DMS-REQ-0018, DMS-REQ-0020, DMS-REQ-0024, DMS-REQ-0068, DMS-REQ-0315
 LDM-503-07:
   comment: ''
   description: This test demonstrates that the LSST Science Pipelines can be successfully
@@ -830,7 +830,7 @@ LDM-503-07:
     Data Facility at NCSA, and is accessible through the LSST Science Platform.
   jira_testplan: DM-16072
   test_spec: DMTR-112
-  reqs_tested: DMS-REQ-0060, DMS-REQ-0160,DMS-REQ-298,DMS-REQ-299
+  requirements: DMS-REQ-0060, DMS-REQ-0160,DMS-REQ-298,DMS-REQ-299
 LDM-503-08:
   comment: As the capabilities of the spectrograph grow data can be automatically
     ingested into the Data Backbone for permanent record of the survey after being
@@ -841,7 +841,7 @@ LDM-503-08:
   jira: DM-17131
   jira_testplan: DM-16455
   test_spec: DMTR-121
-  reqs_tested: DMS-REQ-0309
+  requirements: DMS-REQ-0309
 LDM-503-08b:
   comment: The archive or permanent record of the survey includes site filesystems
     with multiple copies, immutable data and entries in the consolidated database
@@ -869,7 +869,7 @@ LDM-503-09a:
   jira: DM-17121
   jira_testplan: DM-16076
   test_spec: DMTR-111
-  reqs_tested:
+  requirements:
 LDM-503-10:
   comment: This milestone will take simulated data from the DAQ at the Summit and
     use the DWDM network environment to place data on DM machines at Base Data Center
@@ -880,7 +880,7 @@ LDM-503-10:
   jira: DM-17122
   jira_testplan: DM-16193
   test_spec: DMTR-181
-  reqs_tested: DMS-REQ-0018
+  requirements: DMS-REQ-0018
 LDM-503-10a:
   comment: Success will be demonstrated on a Kubernetes cluster provided by NCSA.  It
     is not required for authorization to be applied at the database level; it is sufficient
