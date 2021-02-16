@@ -21,6 +21,7 @@ class VerificationE(Schema):
     summary = fields.String()
     req_id = fields.String()
     req_priority = fields.String()
+    req_milestone = fields.String()
     jira_url = fields.String()
 
     @pre_load(pass_many=True)
@@ -32,25 +33,10 @@ class VerificationE(Schema):
         data_fields = data["fields"]
         out_data["summary"] = data_fields["summary"]
         out_data["jira_url"] = ISSUE_UI_URL.format(issue=data["key"])
+        out_data["req_milestone"] = data_fields["labels"][0]
 
         out_data["req_priority"] = "None"
         if data_fields["priority"]:
             out_data["req_priority"] = data_fields["priority"]["name"]
 
         return out_data
-
-
-if __name__ == "__main__":
-    key = "LVV-8"
-    print("Reading jira VE:  " + key)
-    rs = requests.Session()
-
-    # Get VE details for a requirement
-    jve_res = rs.get(ISSUE_URL.format(issue=key)).json()
-    ve_details = VerificationE(unknown=EXCLUDE).load(jve_res)
-
-    print("key:: " + ve_details["key"])
-    print("summary:: " + ve_details["summary"].strip())
-    print("req priority:: " + ve_details["req_priority"])
-    print("req URL:: " + ve_details["jira_url"])
-    print("End")
