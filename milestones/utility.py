@@ -3,9 +3,12 @@ import os
 import re
 import sys
 import time
+
 import yaml
 import logging
 from datetime import datetime
+
+from .lvv import extract_ve_details
 
 from .excel import load_pmcs_excel
 
@@ -18,7 +21,7 @@ __all__ = [
     "get_local_data_path",
     "load_milestones",
     "write_output",
-    "format_lvv",
+    "extract_lvv",
 ]
 
 DOC_HANDLES = [
@@ -77,9 +80,9 @@ def write_output(filename, content, comment_prefix="%"):
 def escape_latex(text):
     return (
         text.strip()
-        .replace("#", r"\#")
-        .replace("&", r"\&")
-        .replace("Test report: ", "")
+            .replace("#", r"\#")
+            .replace("&", r"\&")
+            .replace("Test report: ", "")
     )
 
 
@@ -96,11 +99,26 @@ def add_citations(text, cite_handles, replacement_pattern):
 def add_latex_citations(text, cite_handles):
     return add_citations(text, cite_handles, r"\\citeds{\1}")
 
-def format_lvv(text, cite_handles=DOC_HANDLES):
-    return escape_latex(add_citations(text, cite_handles, r"\1 https://jira.lsstcorp.org/browse/`\1`"))
+
+def extract_lvv(text):
+    lvv = text.split(",")
+    lvve = []
+    for l in lvv:
+        ve_details = extract_ve_details(l.strip())
+
+        print("key:: " + ve_details["key"])
+        print("summary:: " + ve_details["summary"].strip())
+        print("req priority:: " + ve_details["req_priority"])
+       #  print("req milestone:: " + ve_details["req_milestone"] if ve_details["req_milestone"] is not None else "Not set")
+        print("req URL:: " + ve_details["jira_url"])
+        lvve.append(ve_details)
+
+    # Do I need a check for duplicates?
+    return lvve
 
 def format_latex(text, cite_handles=DOC_HANDLES):
     return escape_latex(add_latex_citations(text, DOC_HANDLES))
+
 
 def add_rst_citations(text, cite_handles=DOC_HANDLES):
     return add_citations(text, cite_handles, r"\1 :cite:`\1`")
@@ -153,6 +171,7 @@ def load_milestones(pmcs_filename, local_data_filename):
                 "jira",
                 "jira_testplan",
                 "requirements",
+                "jira_lvv",
             ]:
                 if attribute in local[ms.code]:
                     logger.info(f"Setting {attribute} on {ms.code}")
