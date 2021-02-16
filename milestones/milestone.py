@@ -29,6 +29,7 @@ class Milestone(object):
     test_spec: Optional[str] = None
     jira: Optional[str] = None
     jira_testplan: Optional[str] = None
+    requirements: Optional[str] = None
 
     @property
     def short_name(self):
