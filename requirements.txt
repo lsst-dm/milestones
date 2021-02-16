@@ -3,3 +3,4 @@ numpy
 xlrd
 requests
 pyyaml
+marshmallow
