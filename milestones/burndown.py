@@ -50,13 +50,23 @@ def burndown(args, milestones):
     plt.plot(month_starts, model, label="Baseline")
 
     achieved_months = [mnth for mnth in month_starts if mnth <= last_achieved_month]
-    achieved_months.append(
-        datetime(
-            achieved_months[-1].year,
-            achieved_months[-1].month + 1,
-            achieved_months[-1].day,
+    # Need to acount for year wrap
+    if achieved_months[-1].month == 12:
+        achieved_months.append(
+            datetime(
+                achieved_months[-1].year + 1,
+                1,
+                achieved_months[-1].day,
+                )
         )
-    )
+    else:
+        achieved_months.append(
+            datetime(
+                achieved_months[-1].year,
+                achieved_months[-1].month + 1,
+                achieved_months[-1].day,
+            )
+        )
     plt.plot(achieved_months, actual[: len(achieved_months)], label="Achieved")
 
     plt.xlabel("Date")
