@@ -961,6 +961,7 @@ LDM-503-13a:
     report.
   jira: DM-17129
   jira_testplan: DM-16200
+  test_spec: DMTR-302
 LDM-503-14:
   comment: In addition to delivering operational code and services, it will also be
     necessary to deliver the code which demonstrates that the system provided meets
