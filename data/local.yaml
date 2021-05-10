@@ -973,12 +973,20 @@ LDM-503-14:
   jira_testplan: DM-17132
   test_spec: ''
 LDM-503-14a:
-  description: Take the output of a DRP-like, BG3-based, SDM-ified data production
-    and, without a great deal of manual labor, make the resulting image and catalog
-    data available to users through the aspects of the LSP. This includes the generation
-    of image metadata table content for the LSP.
+  description: The Rubin Science Platform is ready to support Data Preview 0.1 as
+    deployed on the IDF. The RSP capabilities are largely those demonstrated under
+    previous milestones, but ported to the IDF and with deployment and
+    authentication/authorization infrastructure improvements that support the scale
+    of DP0.1 usage.  The Notebook Aspect provides access to the Rubin Science Pipelines
+    stack and to data exposed in a cloud-deployed Gen3 Butler repository; the API Aspect
+    provides TAP queries against a Qserv deployment of catalog tables, but not image
+    metadata; and the Portal Aspect provides a UI for visual and ADQL construction of
+    queries against those tables. Image and image metadata access services in the API
+    and Portal Aspects are not included.
   jira: DM-26349
   jira_testplan: DM-26340
+  test_spec: DMTR-301
+  short_name: Science Platform ready for DP0.1
 LDM-503-15:
   description: This milestone builds upon LDM-503-13, and will demonstrate the production
     of a data release under simulated operational conditions using data from science
@@ -1021,6 +1029,7 @@ LDM-503-EFDa:
     ability to run for five days, allowing data retrieval and plotting via notebooks.
   jira: DM-26348
   jira_testplan: DM-26342
+  test_spec: DMTR-291
   short_name: EFD for M1M3 on summit.
 LDM-503-EFDb:
   description: Demonstrate that EFD data from the Summit appears at the US Data Facility.
@@ -1038,6 +1047,34 @@ LDM-503-EFDc:
   jira: DM-26346
   jira_testplan: DM-26345
   short_name: EFD via TAP
+LDM-503-RSPa:
+  description: 'The Rubin Science Platform is ready to support Data Preview 0.2 as
+    deployed on the IDF. The RSP serves an end-to-end Rubin-Gen3-processed dataset
+    with a substantial set of image and SDM-ified catalog data products. Beyond the
+    capabilities provided under LDM-503-14a, this deployment provides: initial
+    IVOA-oriented image metadata and image services in the API Aspect, specifically an
+    ObsTAP service and a basic SODA-compatible image cutout service; Portal Aspect
+    support for accessing these services and browsing images from the released dataset;
+    and access to a User File Workspace from all three Aspects.'
+  jira: DM-30113
+  jira_testplan: DM-30112
+  short_name: Science Platform ready for DP0.2 with Image Services
+LDM-503-RSPb:
+  description: 'The Rubin Science Platform is ready to support Science Verification
+    activities in the final phase of Rubin Observatory commissioning. In additional to
+    the capabilities demonstrated in Milestone-2 (LDM-503-RSPa), the RSP will be
+    scalable to the user load required to support Science Verification; provide access
+    to a regularly updating stream of newly-acquired LSSTCam data; provide access to
+    next-to-data computing and user batch computing to support intensive data analysis;
+    provide access to a User Database Workspace; provide a means for integrating with a
+    TBD focal-plane-scale visualization tool; provide capabilities in all three Aspects
+    for following links between related datasets and exploiting provenance information;
+    provide access to the EFD for recently acquired data, extending the capability
+    demonstrated for LDM-503-EFDc; and provide substantial user-facing documentation,
+    with links between the data and documentation.'
+  jira: DM-30117
+  jira_testplan: DM-30116
+  short_name: Science Platform ready for Science Verification
 LSST-1510:
   short_name: Start Early System I&T
 S19F:
