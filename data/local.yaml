@@ -1048,21 +1048,21 @@ LDM-503-EFDc:
   jira_testplan: DM-26345
   short_name: EFD via TAP
 LDM-503-RSPa:
-  description: The Rubin Science Platform is ready to support Data Preview 0.2 as
+  description: 'The Rubin Science Platform is ready to support Data Preview 0.2 as
     deployed on the IDF. The RSP serves an end-to-end Rubin-Gen3-processed dataset
     with a substantial set of image and SDM-ified catalog data products. Beyond the
-    capabilities provided under LDM-503-14a, this deployment provides:: initial
+    capabilities provided under LDM-503-14a, this deployment provides: initial
     IVOA-oriented image metadata and image services in the API Aspect, specifically an
     ObsTAP service and a basic SODA-compatible image cutout service; Portal Aspect
     support for accessing these services and browsing images from the released dataset;
-    and access to a User File Workspace from all three Aspects.
+    and access to a User File Workspace from all three Aspects.'
   jira: DM-30113
   jira_testplan: DM-30112
   short_name: Science Platform ready for DP0.2 with Image Services
 LDM-503-RSPb:
-  description: The Rubin Science Platform is ready to support Science Verification
+  description: 'The Rubin Science Platform is ready to support Science Verification
     activities in the final phase of Rubin Observatory commissioning. In additional to
-    the capabilities demonstrated in Milestone-2 (LDM-503-RSPa), the RSP will:: be
+    the capabilities demonstrated in Milestone-2 (LDM-503-RSPa), the RSP will be
     scalable to the user load required to support Science Verification; provide access
     to a regularly updating stream of newly-acquired LSSTCam data; provide access to
     next-to-data computing and user batch computing to support intensive data analysis;
@@ -1071,7 +1071,7 @@ LDM-503-RSPb:
     for following links between related datasets and exploiting provenance information;
     provide access to the EFD for recently acquired data, extending the capability
     demonstrated for LDM-503-EFDc; and provide substantial user-facing documentation,
-    with links between the data and documentation.
+    with links between the data and documentation.'
   jira: DM-30117
   jira_testplan: DM-30116
   short_name: Science Platform ready for Science Verification
