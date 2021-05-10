@@ -1029,6 +1029,7 @@ LDM-503-EFDa:
     ability to run for five days, allowing data retrieval and plotting via notebooks.
   jira: DM-26348
   jira_testplan: DM-26342
+  test_spec: DMTR-291
   short_name: EFD for M1M3 on summit.
 LDM-503-EFDb:
   description: Demonstrate that EFD data from the Summit appears at the US Data Facility.
