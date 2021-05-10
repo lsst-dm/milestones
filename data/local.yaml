@@ -1051,7 +1051,7 @@ LDM-503-RSPa:
   description: The Rubin Science Platform is ready to support Data Preview 0.2 as
     deployed on the IDF. The RSP serves an end-to-end Rubin-Gen3-processed dataset
     with a substantial set of image and SDM-ified catalog data products. Beyond the
-    capabilities provided under LDM-503-14a, this deployment provides: initial
+    capabilities provided under LDM-503-14a, this deployment provides:: initial
     IVOA-oriented image metadata and image services in the API Aspect, specifically an
     ObsTAP service and a basic SODA-compatible image cutout service; Portal Aspect
     support for accessing these services and browsing images from the released dataset;
@@ -1062,7 +1062,7 @@ LDM-503-RSPa:
 LDM-503-RSPb:
   description: The Rubin Science Platform is ready to support Science Verification
     activities in the final phase of Rubin Observatory commissioning. In additional to
-    the capabilities demonstrated in Milestone-2 (LDM-503-RSPa), the RSP will: be
+    the capabilities demonstrated in Milestone-2 (LDM-503-RSPa), the RSP will:: be
     scalable to the user load required to support Science Verification; provide access
     to a regularly updating stream of newly-acquired LSSTCam data; provide access to
     next-to-data computing and user batch computing to support intensive data analysis;
