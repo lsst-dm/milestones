@@ -8,7 +8,7 @@ import yaml
 import logging
 from datetime import datetime
 
-from .lvv import extract_ve_details
+from .requirements import extract_ve_details
 
 from .excel import load_pmcs_excel
 
@@ -101,20 +101,22 @@ def add_latex_citations(text, cite_handles):
 
 
 def extract_lvv(text):
-    lvv = text.split(",")
-    lvve = []
-    for l in lvv:
-        ve_details = extract_ve_details(l.strip())
+    lvvs = text.split(",")
+    lvv_elements = []
+    for lvv in lvvs:
+        ve_details = extract_ve_details(lvv.strip())
 
         print("key:: " + ve_details["key"])
         print("summary:: " + ve_details["summary"].strip())
         print("req priority:: " + ve_details["req_priority"])
-       #  print("req milestone:: " + ve_details["req_milestone"] if ve_details["req_milestone"] is not None else "Not set")
+        # print("req milestone:: " + ve_details["req_milestone"]
+        #     if ve_details["req_milestone"] is not None else "Not set")
         print("req URL:: " + ve_details["jira_url"])
-        lvve.append(ve_details)
+        lvv_elements.append(ve_details)
 
     # Do I need a check for duplicates?
-    return lvve
+    return lvv_elements
+
 
 def format_latex(text, cite_handles=DOC_HANDLES):
     return escape_latex(add_latex_citations(text, DOC_HANDLES))
@@ -137,7 +139,8 @@ def load_milestones(pmcs_filename, local_data_filename):
         if ms.code in local:
             # These are core PMCS attributes; we should warn if we
             # over-write them.
-            for attribute in ["name", "wbs", "level", "predecessors", "successors"]:
+            for attribute in \
+                    ["name", "wbs", "level", "predecessors", "successors"]:
                 if attribute in local[ms.code]:
                     logger.warning(
                         f"Overriding PMCS {attribute} on {ms.code} "
@@ -157,9 +160,10 @@ def load_milestones(pmcs_filename, local_data_filename):
                         setattr(ms, attribute, None)
                     else:
                         setattr(
-                            ms,
-                            attribute,
-                            datetime.strptime(local[ms.code][attribute], "%Y-%m-%d"),
+                            ms, attribute,
+                            datetime.strptime(
+                                local[ms.code][attribute], "%Y-%m-%d"
+                            ),
                         )
 
             for attribute in [
