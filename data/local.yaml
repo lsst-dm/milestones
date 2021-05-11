@@ -1,6 +1,6 @@
 ---
 A2330:
-  description: Date for Authenticaton and Authorization hardware to ship from NCSA
+  description: Date for Authentication and Authorization hardware to ship from NCSA
     to Chile
   level: 4
 A4369.9:
@@ -31,7 +31,7 @@ CAMM6995:
   description: ''
   test_spec: ''
 DLP-33:
-  description: Spectrum link operational at 100 Gbps from Santiago - Boca Raon, including
+  description: Spectrum link operational at 100 Gbps from Santiago - Boca Raton, including
     terrestrial segment from Santiago - Sao Paolo, and Monet submarine cable from
     Sao Paolo - Boca Raton
 DLP-46:
@@ -60,14 +60,14 @@ DLP-468:
     volumes and access points equivalent to anticipated DAC user workload contemporaneous
     with full camera observing.
 DLP-526:
-  description: This milestone represents the availability of an arhcive center to
-    host LSST DR1 dat. This includes an scince platfirm interface with the implied
+  description: This milestone represents the availability of an archive center to
+    host LSST DR1 data. This includes an science platform interface with the implied
     services for Data Access, a portal and Notebooks.
 DLP-528:
   description: This is complete in ..  data/pmcs/201904-ME.xls
 DLP-533:
-  description: This milestone represents the availabilitu of the base center in Las
-    Serena. This includes DM staging machines, the comissioning cluster. It also includes
+  description: This milestone represents the availability of the base center in Las
+    Serena. This includes DM staging machines, the commissioning cluster. It also includes
     the Chilean Data Access center machines. The later will only be deployed after
     the US DAC is up.
 DLP-538:
@@ -198,11 +198,11 @@ DM-AP-8:
     Brighter-Fatter effect and compensation for pixel response non-uniformity.
 DM-ARCH-PR:
   description: After we have Gen3 butler and have completed LDM-503-11 we need to
-    review the provenace we collect and see it is sufficient for our needs of reproduceability
+    review the provenance we collect and see it is sufficient for our needs of reproducibility
     and diagnosis of problems.
 DM-DAX-10:
   description: Demonstrate Butler configuration able to gather all data pertaining
-    to a particular object, such as retrieving cutous from all warps at a given bbox
+    to a particular object, such as retrieving cutouts from all warps at a given box
     on a skymap.
 DM-DAX-12:
   description: Generation 3 middleware, consisting of Butler updates and the PipelineTask
@@ -227,12 +227,12 @@ DM-DAX-3:
   name: Image cutout service supporting IVOA SODA protocol
 DM-DAX-4:
   comment: 'PMCS calls this: metaserv V1 API (SIAv2)'
-  description: An IVOA SIAv2 service supporting both synchronous and asynchrounous
+  description: An IVOA SIAv2 service supporting both synchronous and asynchronous
     query models, integrated with the LSP authentication architecture, and able to
     provide discovery and retrieval of image metadata within an LSP instance.
   name: Metadata service supporting IVOA SIAv2 protocol
 DM-DAX-5:
-  description: Existing Qserv ingest tooling is highly manual and poorly parallellized.  Develop
+  description: Existing Qserv ingest tooling is highly manual and poorly parallelized.  Develop
     new tooling to address these issues and support ingest campaigns at the scale
     needed for DRP.
 DM-DAX-7:
@@ -510,7 +510,7 @@ DM-NCSA-10:
     and hand-off to a test Observatory Operations Data Service (OODS).
 DM-NCSA-11:
   description: Exercise the handoff between the L1 archiving and data backbone endpoint,
-    including a monitoring service that tracks files that have been transfered and
+    including a monitoring service that tracks files that have been transferred and
     received.
 DM-NCSA-12:
   description: ETL Service in place which can extract, transform and load into the
@@ -539,10 +539,10 @@ DM-NCSA-18:
     data integrity (catalog versus file system), and recover data as needed.
 DM-NCSA-19:
   description: Capabilities to provide  (1) system monitoring to show current system
-    status; (2) incident repsonse system and workflow in place; (3) process(es) to
+    status; (2) incident response system and workflow in place; (3) process(es) to
     address incidents; (4) roles staffed to be able to respond to incidents.
 DM-NCSA-20:
-  description: Implment a Service that acquires raw data from a camera at raft scale
+  description: Implement a Service that acquires raw data from a camera at raft scale
     and sends to NCSA for ingestion into the Data Backbone. This is a preliminary
     milestone to demonstrate initial capabilities.
 DM-NCSA-21:
@@ -615,12 +615,12 @@ DM-SQRE-3:
     verify that they are in working condition. Users can refer to documentation for
     answers to common problems. The service is stable and interruptions to the service
     are primarily notified well in advance and co-ordinated with the commissioning
-    team to minimise disruption to the extent that the underlying infratsructure permits
+    team to minimize disruption to the extent that the underlying infrastructure permits
     it
 DM-SQRE-4:
   description: Science pipeline developers and members of the verification and validation
     science team use nublado to support their interactive data exploration needs relating
-    to comcam commissioning. They are able to work effectively though in some cases
+    to ComCam commissioning. They are able to work effectively though in some cases
     their user experience can be improved. As well as access to EFD, catalogue and
     pixel data, they have access to any available APIs to the workflow/batch system
     for non-trivial data processing.  There are curated libraries of continuously
@@ -652,7 +652,7 @@ DM-SUIT-10:
 DM-SUIT-18:
   description: "Portal has a specialized search form for image metadata, allowing\
     \ interaction with a CAOM2-based data model. Image metadata searches can easily\
-    \ be connected to image cutout requests.  A search form for moasics is provided.\
+    \ be connected to image cutout requests.  A search form for mosaics is provided.\
     \  Cutouts and mosaics are obtained from a DAX-provided SODA service.  \n(NB:\
     \ Post-DM-10 no additional capabilities beyond DM-SUIT-5 can be provided.)"
 DM-SUIT-5:
@@ -739,7 +739,7 @@ DMTC-8100-2450:
     budget/expenditures.
 DMTC-8100-2530:
   description: 'Contract Deliverable Report #4 Spectrum Complete. Test of first data
-    passing over Santiago - Boca Raton Specturm link'
+    passing over Santiago - Boca Raton Spectrum link'
 DMTC-8200-0600:
   description: ESNet Atlanta - Chicago 2 x 20 Gbps path diverse circuits available
     and tested at capacity.
@@ -829,7 +829,7 @@ LDM-503-07:
   jira_testplan: DM-16072
   test_spec: DMTR-112
 LDM-503-08:
-  comment: As the capabilities of the spectragraph grow data can be automatically
+  comment: As the capabilities of the spectrograph grow data can be automatically
     ingested into the Data Backbone for permanent record of the survey after being
     sent to NCSA.
   description: This test demonstrates data acquisition from the Auxiliary Telescope
@@ -852,7 +852,7 @@ LDM-503-09:
   description: This milestone represents the completion of a multi-day exercise in
     which (simulated) observations are performed and data is processed in as close
     to an operational mode as is possible at this stage in construction. In particular,
-    it will demonstrate transfer, archiving and intestion of raw data; offline processing
+    it will demonstrate transfer, archiving and ingestion of raw data; offline processing
     of calibration and science data; and curation of the resultant data products.
   jira: DM-17120
   jira_testplan: DM-16075
@@ -1040,9 +1040,9 @@ LDM-503-EFDb:
   short_name: EFD replicated at USDF
 LDM-503-EFDc:
   description: Demonstrate that engineering data for a specific observation time can
-    be retrieved via TAP on the Science Platform or directly to a TAP tool like TopCat.
-    Test DMS-REQ-0102 (Priority 1a) to permantely archive metadata from OCS and make
-    availble to rights holders. Also test DMS-REQ-0358 (Priority 1a), demonstrating
+    be retrieved via TAP on the Science Platform or directly to a TAP tool like Topcat.
+    Test DMS-REQ-0102 (Priority 1a) to permanently archive metadata from OCS and make
+    available to rights holders. Also test DMS-REQ-0358 (Priority 1a), demonstrating
     support of simultaneous queries.
   jira: DM-26346
   jira_testplan: DM-26345
@@ -1089,3 +1089,12 @@ S21F:
 S22F:
   description: Time-based milestone marking the completion of the Spring 2022 development
     cycle.
+LDM-GEN3:
+  description: 'Show parity of Butler Gen3 with Butler Gen2 systems. 
+   We should be able to run processing pipelines with Gen3 which previously
+   ran on Gen2.
+   Demonstrate the ability to write new pipelines using the framework.
+   Framework should be ready to support Preops processing
+   '
+  jira: DM-30117
+  jira_testplan: DM-30116
