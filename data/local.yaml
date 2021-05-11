@@ -1094,6 +1094,6 @@ LDM-GEN3:
    We should be able to run processing pipelines with Gen3 which previously
    ran on Gen2.
    Demonstrate the ability to write new pipelines using the framework.
-   Framework should be ready to support Preops processing.'
+   Framework should be ready to support Preops processing, specifically DP0.2 (RTN-001).'
   jira: DM-27337
   jira_testplan: DM-27336
