@@ -9,6 +9,7 @@ __all__ = ["gantt", "gantt_embedded"]
 # Note that some are not DM milestones, but are included for context.
 GANTT_MILESTONES = [
     "LDM-503",
+    "LDM-GEN3",
     "LSST-1200",
     "T&SC-1100-0900",
     #    "COMC-1264",
@@ -48,7 +49,7 @@ GANTT_PREAMBLE_STANDALONE = """
 \\documentclass{article}
 \\usepackage[
     paperwidth=30cm,
-    paperheight=23.50cm,  % Manually tweaked to fit chart
+    paperheight=24cm,  % Manually tweaked to fit chart
     left=0mm,
     top=0mm,
     bottom=0mm,

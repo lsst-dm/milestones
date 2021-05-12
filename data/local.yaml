@@ -1096,4 +1096,5 @@ LDM-GEN3:
    Demonstrate the ability to write new pipelines using the framework.
    Framework should be ready to support Preops processing, specifically DP0.2 (RTN-001).'
   jira: DM-27337
+  test_spec: DMTR-271
   jira_testplan: DM-27336
