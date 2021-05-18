@@ -68,7 +68,7 @@ def parse_args():
     csv.set_defaults(func=milestones.csv)
 
     jira = subparsers.add_parser("jira", help="Sync milestone details to Jira.")
-    jira.set_defaults(func=milestones.jira)
+    jira.set_defaults(func=milestones.cjira)
 
     delayed = subparsers.add_parser(
         "delayed", help="Print a list of delayed milestones."
