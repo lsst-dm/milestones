@@ -2,9 +2,9 @@ from datetime import timedelta
 from os import environ
 from jira import JIRA
 from milestones.uname import get_login_cli
-import requests
 
 __all__ = ["cjira"]
+
 
 def list_jira_issues(jira, pred2=None, query=None):
     """
@@ -19,9 +19,10 @@ def list_jira_issues(jira, pred2=None, query=None):
                    (type = epic or type= story) """
 
     if (pred2 is not None):
-        query = query + " " + pred2
+        query = f"{query} {pred2}"
     r = jira.search_issues(jql_str=query, fields=fields, maxResults=500)
     return r
+
 
 def get_jira(username=None, prompt=False):
     """ Setup up the JIRA object endpoint - prompt
@@ -31,10 +32,11 @@ def get_jira(username=None, prompt=False):
     """
     user, pw = environ["JIRA_USER"], environ["JIRA_PW"]
     if not user or not pw:
-        user, pw = get_login_cli(username=username,prompt=prompt)
+        user, pw = get_login_cli(username=username, prompt=prompt)
     print("Jira user:" + user)
     ep = "https://jira.lsstcorp.org"
     return (user, pw, JIRA(server=ep, basic_auth=(user, pw)))
+
 
 def set_jira_due_date(id, due_date, jira=None, issue=None):
     """
