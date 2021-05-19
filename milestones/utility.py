@@ -104,7 +104,7 @@ def add_rst_citations(text, cite_handles=DOC_HANDLES):
     return add_citations(text, cite_handles, r"\1 :cite:`\1`")
 
 
-def load_milestones(pmcs_filename, local_data_filename, forecast):
+def load_milestones(pmcs_filename, local_data_filename, forecast=False):
     logger = logging.getLogger(__name__)
 
     logger.info(f"Loading PMCS data from: {pmcs_filename}")
