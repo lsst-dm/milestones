@@ -44,7 +44,7 @@ def extract_wbs(value):
         return ""
 
 
-def extract_task_details(task_sheet):
+def extract_task_details(task_sheet, forecast=False):
     assert task_sheet.name == TASK_SHEET_NAME
     milestones = list()
     fetcher = CellFetcher(task_sheet.row(0))
@@ -65,8 +65,13 @@ def extract_task_details(task_sheet):
         #                   will be the same as the end_date for zero duration
         #                   activities like milestones.
         #
-        # We use the first available.
-        for date_field in ("base_end_date", "end_date", "start_date"):
+        # We use the first available. Unless we want forecast
+
+        date_order = ["base_end_date", "end_date", "start_date"]
+        if forecast:
+            date_order = ["end_date", "base_end_date", "start_date"]
+
+        for date_field in (date_order):
             d = fetcher(date_field, task_sheet.row(rownum))
             try:
                 due = extract_date(d)
@@ -111,8 +116,8 @@ def set_successors(milestones, relation_sheet):
             ms.predecessors.add(preds[i])
 
 
-def load_pmcs_excel(path):
+def load_pmcs_excel(path, forecast):
     workbook = xlrd.open_workbook(path, logfile=sys.stderr)
-    milestones = extract_task_details(workbook.sheets()[0])
+    milestones = extract_task_details(workbook.sheets()[0], forecast)
     set_successors(milestones, workbook.sheets()[1])
     return milestones

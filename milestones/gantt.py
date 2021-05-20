@@ -8,8 +8,7 @@ __all__ = ["gantt", "gantt_embedded"]
 # Milestones with these prefixes are included when generating Gantt charts.
 # Note that some are not DM milestones, but are included for context.
 GANTT_MILESTONES = [
-    "LDM-503",
-    "LDM-GEN3",
+    "LDM",
     "LSST-1200",
     "T&SC-1100-0900",
     #    "COMC-1264",
@@ -48,7 +47,7 @@ GANTT_POSTAMBLE_EMBEDDED = """
 GANTT_PREAMBLE_STANDALONE = """
 \\documentclass{article}
 \\usepackage[
-    paperwidth=30cm,
+    paperwidth=35cm,
     paperheight=24cm,  % Manually tweaked to fit chart
     left=0mm,
     top=0mm,

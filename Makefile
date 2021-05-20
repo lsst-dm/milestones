@@ -1,5 +1,18 @@
 VENVDIR = venv
 
+fcast_burndown.png: venv
+	( \
+		source $(VENVDIR)/bin/activate; \
+		python milestones.py --forecast burndown; \
+	)
+
+fcast_gantt.pdf: venv
+	( \
+		source $(VENVDIR)/bin/activate; \
+		python milestones.py --forecast gantt --output=gantt.tex; \
+		xelatex fcast_gantt.tex; \
+	)
+
 gantt.pdf: venv
 	( \
 		source $(VENVDIR)/bin/activate; \

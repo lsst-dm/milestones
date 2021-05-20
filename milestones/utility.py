@@ -104,12 +104,12 @@ def add_rst_citations(text, cite_handles=DOC_HANDLES):
     return add_citations(text, cite_handles, r"\1 :cite:`\1`")
 
 
-def load_milestones(pmcs_filename, local_data_filename):
+def load_milestones(pmcs_filename, local_data_filename, forecast=False):
     logger = logging.getLogger(__name__)
 
     logger.info(f"Loading PMCS data from: {pmcs_filename}")
     logger.info(f"Loading local annotations from: {local_data_filename}")
-    milestones = load_pmcs_excel(pmcs_filename)
+    milestones = load_pmcs_excel(pmcs_filename, forecast)
 
     with open(local_data_filename) as f:
         local = yaml.safe_load(f)
