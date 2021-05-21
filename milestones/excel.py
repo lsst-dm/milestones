@@ -84,6 +84,11 @@ def extract_task_details(task_sheet, forecast=False):
         act_end_date = fetcher("act_end_date", task_sheet.row(rownum))
         base_end_date = fetcher("base_end_date", task_sheet.row(rownum))
         start_date = fetcher("start_date", task_sheet.row(rownum))
+        end_date = fetcher("end_date", task_sheet.row(rownum))
+        try:
+            fdue = extract_date(end_date)
+        except ValueError:
+            fdue = due
 
         completed = None
         if status == "Completed":
@@ -98,7 +103,7 @@ def extract_task_details(task_sheet, forecast=False):
 
         wbs = extract_wbs(fetcher("wbs_id", task_sheet.row(rownum)))
 
-        milestones.append(Milestone(code, name, wbs, level, due, completed))
+        milestones.append(Milestone(code, name, wbs, level, due, fdue, completed))
 
     return milestones
 
