@@ -15,6 +15,7 @@ class Milestone(object):
     wbs: str
     level: Optional[int]
     due: datetime
+    fdue: datetime
     completed: Optional[datetime] = None
 
     predecessors: Set[str] = field(default_factory=set)
