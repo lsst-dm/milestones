@@ -505,6 +505,9 @@ DM-DRP-9:
   aka:
   - DRP-MS-CPP-9
   name: Data reduction pipeline for the Auxiliary Telescope.
+DM-IT-FIB:
+  description: Camera fibers ready deployed from the Computer Room to the top of the TMA.
+  name: Camera Fibers Ready
 DM-NCSA-10:
   description: The capability to use the existing OCS/CCS to command data acquisition
     and hand-off to a test Observatory Operations Data Service (OODS).
