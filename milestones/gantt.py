@@ -33,10 +33,10 @@ GANTT_PREAMBLE_EMBEDDED = """
     milestone progress label node/.append style={right=1.4cm},
     y unit chart=0.4cm,
     y unit title=0.7cm
-]{1}{125}
+]{1}{137}
   \\gantttitle{}{6} \\gantttitle{2018}{12} \\gantttitle{2019}{12}
   \\gantttitle{2020}{12} \\gantttitle{2021}{12} \\gantttitle{2022}{12}
-  \\gantttitle{2023}{12} \\gantttitle{Operations}{47} \\
+  \\gantttitle{2023}{12} \\gantttitle{2024}{12} \\gantttitle{Operations}{47} \\
   \\ganttnewline\n
 """
 
@@ -47,8 +47,8 @@ GANTT_POSTAMBLE_EMBEDDED = """
 GANTT_PREAMBLE_STANDALONE = """
 \\documentclass{article}
 \\usepackage[
-    paperwidth=35cm,
-    paperheight=24cm,  % Manually tweaked to fit chart
+    paperwidth=36cm,
+    paperheight=26cm,  % Manually tweaked to fit chart
     left=0mm,
     top=0mm,
     bottom=0mm,
@@ -71,10 +71,10 @@ GANTT_PREAMBLE_STANDALONE = """
     milestone progress label font=\\sffamily,
     y unit chart=0.55cm,
     y unit title=0.8cm
-]{1}{102}
+]{1}{114}
   \\gantttitle{}{6} \\gantttitle{2018}{12} \\gantttitle{2019}{12}
   \\gantttitle{2020}{12} \\gantttitle{2021}{12} \\gantttitle{2022}{12}
-  \\gantttitle{2023}{12} \\gantttitle{Operations}{24} \\
+  \\gantttitle{2023}{12} \\gantttitle{2024}{12} \\gantttitle{Operations}{24} \\
   \\ganttnewline\n
 """
 
