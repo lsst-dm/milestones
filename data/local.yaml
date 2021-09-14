@@ -459,7 +459,7 @@ DM-DRP-36:
   aka:
   - DRP-MS-OBJCHAR-4
   description: "The Data Release Production science payload now generates SSObjects,\
-    \ by delegating to the Moving Objects Processing System (MOPS) being delivered\
+    \ by delegating to the Solar System Processing (SSP) pipeline being delivered\
     \ by the Alert Production team, as described in LDM-151 \xA75.6.1. This represents\
     \ an initial capability, providing realistic interfaces, data-flows and products;\
     \ ongoing refinement of the algorithm being used is expected."
