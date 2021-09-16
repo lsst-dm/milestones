@@ -168,7 +168,7 @@ DM-AP-17:
     \ available for integration into science payloads. These components must provide\
     \ realistic interfaces, data-flows and products, but it is expected that the details\
     \ of the algorithms will undergo continued refinement."
-  name: Moving object processing system (MOPS) available.
+  name: Solar System Processing pipeline available.
 DM-AP-18:
   completed: '2020-05-31'
   description: The AP Pipeline is now capable of generating per-DIASource alert packets,
@@ -459,11 +459,11 @@ DM-DRP-36:
   aka:
   - DRP-MS-OBJCHAR-4
   description: "The Data Release Production science payload now generates SSObjects,\
-    \ by delegating to the Moving Objects Processing System (MOPS) being delivered\
+    \ by delegating to the Solar System Processing (SSP) pipeline being delivered\
     \ by the Alert Production team, as described in LDM-151 \xA75.6.1. This represents\
     \ an initial capability, providing realistic interfaces, data-flows and products;\
     \ ongoing refinement of the algorithm being used is expected."
-  name: MOPS integrated to data release processing.
+  name: Solar System Processing integrated to data release processing.
 DM-DRP-37:
   aka:
   - DRP-MS-COADD-2
