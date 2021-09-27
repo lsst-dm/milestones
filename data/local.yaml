@@ -608,7 +608,6 @@ DM-SQRE-2:
     in person by bootcamps and may require extensive support via Slack. The service
     may be intermittently unavailable due to engineering work.
 DM-SQRE-3:
-  completed: '2020-01-30'
   description: Members of the integration and commissioning team as well as science
     pipelines developers use nublado to support their interactive data exploration
     needs relating to ComCam commissioning. They are able to work effectively though
