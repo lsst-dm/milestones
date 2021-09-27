@@ -1,5 +1,10 @@
 VENVDIR = venv
 
+burndown.png: venv
+	( \
+		source $(VENVDIR)/bin/activate; \
+		python milestones.py  burndown; \
+	)
 fcast_burndown.png: venv
 	( \
 		source $(VENVDIR)/bin/activate; \
