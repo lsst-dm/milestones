@@ -1004,12 +1004,21 @@ LDM-503-15a:
     report.
   jira: DM-17137
   jira_testplan: DM-17136
+  test_spec: 'DMTR-231'
 LDM-503-16:
   description: This milestone builds upon LDM-503-15 to demonstrate the production
     of a complete data release under simulated operational conditions.
   jira: DM-17139
   jira_testplan: DM-17138
   short_name: 'Ops Rehearsal for DRP #3'
+  test_spec: ''
+LDM-503-16a:
+  description: This milestone describes a software release of the LSST Science Pipelines
+    in support of activities in late 2023 and early 2023. The contents of the release
+    are described in LDM-564. The release will be accompanied by a characterization
+    report.
+  jira: DM-32561
+  jira_testplan: DM-32560
   test_spec: ''
 LDM-503-17:
   comment: ''
