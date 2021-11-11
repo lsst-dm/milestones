@@ -1012,6 +1012,14 @@ LDM-503-16:
   jira_testplan: DM-17138
   short_name: 'Ops Rehearsal for DRP #3'
   test_spec: ''
+LDM-503-16a:
+  description: This milestone describes a software release of the LSST Science Pipelines
+    in support of activities in late 2023 and early 2023. The contents of the release
+    are described in LDM-564. The release will be accompanied by a characterization
+    report.
+  jira: 
+  jira_testplan: 
+  test_spec: ''
 LDM-503-17:
   comment: ''
   description: This milestone builds upon LDM-503-16 to demonstrate successful operation
