@@ -1004,6 +1004,7 @@ LDM-503-15a:
     report.
   jira: DM-17137
   jira_testplan: DM-17136
+  test_spec: 'DMTR-231'
 LDM-503-16:
   description: This milestone builds upon LDM-503-15 to demonstrate the production
     of a complete data release under simulated operational conditions.
