@@ -1017,8 +1017,8 @@ LDM-503-16a:
     in support of activities in late 2023 and early 2023. The contents of the release
     are described in LDM-564. The release will be accompanied by a characterization
     report.
-  jira: 
-  jira_testplan: 
+  jira: DM-32561  
+  jira_testplan: DM-32560 
   test_spec: ''
 LDM-503-17:
   comment: ''
