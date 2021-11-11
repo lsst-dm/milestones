@@ -36,6 +36,7 @@ DOC_HANDLES = [
     "SMTN",
     "SQR",
     "TEST",
+    "RTN",
 ]
 
 
