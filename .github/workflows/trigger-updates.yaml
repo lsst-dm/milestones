@@ -3,7 +3,7 @@ name: Trigger document updates
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   update-docs:
