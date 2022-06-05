@@ -13,6 +13,7 @@ class Milestone(object):
     code: str
     name: str
     wbs: str
+    celebrate: str
     level: Optional[int]
     due: datetime
     fdue: datetime
