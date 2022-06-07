@@ -140,6 +140,17 @@ def write_html(top_milestones):
     print(r'</table></body>', file=ofile)
 
 
+def write_list(my_section, milestones):
+    with my_section.bullet_list() as my_list:
+        for ms in milestones:
+            with my_list.bullet() as b:
+                with b.paragraph() as p:
+                    p.write_line(
+                        f"**{ms.code}** : {ms.name} "
+                        f"[Due {ms.due.strftime('%Y-%m-%d')}]"
+                    )
+
+
 def generate_doc(args, milestones):
     # pullout celebratory milestones - only Top or Y are the values
     inc = args.inc
@@ -175,14 +186,7 @@ def generate_doc(args, milestones):
             if ms.celebrate == "Top"
         ]
         write_html(top_milestones)
-        with my_section.bullet_list() as my_list:
-            for ms in top_milestones:
-                with my_list.bullet() as b:
-                    with b.paragraph() as p:
-                        p.write_line(
-                            f"*{ms.code}* : {ms.name} "
-                            f"[Due {ms.due.strftime('%Y-%m-%d')}]"
-                        )
+        write_list(my_section,top_milestones)
 
     if (inc == "Y"):
         with doc.section("Supporting milestones") as my_section:
@@ -191,14 +195,7 @@ def generate_doc(args, milestones):
                 for ms in milestones
                 if ms.celebrate == "Y"
             ]
-            with my_section.bullet_list() as my_list:
-                for ms in o_milestones:
-                    with my_list.bullet() as b:
-                        with b.paragraph() as p:
-                            p.write_line(
-                                f"*{ms.code}* : {ms.name} "
-                                f"[Due {ms.due.strftime('%Y-%m-%d')}]"
-                            )
+            write_list(my_section, o_milestones)
 
     return doc.get_result()
 
