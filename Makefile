@@ -1,6 +1,6 @@
 VENVDIR = venv
 
-celeb.rst: venv
+celeb: venv
 	( \
 		source $(VENVDIR)/bin/activate; \
 		python milestones.py  celeb; \
