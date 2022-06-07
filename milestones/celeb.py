@@ -121,7 +121,7 @@ def generate_doc(args, milestones):
         ms
         for ms in milestones
         if ms.celebrate
-    ].sort()
+    ]
 
     doc = ReSTDocument(options={"tocdepth": 0})
     with doc.section("Provenance") as my_section:
@@ -146,11 +146,11 @@ def generate_doc(args, milestones):
             if ms.celebrate == "Top"
         ]
         with my_section.bullet_list() as my_list:
-            for ms in sorted(top_milestones, key=lambda ms: ms.wbs + ms.code):
+            for ms in sorted(top_milestones, key=lambda ms: ms.due):
                 with my_list.bullet() as b:
                     with b.paragraph() as p:
                         p.write_line(
-                            f"`{ms.code}`_: {ms.name} "
+                            f"`{ms.code}` : {ms.name} "
                             f"[Due {ms.due.strftime('%Y-%m-%d')}]"
                         )
 
@@ -163,11 +163,11 @@ def generate_doc(args, milestones):
             ]
             with my_section.bullet_list() as my_list:
                 for ms in sorted(o_milestones,
-                                 key=lambda ms: ms.wbs + ms.code):
+                                 key=lambda ms: ms.due):
                     with my_list.bullet() as b:
                         with b.paragraph() as p:
                             p.write_line(
-                                f"`{ms.code}`_: {ms.name} "
+                                f"`{ms.code}` : {ms.name} "
                                 f"[Due {ms.due.strftime('%Y-%m-%d')}]"
                             )
 
