@@ -121,7 +121,7 @@ def generate_doc(args, milestones):
         ms
         for ms in milestones
         if ms.celebrate
-    ]
+    ].sort()
 
     doc = ReSTDocument(options={"tocdepth": 0})
     with doc.section("Provenance") as my_section:
