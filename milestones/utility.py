@@ -159,6 +159,7 @@ def load_milestones(pmcs_filename, local_data_filename, forecast=False):
 
     return milestones
 
+
 def get_version_info():
     pmcs_path = get_latest_pmcs_path()
     git_dir = os.path.dirname(pmcs_path)

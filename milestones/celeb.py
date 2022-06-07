@@ -1,4 +1,3 @@
-from datetime import datetime
 from io import StringIO
 from .utility import get_version_info, write_output
 from contextlib import contextmanager
@@ -25,7 +24,6 @@ class Paragraph(TextAccumulator):
 
     def get_result(self):
         return super().get_result() + "\n"
-
 
 
 def underline(text, character, overline=False):
@@ -115,10 +113,8 @@ class ReSTDocument(TextAccumulator):
         return super().get_result()
 
 
-
 def generate_doc(args, milestones):
     # pullout celebratory milestones - only Top or Y are the values
-
     inc = args.inc
 
     milestones = [
@@ -158,10 +154,27 @@ def generate_doc(args, milestones):
                             f"[Due {ms.due.strftime('%Y-%m-%d')}]"
                         )
 
+    if (inc == "Y"):
+        with doc.section("Supporting milestones") as my_section:
+            o_milestones = [
+            ms
+            for ms in milestones
+            if ms.celebrate == "Y"
+        ]
+        with my_section.bullet_list() as my_list:
+            for ms in sorted(o_milestones,
+                             key=lambda ms: ms.wbs + ms.code):
+                with my_list.bullet() as b:
+                    with b.paragraph() as p:
+                        p.write_line(
+                            f"`{ms.code}`_: {ms.name} "
+                            f"[Due {ms.due.strftime('%Y-%m-%d')}]"
+                        )
 
     return doc.get_result()
 
+
 def celeb(args, milestones):
     # pullout celebratory milestones - only Top or Y are the values
-    write_output("index.rst", generate_doc(args,milestones),
+    write_output("index.rst", generate_doc(args, milestones),
                  comment_prefix="..")
