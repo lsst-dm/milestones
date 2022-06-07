@@ -3,7 +3,7 @@ VENVDIR = venv
 celeb: venv
 	( \
 		. $(VENVDIR)/bin/activate; \
-		python milestones.py  celeb; \
+		python milestones.py celeb --inc=Y ; \
 	)
 burndown.png: venv
 	( \

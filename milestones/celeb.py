@@ -113,6 +113,33 @@ class ReSTDocument(TextAccumulator):
         return super().get_result()
 
 
+def write_html(top_milestones):
+    # simple html page for inclusion by communications
+    file_name = "top_milestones.html"
+    ofile = open(file_name, 'w')
+
+    print('<!DOCTYPE html>'
+          '<!-- Simple page with the top milestones on it -->'
+          '<html lang="en">'
+          '<head>'
+          '<meta charset="utf-8">'
+          '<style type="text/css" media="all">'
+          '@import url("https://www.lsst.org/sites/all/themes/edu/css/style.css");'
+          '@import url("https://www.lsst.org/sites/default/files/fontyourface/font.css");'
+          '@import url("https://www.lsst.org/sites/default/files/'
+          'css_injector/css_injector_4.css");'
+          '</style>'
+          '</head> <body>'
+          '<table id="top_miles">'
+          '<tr><th>Due</th><th>Name</th></tr>', file=ofile)
+
+    for m in top_milestones:
+        date = m.due.strftime('%d-%b-%Y')
+        print(f'<tr><td>{date}</td> <td>{m.name}</td>'
+              '</tr>', file=ofile)
+    print(r'</table></body>', file=ofile)
+
+
 def generate_doc(args, milestones):
     # pullout celebratory milestones - only Top or Y are the values
     inc = args.inc
@@ -122,6 +149,8 @@ def generate_doc(args, milestones):
         for ms in milestones
         if ms.celebrate
     ]
+
+    milestones = sorted(milestones, key=lambda ms: ms.due)
 
     doc = ReSTDocument(options={"tocdepth": 0})
     with doc.section("Provenance") as my_section:
@@ -145,12 +174,13 @@ def generate_doc(args, milestones):
             for ms in milestones
             if ms.celebrate == "Top"
         ]
+        write_html(top_milestones)
         with my_section.bullet_list() as my_list:
-            for ms in sorted(top_milestones, key=lambda ms: ms.due):
+            for ms in top_milestones:
                 with my_list.bullet() as b:
                     with b.paragraph() as p:
                         p.write_line(
-                            f"`{ms.code}` : {ms.name} "
+                            f"*{ms.code}* : {ms.name} "
                             f"[Due {ms.due.strftime('%Y-%m-%d')}]"
                         )
 
@@ -162,12 +192,11 @@ def generate_doc(args, milestones):
                 if ms.celebrate == "Y"
             ]
             with my_section.bullet_list() as my_list:
-                for ms in sorted(o_milestones,
-                                 key=lambda ms: ms.due):
+                for ms in o_milestones:
                     with my_list.bullet() as b:
                         with b.paragraph() as p:
                             p.write_line(
-                                f"`{ms.code}` : {ms.name} "
+                                f"*{ms.code}* : {ms.name} "
                                 f"[Due {ms.due.strftime('%Y-%m-%d')}]"
                             )
 
