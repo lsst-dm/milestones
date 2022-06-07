@@ -125,7 +125,8 @@ def write_html(top_milestones):
           '<meta charset="utf-8">'
           '<style type="text/css" media="all">'
           '@import url("https://www.lsst.org/sites/all/themes/edu/css/style.css");'
-          '@import url("https://www.lsst.org/sites/default/files/fontyourface/font.css");'
+          '@import url("https://www.lsst.org/sites/default/files/'
+          'fontyourface/font.css");'
           '@import url("https://www.lsst.org/sites/default/files/'
           'css_injector/css_injector_4.css");'
           '</style>'
@@ -186,7 +187,7 @@ def generate_doc(args, milestones):
             if ms.celebrate == "Top"
         ]
         write_html(top_milestones)
-        write_list(my_section,top_milestones)
+        write_list(my_section, top_milestones)
 
     if (inc == "Y"):
         with doc.section("Supporting milestones") as my_section:
