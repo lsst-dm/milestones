@@ -5,6 +5,7 @@ import sys
 import time
 import yaml
 import logging
+import subprocess
 from datetime import datetime
 
 from .excel import load_pmcs_excel
@@ -157,3 +158,18 @@ def load_milestones(pmcs_filename, local_data_filename, forecast=False):
                     setattr(ms, attribute, local[ms.code][attribute])
 
     return milestones
+
+def get_version_info():
+    pmcs_path = get_latest_pmcs_path()
+    git_dir = os.path.dirname(pmcs_path)
+    sha, date = (
+        subprocess.check_output(
+            ["git", "log", "-1", "--pretty=format:'%H %ad'", "--date=unix"], cwd=git_dir
+        )
+        .decode("utf-8")
+        .strip("'")
+        .split()
+    )
+    p6_date = datetime.strptime(os.path.basename(pmcs_path), "%Y%m-ME.xls")
+
+    return sha, datetime.utcfromtimestamp(int(date)), p6_date

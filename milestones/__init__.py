@@ -1,5 +1,6 @@
 from .burndown import *
 from .csv import *
+from .celeb import *
 from .delayed import *
 from .gantt import *
 from .graph import *

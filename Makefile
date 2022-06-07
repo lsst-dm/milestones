@@ -1,5 +1,10 @@
 VENVDIR = venv
 
+celeb.rst: venv
+	( \
+		source $(VENVDIR)/bin/activate; \
+		python milestones.py  celeb; \
+	)
 burndown.png: venv
 	( \
 		source $(VENVDIR)/bin/activate; \

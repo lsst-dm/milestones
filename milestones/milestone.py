@@ -13,11 +13,11 @@ class Milestone(object):
     code: str
     name: str
     wbs: str
-    celebrate: str
     level: Optional[int]
     due: datetime
     fdue: datetime
     completed: Optional[datetime] = None
+    celebrate: Optional[str] = ""
 
     predecessors: Set[str] = field(default_factory=set)
     successors: Set[str] = field(default_factory=set)
