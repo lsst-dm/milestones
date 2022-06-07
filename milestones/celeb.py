@@ -189,7 +189,7 @@ def generate_doc(args, milestones):
         write_html(top_milestones)
         write_list(my_section, top_milestones)
 
-    if (inc == "Y"):
+    if "Y" == inc:
         with doc.section("Supporting milestones") as my_section:
             o_milestones = [
                 ms

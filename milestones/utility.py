@@ -19,6 +19,7 @@ __all__ = [
     "get_local_data_path",
     "load_milestones",
     "write_output",
+    "get_version_info",
 ]
 
 DOC_HANDLES = [
