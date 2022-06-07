@@ -157,19 +157,19 @@ def generate_doc(args, milestones):
     if (inc == "Y"):
         with doc.section("Supporting milestones") as my_section:
             o_milestones = [
-            ms
-            for ms in milestones
-            if ms.celebrate == "Y"
-        ]
-        with my_section.bullet_list() as my_list:
-            for ms in sorted(o_milestones,
-                             key=lambda ms: ms.wbs + ms.code):
-                with my_list.bullet() as b:
-                    with b.paragraph() as p:
-                        p.write_line(
-                            f"`{ms.code}`_: {ms.name} "
-                            f"[Due {ms.due.strftime('%Y-%m-%d')}]"
-                        )
+                ms
+                for ms in milestones
+                if ms.celebrate == "Y"
+            ]
+            with my_section.bullet_list() as my_list:
+                for ms in sorted(o_milestones,
+                                 key=lambda ms: ms.wbs + ms.code):
+                    with my_list.bullet() as b:
+                        with b.paragraph() as p:
+                            p.write_line(
+                                f"`{ms.code}`_: {ms.name} "
+                                f"[Due {ms.due.strftime('%Y-%m-%d')}]"
+                            )
 
     return doc.get_result()
 
