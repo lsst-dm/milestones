@@ -138,7 +138,11 @@ def write_html(top_milestones):
         date = m.due.strftime('%d-%b-%Y')
         print(f'<tr><td>{date}</td> <td>{m.name}</td>'
               '</tr>', file=ofile)
-    print(r'</table></body>', file=ofile)
+
+    sha, timestamp, p6_date = get_version_info()
+    print(f"</table>"
+          f"<p>Using {p6_date.strftime('%B %Y')} project controls data.</p>" 
+          f"</body>", file=ofile)
 
 
 def write_list(my_section, milestones):
