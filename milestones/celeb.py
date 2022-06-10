@@ -141,7 +141,7 @@ def write_html(top_milestones):
 
     sha, timestamp, p6_date = get_version_info()
     print(f"</table>"
-          f"<p>Using {p6_date.strftime('%B %Y')} project controls data.</p>" 
+          f"<p>Using {p6_date.strftime('%B %Y')} project controls data.</p>"
           f"</body>", file=ofile)
 
 
