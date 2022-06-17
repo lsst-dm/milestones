@@ -44,3 +44,11 @@ jobs:
           branch: update-milestones
           branch-suffix: short-commit-hash
           title: Automatic milestone submodule update, ${{ steps.get-date.outputs.date }}
+
+      - name: Enable Pull Request Automerge
+        if: steps.cpr.outputs.pull-request-operation == 'created'
+        uses: peter-evans/enable-pull-request-automerge@v1
+        with:
+          token: ${{ secrets.WOM_UPDATEBIB_PAT }}
+          pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
+          merge-method: merge
