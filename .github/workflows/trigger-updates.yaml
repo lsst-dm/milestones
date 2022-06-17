@@ -51,5 +51,6 @@ jobs:
         # requires branch protection
         with:
           token: ${{ secrets.WOM_MILESTONES_PAT }}
+          repository: ${{ matrix.repo }}
           pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
           merge-method: merge
