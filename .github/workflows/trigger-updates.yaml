@@ -37,6 +37,7 @@ jobs:
         shell: bash
 
       - name: Create Pull Request
+        id: cpr
         uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.WOM_MILESTONES_PAT }}
