@@ -48,6 +48,7 @@ jobs:
 
       - name: Enable Pull Request Automerge
         uses: peter-evans/enable-pull-request-automerge@v1
+        # requires branch protection
         with:
           token: ${{ secrets.WOM_UPDATEBIB_PAT }}
           pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
