@@ -26,6 +26,11 @@ def parse_args():
 
     subparsers = parser.add_subparsers(title="Output targets")
 
+    celeb = subparsers.add_parser("celeb", help="Generate celebratory milestones.")
+    celeb.add_argument("--output", help="Filename for output", default="milestones.rst")
+    celeb.add_argument("--inc", help="Top or Y", default="Top")
+    celeb.set_defaults(func=milestones.celeb)
+
     gantt = subparsers.add_parser("gantt", help="Generate Gantt chart.")
     gantt.add_argument(
         "--embedded",

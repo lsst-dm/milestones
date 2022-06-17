@@ -1109,3 +1109,6 @@ LDM-GEN3:
   jira: DM-27337
   test_spec: DMTR-271
   jira_testplan: DM-27336
+
+COMC-0654-0430:
+  name: Mini-Survey 2  Complete

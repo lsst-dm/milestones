@@ -5,6 +5,7 @@ burndown.png: venv
 		source $(VENVDIR)/bin/activate; \
 		python milestones.py  burndown; \
 	)
+
 fcast_burndown.png: venv
 	( \
 		source $(VENVDIR)/bin/activate; \
@@ -40,6 +41,11 @@ milestones.csv: venv
 		python milestones.py csv; \
 	)
 
+celeb: venv
+	( \
+		. $(VENVDIR)/bin/activate; \
+		python milestones.py celeb --inc=Y ; \
+	)
 
 .PHONY: jira
 jira: venv

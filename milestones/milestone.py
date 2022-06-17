@@ -17,6 +17,7 @@ class Milestone(object):
     due: datetime
     fdue: datetime
     completed: Optional[datetime] = None
+    celebrate: Optional[str] = ""
 
     predecessors: Set[str] = field(default_factory=set)
     successors: Set[str] = field(default_factory=set)
