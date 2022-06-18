@@ -1,7 +1,6 @@
 name: Trigger document updates
 
 on:
-  push:
   pull_request:
     branches:
       - main
