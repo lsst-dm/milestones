@@ -38,13 +38,16 @@ jobs:
 
       - name: Create Pull Request
         id: cpr
-        uses: peter-evans/create-pull-request@v3
+        uses: peter-evans/create-pull-request@v4
         with:
           token: ${{ secrets.WOM_MILESTONES_PAT }}
           #IF i leave someone needs to make a new PAT
           branch: update-milestones
           branch-suffix: short-commit-hash
           title: Automatic milestone submodule update, ${{ steps.get-date.outputs.date }}
+          commit-message: Auto Milestones submodule update
+          body: Update milestones submodule so doc is regenerated.
+
 
       - name: Enable Pull Request Automerge
         uses: peter-evans/enable-pull-request-automerge@v1
