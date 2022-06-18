@@ -11,8 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        repo: [lsst-dm/dmtn-232]
-        #repo: [lsst-dm/dmtn-158, lsst/ldm-564, lsst/ldm-503, lsst-dm/dmtn-232]
+        repo: [lsst-dm/dmtn-158, lsst/ldm-564, lsst/ldm-503, lsst-dm/dmtn-232]
     steps:
       - uses: actions/checkout@v3
         with:
