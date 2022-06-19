@@ -22,7 +22,18 @@ jobs:
       - name: Update milestones submodule
         run: git submodule update --remote --force milestones
 
+      - name: Check diff
+        run: | #  set an environment variable
+           if git diff --exit-code; then
+              echo "CHANGED=false" >> ${GITHUB_ENV}
+              echo "No changes - no PR"
+           else
+              echo "CHANGED=true" >> ${GITHUB_ENV}
+              echo "Git changes - should make PR"
+           fi
+
       - name: Create commit
+        if: env.CHANGED == 'true'
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
@@ -36,6 +47,7 @@ jobs:
 
       - name: Create Pull Request
         id: cpr
+        if: env.CHANGED == 'true'
         uses: peter-evans/create-pull-request@v4
         with:
           token: ${{ secrets.WOM_MILESTONES_PAT }}
@@ -48,6 +60,7 @@ jobs:
 
 
       - name: Enable Pull Request Automerge
+        if: steps.cpr.outputs.pull-request-operation == 'created'
         uses: peter-evans/enable-pull-request-automerge@v1
         # requires branch protection
         with:
