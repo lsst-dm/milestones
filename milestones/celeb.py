@@ -151,8 +151,8 @@ def write_list(my_section, milestones):
             with my_list.bullet() as b:
                 with b.paragraph() as p:
                     p.write_line(
-                        f"**{ms.code}** : {ms.name} "
-                        f"[Due {ms.due.strftime('%Y-%m-%d')}]"
+                        f"**{ms.due.strftime('%Y-%m-%d')}** : "
+                        f"{ms.name} ({ms.code})"
                     )
 
 
