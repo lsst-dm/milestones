@@ -192,6 +192,11 @@ def generate_doc(args, milestones):
         ]
         write_html(top_milestones)
         write_list(my_section, top_milestones)
+        with my_section.paragraph() as p:
+            p.write_line(
+                "A public HTML version for embedding is "
+                "here <./top_milestones.html>."
+            )
 
     if "Y" == inc:
         with doc.section("Supporting milestones") as my_section:
