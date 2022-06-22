@@ -195,7 +195,7 @@ def generate_doc(args, milestones):
         with my_section.paragraph() as p:
             p.write_line(
                 "A public HTML version for embedding is "
-                "here <./top_milestones.html>."
+                "`here <./top_milestones.html>`_."
             )
 
     if "Y" == inc:
