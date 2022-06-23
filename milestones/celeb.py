@@ -151,8 +151,8 @@ def write_list(my_section, milestones):
             with my_list.bullet() as b:
                 with b.paragraph() as p:
                     p.write_line(
-                        f"**{ms.code}** : {ms.name} "
-                        f"[Due {ms.due.strftime('%Y-%m-%d')}]"
+                        f"**{ms.due.strftime('%Y-%m-%d')}** : "
+                        f"{ms.name} ({ms.code})"
                     )
 
 
@@ -192,6 +192,11 @@ def generate_doc(args, milestones):
         ]
         write_html(top_milestones)
         write_list(my_section, top_milestones)
+        with my_section.paragraph() as p:
+            p.write_line(
+                "A public HTML version for embedding is "
+                "`here <./top_milestones.html>`_."
+            )
 
     if "Y" == inc:
         with doc.section("Supporting milestones") as my_section:
