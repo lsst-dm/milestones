@@ -49,6 +49,9 @@ jobs:
       - name: Print milestones with predecessors
         run: python milestones.py predecessors
 
+      - name: Celebratory milestones index.rst
+        run: python milestones.py celeb
+
       - name: Generate Graphivz dot source
         run: python milestones.py graph
       - name: Install Graphviz
