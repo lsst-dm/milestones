@@ -131,7 +131,7 @@ def write_html(top_milestones):
           'css_injector/css_injector_4.css");'
           'body { background: none; } '
           'th { font-weight: bold; } '
-          'td { line-height: 1.75em; font-weight: 500; } '
+          'td { line-height: 1.05em; padding 2px;  } '
           'p { line-height: 2.05em; font-size: x-small; font-weight: bold; } '
           '</style>'
           '</head> <body>'
