@@ -129,14 +129,20 @@ def write_html(top_milestones):
           'fontyourface/font.css");'
           '@import url("https://www.lsst.org/sites/default/files/'
           'css_injector/css_injector_4.css");'
+          'body { background: none; } '
+          'th { font-weight: bold; } '
+          'td { line-height: 1.75em; font-weight: 500; } '
+          'p { line-height: 2.05em; font-size: x-small; font-weight: bold; } '
           '</style>'
           '</head> <body>'
           '<table id="top_miles">'
-          '<tr><th>Due</th><th>Name</th></tr>', file=ofile)
+          '<tr><th>Due</th><th>'
+          'Name</th></tr>', file=ofile)
 
     for m in top_milestones:
         date = m.due.strftime('%d-%b-%Y')
-        print(f'<tr><td>{date}</td> <td>{m.name}</td>'
+        print(f'<tr><td>{date}</td> '
+              f'<td>{m.name}</td>'
               '</tr>', file=ofile)
 
     sha, timestamp, p6_date = get_version_info()
