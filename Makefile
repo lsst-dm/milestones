@@ -44,7 +44,7 @@ milestones.csv: venv
 celeb: venv
 	( \
 		. $(VENVDIR)/bin/activate; \
-		python milestones.py celeb --inc=Y ; \
+		python milestones.py --forecast celeb --inc=Y; \
 	)
 
 .PHONY: jira
