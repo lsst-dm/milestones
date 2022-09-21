@@ -11,10 +11,14 @@ def burndown(args, milestones):
     # pre-replan milestones.
     start_date, end_date = args.start_date, args.end_date
 
+    prefixes = args.prefix.split()
+
+    print(f"Burndown for milestones starting with {prefixes}")
+
     milestones = [
         ms
         for ms in milestones
-        for prefix in ["DM-", "DLP-", "LDM-503-"]
+        for prefix in prefixes
         if ms.code.startswith(prefix)
         and ms.due > start_date
         and (not ms.completed or ms.completed > start_date)

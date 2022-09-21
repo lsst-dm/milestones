@@ -1,3 +1,4 @@
+keyring
 matplotlib
 numpy
 xlrd
