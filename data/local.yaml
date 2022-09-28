@@ -1069,6 +1069,7 @@ LDM-503-RSPa:
     and access to a User File Workspace from all three Aspects.'
   jira: DM-30113
   jira_testplan: DM-30112
+  test_spec: DMTR-381
   short_name: Science Platform ready for DP0.2 with Image Services
 LDM-503-RSPb:
   description: 'The Rubin Science Platform is ready to support Science Verification
