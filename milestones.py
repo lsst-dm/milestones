@@ -63,6 +63,10 @@ def parse_args():
         "--output", help="Filename for output; default={filename}.", default=filename
     )
     burndown.set_defaults(func=milestones.burndown)
+    burndown.add_argument(
+        "--prefix", help="List of prefixes for burndown milestones.",
+        default="DM- DLP- LDM-503-"
+    )
 
     csv = subparsers.add_parser(
         "csv", help="Generate a CSV version of the milestone schedule."
@@ -75,6 +79,17 @@ def parse_args():
 
     jira = subparsers.add_parser("jira", help="Sync milestone details to Jira.")
     jira.set_defaults(func=milestones.cjira)
+
+    remaining = subparsers.add_parser(
+        "remaining", help="Print a list of remaining milestones."
+    )
+    as_of = datetime.now().isoformat()
+    remaining.add_argument(
+        "--wbs",
+        default=default_wbs,
+        help=f"Include only milestones for this WBS; default={default_wbs}",
+    )
+    remaining.set_defaults(func=milestones.remaining)
 
     delayed = subparsers.add_parser(
         "delayed", help="Print a list of delayed milestones."
