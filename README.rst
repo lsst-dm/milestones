@@ -126,7 +126,7 @@ For example::
 Then execute ``python milestones.py --help`` for a listing of available functionality::
 
   $ python milestones.py --help
-  usage: milestones.py [-h] [--pmcs-data PMCS_DATA] [--local-data LOCAL_DATA] [--verbose] {gantt,burndown,csv,jira,delayed,predecessors,graph} ...
+  usage: milestones.py [-h] [--pmcs-data PMCS_DATA] [--local-data LOCAL_DATA] [--verbose] {gantt,burndown,csv,jira,delayed,remaining,predecessors,graph} ...
 
   Prepare DM milestone summaries.
 
@@ -144,6 +144,7 @@ Then execute ``python milestones.py --help`` for a listing of available function
       burndown            Generate milestone burndown chart.
       csv                 Generate a CSV version of the milestone schedule.
       jira                Sync milestone details to Jira.
+      remaining           Print a list of remaining milestones.
       delayed             Print a list of delayed milestones.
       predecessors        List each milestone with its predecessors
       graph               Generate Graphviz dot showing milestone relationships.
@@ -166,9 +167,17 @@ Each target has its own ``--help`` option which describes any target-specific op
                           Start date for the burndown chart (YYYY-MM-DD); default=2016-10-30.
     --end-date END_DATE   Start date for the burndown chart (YYYY-MM-DD); default=2022-06-30.
     --output OUTPUT       Filename for output; default={filename}.
+    --prefix PREFIX       List of prefixes for burndown milestones.
+
+Hence to produce the SITCOM type burn down we use::
+
+  $  python milestones.py burndown --prefix "SIT COM SUM" --output SIT-COM-SUMburndown.png
+
 
 GitHub Artifacts
 ================
 
 On push to this repository, some of the artifacts produced by the ``milestone.py`` script are automatically compiled and made available for download.
 These are available from the `Generate Artifacts workflow <https://github.com/lsst-dm/milestones/actions?query=workflow%3A%22Generate+artifacts%22>`_; choose the latest run on the branch you are interested in.
+
+All of the documents with PRs made by this action now have Auto-Merge enabled hence they all update when a change is pushed to this milestones repo. 
