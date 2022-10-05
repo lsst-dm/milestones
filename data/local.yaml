@@ -170,7 +170,6 @@ DM-AP-17:
     \ of the algorithms will undergo continued refinement."
   name: Solar System Processing pipeline available.
 DM-AP-18:
-  completed: '2020-05-31'
   description: The AP Pipeline is now capable of generating per-DIASource alert packets,
     which comply with the current version of the LSST alert schema. This milestone
     only covers packet generation; success involves only those serialized alerts being
@@ -526,7 +525,6 @@ DM-NCSA-14:
   description: Provide a data Backbone endpoint in Chile, allowing distribution over
     a wide-area network and ingestion at NCSA.
 DM-NCSA-15:
-  completed: '2020-05-29'
   description: Demonstrate the ability to process offline Spectrograph data using
     a science pipeline in  the Batch Processing Service. Output(s) will be available
     in the Data Backbone.
