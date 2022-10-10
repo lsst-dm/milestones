@@ -3,7 +3,6 @@ __all__ = ["delayed"]
 
 def delayed(args, milestones):
     obsolete_ms = ["DLP-538", "DLP-541", "DLP-458", "DM-NCSA-5", "DM-NCSA-7"]
-
     for ms in milestones:
         if (
             ms.wbs.startswith(args.wbs)

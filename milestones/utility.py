@@ -122,7 +122,8 @@ def load_milestones(pmcs_filename, local_data_filename, forecast=False):
             # over-write them.
             for attribute in ["name", "wbs", "level", "predecessors", "successors"]:
                 if attribute in local[ms.code]:
-                    logger.warning(
+                    logger.info(
+                        f"Overriding PMCS {attribute} on {ms.code} "
                         f"Overriding PMCS {attribute} on {ms.code} "
                         f"(was “{getattr(ms, attribute)}”; "
                         f"now “{local[ms.code][attribute]}”)"
