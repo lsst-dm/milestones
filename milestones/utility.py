@@ -15,6 +15,7 @@ __all__ = [
     "add_rst_citations",
     "escape_latex",
     "format_latex",
+    "get_pmcs_path_months",
     "get_latest_pmcs_path",
     "get_local_data_path",
     "load_milestones",
@@ -48,6 +49,17 @@ DOC_HANDLES = [
 #
 # Where YYYY is the year, MM is the month and <datatype> is either "BL" (for
 # baseline) or "ME" (for forecast).
+
+
+def get_pmcs_path_months(cpath=None, months=3):
+    """Get the list of pmcs files - find the one passed and take the one months prior.
+    """
+    path = os.path.normpath(os.path.join(os.path.dirname(__file__), "..",
+                                         "data", "pmcs"))
+    all_files = sorted(glob.glob(os.path.join(path, "??????-ME.xls")))
+    for ind, f in enumerate(all_files):
+        if f.__contains__(cpath) and ind >= months:
+            return all_files[ind - months]
 
 
 def get_latest_pmcs_path(path=None):

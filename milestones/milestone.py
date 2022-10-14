@@ -32,6 +32,8 @@ class Milestone(object):
     jira: Optional[str] = None
     jira_testplan: Optional[str] = None
 
+    f2due: Optional[datetime] = None
+
     @property
     def short_name(self):
         return self._short_name if self._short_name else self.name

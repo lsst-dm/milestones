@@ -5,6 +5,8 @@ import sys
 from datetime import datetime
 
 import milestones
+from milestones.excel import load_f2due_pmcs_excel
+from milestones.utility import get_pmcs_path_months
 
 
 def parse_args():
@@ -66,6 +68,10 @@ def parse_args():
     burndown.add_argument(
         "--prefix", help="List of prefixes for burndown milestones.",
         default="DM- DLP- LDM-503-"
+    )
+    burndown.add_argument(
+        "--months", help="Specify number of months prior to use as forecast",
+        type=int, default=0
     )
 
     csv = subparsers.add_parser(
@@ -140,6 +146,10 @@ if __name__ == "__main__":
     print("Working with "+args.pmcs_data)
     milestones = milestones.load_milestones(args.pmcs_data, args.local_data,
                                             args.forecast)
+    if "months" in args and args.months > 0:
+        fpath = get_pmcs_path_months(args.pmcs_data, args.months)
+        load_f2due_pmcs_excel(fpath, milestones)
+
     if args.forecast:
         args.output = f"fcast_{args.output}"
 
