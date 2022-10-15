@@ -69,7 +69,7 @@ def extract_fcast(task_sheet, milestones):
     return milestones
 
 
-def extract_task_details(task_sheet, forecast=False):
+def extract_task_details(task_sheet):
     assert task_sheet.name == TASK_SHEET_NAME
     milestones = list()
     fetcher = CellFetcher(task_sheet.row(0))
@@ -90,11 +90,9 @@ def extract_task_details(task_sheet, forecast=False):
         #                   will be the same as the end_date for zero duration
         #                   activities like milestones.
         #
-        # We use the first available. Unless we want forecast
+        # We use the first available.
 
         date_order = ["base_end_date", "end_date", "start_date"]
-        if forecast:
-            date_order = ["end_date", "base_end_date", "start_date"]
 
         for date_field in (date_order):
             d = fetcher(date_field, task_sheet.row(rownum))
@@ -110,10 +108,9 @@ def extract_task_details(task_sheet, forecast=False):
         base_end_date = fetcher("base_end_date", task_sheet.row(rownum))
         start_date = fetcher("start_date", task_sheet.row(rownum))
         end_date = fetcher("end_date", task_sheet.row(rownum))
-        try:
+
+        if (end_date):
             fdue = extract_date(end_date)
-        except ValueError:
-            fdue = due
 
         completed = None
         if status == "Completed":
@@ -149,9 +146,9 @@ def set_successors(milestones, relation_sheet):
             ms.predecessors.add(preds[i])
 
 
-def load_pmcs_excel(path, forecast):
+def load_pmcs_excel(path):
     workbook = xlrd.open_workbook(path, logfile=sys.stderr)
-    milestones = extract_task_details(workbook.sheets()[0], forecast)
+    milestones = extract_task_details(workbook.sheets()[0])
     set_successors(milestones, workbook.sheets()[1])
     return milestones
 

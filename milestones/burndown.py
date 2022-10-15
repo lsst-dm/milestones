@@ -37,10 +37,13 @@ def burndown(args, milestones):
     model = []
     actual = []
     fcast = []
+    f2cast = []
     for date in month_starts:
-        fcast_remain = model_remain = actual_remain = len(milestones)
+        f2cast_remain = fcast_remain = model_remain = actual_remain = len(milestones)
         for ms in milestones:
             if dofcastline and ms.f2due <= date:
+                f2cast_remain -= 1
+            if ms.fdue <= date:
                 fcast_remain -= 1
             if ms.due <= date:
                 model_remain -= 1
@@ -48,6 +51,7 @@ def burndown(args, milestones):
                 actual_remain -= 1
 
         model.append(model_remain)
+        f2cast.append(f2cast_remain)
         fcast.append(fcast_remain)
         actual.append(actual_remain)
 
@@ -60,7 +64,8 @@ def burndown(args, milestones):
 
     plt.plot(month_starts, model, label="Baseline")
     if dofcastline:
-        plt.plot(month_starts, fcast, label=f"-{args.months}m Forecast")
+        plt.plot(month_starts, f2cast, label=f"-{args.months}m Forecast")
+        plt.plot(month_starts, fcast, label="Forecast")
 
     achieved_months = [mnth for mnth in month_starts if mnth <= last_achieved_month]
     # Need to acount for year wrap

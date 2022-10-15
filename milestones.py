@@ -24,7 +24,6 @@ def parse_args():
         default=milestones.get_local_data_path(),
     )
     parser.add_argument("--verbose", "-v", action="count", default=0)
-    parser.add_argument("--forecast", "-f", action="store_true", help="Use end_date")
 
     subparsers = parser.add_subparsers(title="Output targets")
 
@@ -144,13 +143,9 @@ def parse_args():
 if __name__ == "__main__":
     args = parse_args()
     print("Working with "+args.pmcs_data)
-    milestones = milestones.load_milestones(args.pmcs_data, args.local_data,
-                                            args.forecast)
+    milestones = milestones.load_milestones(args.pmcs_data, args.local_data)
     if "months" in args and args.months > 0:
         fpath = get_pmcs_path_months(args.pmcs_data, args.months)
         load_f2due_pmcs_excel(fpath, milestones)
-
-    if args.forecast:
-        args.output = f"fcast_{args.output}"
 
     args.func(args, milestones)
