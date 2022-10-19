@@ -15,6 +15,7 @@ __all__ = [
     "add_rst_citations",
     "escape_latex",
     "format_latex",
+    "get_pmcs_path_months",
     "get_latest_pmcs_path",
     "get_local_data_path",
     "load_milestones",
@@ -48,6 +49,17 @@ DOC_HANDLES = [
 #
 # Where YYYY is the year, MM is the month and <datatype> is either "BL" (for
 # baseline) or "ME" (for forecast).
+
+
+def get_pmcs_path_months(cpath=None, months=3):
+    """Get the list of pmcs files - find the one passed and take the one months prior.
+    """
+    path = os.path.normpath(os.path.join(os.path.dirname(__file__), "..",
+                                         "data", "pmcs"))
+    all_files = sorted(glob.glob(os.path.join(path, "??????-ME.xls")))
+    for ind, f in enumerate(all_files):
+        if f.__contains__(cpath) and ind >= months:
+            return all_files[ind - months]
 
 
 def get_latest_pmcs_path(path=None):
@@ -107,12 +119,12 @@ def add_rst_citations(text, cite_handles=DOC_HANDLES):
     return add_citations(text, cite_handles, r"\1 :cite:`\1`")
 
 
-def load_milestones(pmcs_filename, local_data_filename, forecast=False):
+def load_milestones(pmcs_filename, local_data_filename):
     logger = logging.getLogger(__name__)
 
     logger.info(f"Loading PMCS data from: {pmcs_filename}")
     logger.info(f"Loading local annotations from: {local_data_filename}")
-    milestones = load_pmcs_excel(pmcs_filename, forecast)
+    milestones = load_pmcs_excel(pmcs_filename)
 
     with open(local_data_filename) as f:
         local = yaml.safe_load(f)

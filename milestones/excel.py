@@ -44,7 +44,32 @@ def extract_wbs(value):
         return ""
 
 
-def extract_task_details(task_sheet, forecast=False):
+def extract_fcast(task_sheet, milestones):
+    # get forceast dates from sheet
+    # go through all milestones and add the f2date
+    assert task_sheet.name == TASK_SHEET_NAME
+    fetcher = CellFetcher(task_sheet.row(0))
+    fdates = {}
+    for rownum in range(START_ROW, task_sheet.nrows):
+        d = fetcher("end_date", task_sheet.row(rownum))
+        code = fetcher("task_code", task_sheet.row(rownum))
+        try:
+            f2due = extract_date(d)
+            fdates[code] = f2due
+        except ValueError:
+            pass
+
+    print(f"Got {len(fdates)} forecast dates")
+    for m in milestones:
+        if m.code in fdates:
+            m.f2due = fdates[m.code]
+        else:  # could be a new milestone not there n months ago
+            m.f2due = m.due
+
+    return milestones
+
+
+def extract_task_details(task_sheet):
     assert task_sheet.name == TASK_SHEET_NAME
     milestones = list()
     fetcher = CellFetcher(task_sheet.row(0))
@@ -65,11 +90,9 @@ def extract_task_details(task_sheet, forecast=False):
         #                   will be the same as the end_date for zero duration
         #                   activities like milestones.
         #
-        # We use the first available. Unless we want forecast
+        # We use the first available.
 
         date_order = ["base_end_date", "end_date", "start_date"]
-        if forecast:
-            date_order = ["end_date", "base_end_date", "start_date"]
 
         for date_field in (date_order):
             d = fetcher(date_field, task_sheet.row(rownum))
@@ -85,10 +108,9 @@ def extract_task_details(task_sheet, forecast=False):
         base_end_date = fetcher("base_end_date", task_sheet.row(rownum))
         start_date = fetcher("start_date", task_sheet.row(rownum))
         end_date = fetcher("end_date", task_sheet.row(rownum))
-        try:
+
+        if (end_date):
             fdue = extract_date(end_date)
-        except ValueError:
-            fdue = due
 
         completed = None
         if status == "Completed":
@@ -124,8 +146,17 @@ def set_successors(milestones, relation_sheet):
             ms.predecessors.add(preds[i])
 
 
-def load_pmcs_excel(path, forecast):
+def load_pmcs_excel(path):
     workbook = xlrd.open_workbook(path, logfile=sys.stderr)
-    milestones = extract_task_details(workbook.sheets()[0], forecast)
+    milestones = extract_task_details(workbook.sheets()[0])
     set_successors(milestones, workbook.sheets()[1])
+    return milestones
+
+
+def load_f2due_pmcs_excel(fpath, milestones):
+    # given milestones, load the sheet from N months prior
+    # set fdue2 to the forecast date from the file
+    print(f"Loading forecast from {fpath}")
+    workbook = xlrd.open_workbook(fpath, logfile=sys.stderr)
+    milestones = extract_fcast(workbook.sheets()[0], milestones)
     return milestones
