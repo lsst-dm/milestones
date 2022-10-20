@@ -115,6 +115,7 @@ class ReSTDocument(TextAccumulator):
 
 def write_html(top_milestones):
     # simple html page for inclusion by communications
+    # uses fdue - forecast date
     file_name = "top_milestones.html"
     ofile = open(file_name, 'w')
 
@@ -141,7 +142,7 @@ def write_html(top_milestones):
           'Name</th></tr>', file=ofile)
 
     for m in top_milestones:
-        date = m.due.strftime('%d-%b-%Y')
+        date = m.fdue.strftime('%d-%b-%Y')
         print(f'<tr><td>{date}</td> '
               f'<td>{m.name}</td>'
               '</tr>', file=ofile)
@@ -153,12 +154,13 @@ def write_html(top_milestones):
 
 
 def write_list(my_section, milestones):
+    # uses fdue - forecast date
     with my_section.bullet_list() as my_list:
         for ms in milestones:
             with my_list.bullet() as b:
                 with b.paragraph() as p:
                     p.write_line(
-                        f"**{ms.due.strftime('%Y-%m-%d')}** : "
+                        f"**{ms.fdue.strftime('%Y-%m-%d')}** : "
                         f"{ms.name} ({ms.code})"
                     )
 
@@ -173,7 +175,7 @@ def generate_doc(args, milestones):
         if ms.celebrate
     ]
 
-    milestones = sorted(milestones, key=lambda ms: ms.due)
+    milestones = sorted(milestones, key=lambda ms: ms.fdue)
 
     doc = ReSTDocument(options={"tocdepth": 0})
     with doc.section("Provenance") as my_section:
