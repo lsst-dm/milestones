@@ -6,19 +6,6 @@ burndown.png: venv
 		python milestones.py  burndown; \
 	)
 
-fcast_burndown.png: venv
-	( \
-		source $(VENVDIR)/bin/activate; \
-		python milestones.py --forecast burndown; \
-	)
-
-fcast_gantt.pdf: venv
-	( \
-		source $(VENVDIR)/bin/activate; \
-		python milestones.py --forecast gantt --output=gantt.tex; \
-		xelatex fcast_gantt.tex; \
-	)
-
 gantt.pdf: venv
 	( \
 		source $(VENVDIR)/bin/activate; \
@@ -44,7 +31,7 @@ milestones.csv: venv
 celeb: venv
 	( \
 		. $(VENVDIR)/bin/activate; \
-		python milestones.py --forecast celeb --inc=Y; \
+		python milestones.py  celeb --inc=Y; \
 	)
 
 .PHONY: jira

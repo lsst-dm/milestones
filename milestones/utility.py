@@ -108,15 +108,21 @@ def add_citations(text, cite_handles, replacement_pattern):
 
 
 def add_latex_citations(text, cite_handles):
-    return add_citations(text, cite_handles, r"\\citeds{\1}")
+    if text:
+        return add_citations(text, cite_handles, r"\\citeds{\1}")
 
 
 def format_latex(text, cite_handles=DOC_HANDLES):
-    return escape_latex(add_latex_citations(text, DOC_HANDLES))
+    if text:
+        return escape_latex(add_latex_citations(text, DOC_HANDLES))
+    else:
+        print("No text in format_latex")
+        return ""
 
 
 def add_rst_citations(text, cite_handles=DOC_HANDLES):
-    return add_citations(text, cite_handles, r"\1 :cite:`\1`")
+    if text:
+        return add_citations(text, cite_handles, r"\1 :cite:`\1`")
 
 
 def load_milestones(pmcs_filename, local_data_filename):
