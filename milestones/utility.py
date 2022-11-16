@@ -181,11 +181,11 @@ def load_milestones(pmcs_filename, local_data_filename):
 
 
 def get_version_info(pmcs_path=None):
-    if pmcs_path == None:
+    if pmcs_path is None:
         pmcs_path = get_latest_pmcs_path()
     git_dir = os.path.dirname(pmcs_path)
     if git_dir == '':
-        git_dir='.'
+        git_dir = '.'
     sha, date = (
         subprocess.check_output(
             ["git", "log", "-1", "--pretty=format:'%H %ad'", "--date=unix"], cwd=git_dir

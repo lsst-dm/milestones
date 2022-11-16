@@ -113,7 +113,7 @@ class ReSTDocument(TextAccumulator):
         return super().get_result()
 
 
-def write_html(top_milestones):
+def write_html(top_milestones, pmcs_data):
     # simple html page for inclusion by communications
     # uses fdue - forecast date
     file_name = "top_milestones.html"
@@ -147,7 +147,7 @@ def write_html(top_milestones):
               f'<td>{m.name}</td>'
               '</tr>', file=ofile)
 
-    sha, timestamp, p6_date = get_version_info()
+    sha, timestamp, p6_date = get_version_info(pmcs_data)
     print(f"</table>"
           f"<p>Using {p6_date.strftime('%B %Y')} project controls data.</p>"
           f"</body>", file=ofile)
@@ -186,7 +186,7 @@ def write_list(my_section, milestones, comp_milestones):
 def generate_doc(args, milestones):
     # pullout celebratory milestones - only Top or Y are the values
     comp_milestones = None
-    if args.pmcs_comp:
+    if args.pmcs_comp is None:
         comp_milestones = load_milestones(args.pmcs_comp, args.local_data)
 
     inc = args.inc
@@ -226,7 +226,7 @@ def generate_doc(args, milestones):
             for ms in milestones
             if ms.celebrate == "Top"
         ]
-        write_html(top_milestones)
+        write_html(top_milestones, args.pmcs_data)
         write_list(my_section, top_milestones, comp_milestones)
         with my_section.paragraph() as p:
             p.write_line(
