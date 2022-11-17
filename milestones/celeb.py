@@ -186,7 +186,7 @@ def write_list(my_section, milestones, comp_milestones):
 def generate_doc(args, milestones):
     # pullout celebratory milestones - only Top or Y are the values
     comp_milestones = None
-    if args.pmcs_comp is None:
+    if args.pmcs_comp is not None:
         comp_milestones = load_milestones(args.pmcs_comp, args.local_data)
 
     inc = args.inc
@@ -216,8 +216,7 @@ def generate_doc(args, milestones):
             )
             if (comp_milestones):
                 p.write_line(
-                    f"This compares {args.pmcs_comp} to {args.pmcs_data}"
-                    f"controls system for {p6_date.strftime('%B %Y')}."
+                    f"This compares {args.pmcs_comp} to {args.pmcs_data}."
                 )
 
     with doc.section("Top milestones") as my_section:
