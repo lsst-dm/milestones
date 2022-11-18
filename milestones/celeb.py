@@ -143,8 +143,11 @@ def write_html(top_milestones, pmcs_data):
 
     for m in top_milestones:
         date = m.fdue.strftime('%d-%b-%Y')
+        completed = ""
+        if m.completed:
+            completed = f" (Completed {m.completed.strftime('%d-%b-%Y')})"
         print(f'<tr><td>{date}</td> '
-              f'<td>{m.name}</td>'
+              f'<td>{m.name}{completed}</td>'
               '</tr>', file=ofile)
 
     sha, timestamp, p6_date = get_version_info(pmcs_data)
@@ -167,6 +170,10 @@ def write_list(my_section, milestones, comp_milestones):
         for ms in milestones:
             with my_list.bullet() as b:
                 with b.paragraph() as p:
+                    completed = ""
+                    if ms.completed:
+                        completed = f" **Completed " \
+                                    f"{ms.completed.strftime('%Y-%m-%d')}**"
                     if (comp_milestones):
                         cm = find_comp(comp_milestones, ms.code)
                         cdate = "None"
@@ -174,12 +181,12 @@ def write_list(my_section, milestones, comp_milestones):
                             cdate = f"{cm.fdue.strftime('%Y-%m-%d')}"
                         p.write_line(
                             f"{cdate}-> **{ms.fdue.strftime('%Y-%m-%d')}** : "
-                            f"{ms.name} ({ms.code})"
+                            f"{ms.name} ({ms.code}) {completed}"
                         )
                     else:
                         p.write_line(
                             f"**{ms.fdue.strftime('%Y-%m-%d')}** : "
-                            f"{ms.name} ({ms.code})"
+                            f"{ms.name} ({ms.code}) {completed}"
                         )
 
 
