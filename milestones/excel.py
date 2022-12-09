@@ -69,13 +69,16 @@ def extract_fcast(task_sheet, milestones):
     return milestones
 
 
-def extract_task_details(task_sheet):
+def extract_task_details(task_sheet, load_tasks):
     assert task_sheet.name == TASK_SHEET_NAME
     milestones = list()
     fetcher = CellFetcher(task_sheet.row(0))
     for rownum in range(START_ROW, task_sheet.nrows):
-        code = fetcher("task_code", task_sheet.row(rownum))
         tasktype = fetcher("task_type", task_sheet.row(rownum))
+        # File now has milestones and tasks many things only want milestones
+        if not (load_tasks or "Milestone" in tasktype):
+            continue
+        code = fetcher("task_code", task_sheet.row(rownum))
         name = fetcher("task_name", task_sheet.row(rownum))
 
         # "user_field_859" is just a magic value extracted from the spreadsheet
@@ -149,9 +152,9 @@ def set_successors(milestones, relation_sheet):
             ms.predecessors.add(preds[i])
 
 
-def load_pmcs_excel(path):
+def load_pmcs_excel(path, load_tasks=False):
     workbook = xlrd.open_workbook(path, logfile=sys.stderr)
-    milestones = extract_task_details(workbook.sheets()[0])
+    milestones = extract_task_details(workbook.sheets()[0], load_tasks)
     set_successors(milestones, workbook.sheets()[1])
     return milestones
 

@@ -130,13 +130,11 @@ def load_milestones(pmcs_filename, local_data_filename, load_tasks=False):
 
     logger.info(f"Loading PMCS data from: {pmcs_filename}")
     logger.info(f"Loading local annotations from: {local_data_filename}")
-    milestones = load_pmcs_excel(pmcs_filename)
+    milestones = load_pmcs_excel(pmcs_filename, load_tasks)
 
     with open(local_data_filename) as f:
         local = yaml.safe_load(f)
     for ms in milestones:
-        if "Milestone" not in ms.tasktype and load_tasks:
-            continue
         if ms.code in local:
             # These are core PMCS attributes; we should warn if we
             # over-write them.
