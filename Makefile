@@ -1,5 +1,11 @@
 VENVDIR = venv
 
+blockschedule.pdf: venv
+	( \
+		source $(VENVDIR)/bin/activate; \
+		python milestones.py  blockschedule; \
+	)
+
 burndown.png: venv
 	( \
 		source $(VENVDIR)/bin/activate; \

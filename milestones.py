@@ -131,6 +131,13 @@ def parse_args():
     )
     graph.set_defaults(func=milestones.graph)
 
+    #  RHL blockchart
+    blockschedule = subparsers.add_parser(
+        "blockschedule", help="Generate the summry block schedule."
+    )
+    blockschedule.add_argument("--output", help="Filename for output", default="blockschedule.pdf")
+    blockschedule.set_defaults(func=milestones.blockschedule)
+
     args = parser.parse_args()
 
     log_levels = [logging.WARN, logging.INFO, logging.DEBUG, logging.NOTSET]

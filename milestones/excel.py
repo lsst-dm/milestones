@@ -126,9 +126,11 @@ def extract_task_details(task_sheet):
         wbs = extract_wbs(fetcher("wbs_id", task_sheet.row(rownum)))
         celebrate = fetcher("actv_code_celebratory_achievements_id",
                             task_sheet.row(rownum))
+        summarychart = fetcher("actv_code_summary_chart_id",
+                            task_sheet.row(rownum))
 
         milestones.append(Milestone(code, name, wbs, level, due, fdue,
-                                    completed, celebrate))
+                                    completed, celebrate, summarychart))
 
     return milestones
 
