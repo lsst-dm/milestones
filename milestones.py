@@ -153,7 +153,9 @@ def parse_args():
 if __name__ == "__main__":
     args = parse_args()
     print("Working with "+args.pmcs_data)
-    milestones = milestones.load_milestones(args.pmcs_data, args.local_data)
+    load_tasks = (args.func == milestones.blockschedule)
+    milestones = milestones.load_milestones(args.pmcs_data, args.local_data,
+                                            load_tasks)
     if "months" in args and args.months > 0:
         fpath = get_pmcs_path_months(args.pmcs_data, args.months)
         load_f2due_pmcs_excel(fpath, milestones)

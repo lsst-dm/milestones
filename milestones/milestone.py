@@ -11,6 +11,7 @@ class Milestone(object):
     # Sound a warning if we override locally
 
     code: str
+    tasktype: str
     name: str
     wbs: str
     level: Optional[int]

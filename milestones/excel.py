@@ -75,6 +75,7 @@ def extract_task_details(task_sheet):
     fetcher = CellFetcher(task_sheet.row(0))
     for rownum in range(START_ROW, task_sheet.nrows):
         code = fetcher("task_code", task_sheet.row(rownum))
+        tasktype = fetcher("task_type", task_sheet.row(rownum))
         name = fetcher("task_name", task_sheet.row(rownum))
 
         # "user_field_859" is just a magic value extracted from the spreadsheet
@@ -129,7 +130,7 @@ def extract_task_details(task_sheet):
         summarychart = fetcher("actv_code_summary_chart_id",
                                task_sheet.row(rownum))
 
-        milestones.append(Milestone(code, name, wbs, level, due, fdue,
+        milestones.append(Milestone(code, tasktype, name, wbs, level, due, fdue,
                                     completed, celebrate, summarychart))
 
     return milestones
