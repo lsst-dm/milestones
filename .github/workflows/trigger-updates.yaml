@@ -59,8 +59,9 @@ jobs:
           body: Update milestones submodule so doc is regenerated.
 
 
+      # auto merge for dmtn-232 is a too public so will manually check and merge it
       - name: Enable Pull Request Automerge
-        if: steps.cpr.outputs.pull-request-operation == 'created'
+        if: steps.cpr.outputs.pull-request-operation == 'created' and repo != 'lsst-dm/dmtn-232'
         uses: peter-evans/enable-pull-request-automerge@v1
         # requires branch protection
         with:
