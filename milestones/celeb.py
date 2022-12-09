@@ -1,5 +1,5 @@
 from io import StringIO
-from .utility import get_version_info, write_output
+from .utility import get_version_info, write_output, load_milestones
 from contextlib import contextmanager
 import textwrap
 
@@ -113,7 +113,7 @@ class ReSTDocument(TextAccumulator):
         return super().get_result()
 
 
-def write_html(top_milestones):
+def write_html(top_milestones, pmcs_data):
     # simple html page for inclusion by communications
     # uses fdue - forecast date
     file_name = "top_milestones.html"
@@ -143,30 +143,59 @@ def write_html(top_milestones):
 
     for m in top_milestones:
         date = m.fdue.strftime('%d-%b-%Y')
+        completed = ""
+        if m.completed:
+            completed = f" (Completed {m.completed.strftime('%d-%b-%Y')})"
         print(f'<tr><td>{date}</td> '
-              f'<td>{m.name}</td>'
+              f'<td>{m.name}{completed}</td>'
               '</tr>', file=ofile)
 
-    sha, timestamp, p6_date = get_version_info()
+    sha, timestamp, p6_date = get_version_info(pmcs_data)
     print(f"</table>"
           f"<p>Using {p6_date.strftime('%B %Y')} project controls data.</p>"
           f"</body>", file=ofile)
 
 
-def write_list(my_section, milestones):
+def find_comp(comps, code):
+    comp = None
+    for m in comps:
+        if m.code == code:
+            comp = m
+    return comp
+
+
+def write_list(my_section, milestones, comp_milestones):
     # uses fdue - forecast date
     with my_section.bullet_list() as my_list:
         for ms in milestones:
             with my_list.bullet() as b:
                 with b.paragraph() as p:
-                    p.write_line(
-                        f"**{ms.fdue.strftime('%Y-%m-%d')}** : "
-                        f"{ms.name} ({ms.code})"
-                    )
+                    completed = ""
+                    if ms.completed:
+                        completed = f" **Completed " \
+                                    f"{ms.completed.strftime('%Y-%m-%d')}**"
+                    if (comp_milestones):
+                        cm = find_comp(comp_milestones, ms.code)
+                        cdate = "None"
+                        if (cm):
+                            cdate = f"{cm.fdue.strftime('%Y-%m-%d')}"
+                        p.write_line(
+                            f"{cdate}-> **{ms.fdue.strftime('%Y-%m-%d')}** : "
+                            f"{ms.name} ({ms.code}) {completed}"
+                        )
+                    else:
+                        p.write_line(
+                            f"**{ms.fdue.strftime('%Y-%m-%d')}** : "
+                            f"{ms.name} ({ms.code}) {completed}"
+                        )
 
 
 def generate_doc(args, milestones):
     # pullout celebratory milestones - only Top or Y are the values
+    comp_milestones = None
+    if args.pmcs_comp is not None:
+        comp_milestones = load_milestones(args.pmcs_comp, args.local_data)
+
     inc = args.inc
 
     milestones = [
@@ -180,7 +209,7 @@ def generate_doc(args, milestones):
     doc = ReSTDocument(options={"tocdepth": 0})
     with doc.section("Provenance") as my_section:
         with my_section.paragraph() as p:
-            sha, timestamp, p6_date = get_version_info()
+            sha, timestamp, p6_date = get_version_info(args.pmcs_data)
             p.write_line(
                 f"This document was generated based on the contents of "
                 f"the `lsst-dm/milestones <https://github.com/lsst-dm/milestones>`_ "
@@ -192,6 +221,10 @@ def generate_doc(args, milestones):
                 f"This corresponds to the status recorded in the project "
                 f"controls system for {p6_date.strftime('%B %Y')}."
             )
+            if (comp_milestones):
+                p.write_line(
+                    f"This compares {args.pmcs_comp} to {args.pmcs_data}."
+                )
 
     with doc.section("Top milestones") as my_section:
         top_milestones = [
@@ -199,8 +232,8 @@ def generate_doc(args, milestones):
             for ms in milestones
             if ms.celebrate == "Top"
         ]
-        write_html(top_milestones)
-        write_list(my_section, top_milestones)
+        write_html(top_milestones, args.pmcs_data)
+        write_list(my_section, top_milestones, comp_milestones)
         with my_section.paragraph() as p:
             p.write_line(
                 "A public HTML version for embedding is "
@@ -214,7 +247,7 @@ def generate_doc(args, milestones):
                 for ms in milestones
                 if ms.celebrate == "Y"
             ]
-            write_list(my_section, o_milestones)
+            write_list(my_section, o_milestones, comp_milestones)
 
     return doc.get_result()
 

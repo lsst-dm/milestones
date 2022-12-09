@@ -180,9 +180,12 @@ def load_milestones(pmcs_filename, local_data_filename):
     return milestones
 
 
-def get_version_info():
-    pmcs_path = get_latest_pmcs_path()
+def get_version_info(pmcs_path=None):
+    if pmcs_path is None:
+        pmcs_path = get_latest_pmcs_path()
     git_dir = os.path.dirname(pmcs_path)
+    if git_dir == '':
+        git_dir = '.'
     sha, date = (
         subprocess.check_output(
             ["git", "log", "-1", "--pretty=format:'%H %ad'", "--date=unix"], cwd=git_dir
@@ -191,6 +194,7 @@ def get_version_info():
         .strip("'")
         .split()
     )
-    p6_date = datetime.strptime(os.path.basename(pmcs_path), "%Y%m-ME.xls")
+    split = os.path.basename(pmcs_path).split("-")
+    p6_date = datetime.strptime(split[0], "%Y%m")
 
     return sha, datetime.utcfromtimestamp(int(date)), p6_date

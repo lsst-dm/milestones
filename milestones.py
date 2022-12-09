@@ -30,6 +30,7 @@ def parse_args():
     # Celeb uses fdue forecast date
     celeb = subparsers.add_parser("celeb", help="Generate celebratory milestones.")
     celeb.add_argument("--output", help="Filename for output", default="milestones.rst")
+    celeb.add_argument("--pmcs-comp", help="Filename for PMCS compare")
     celeb.add_argument("--inc", help="Top or Y", default="Top")
     celeb.set_defaults(func=milestones.celeb)
 
