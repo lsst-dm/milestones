@@ -1,7 +1,5 @@
-from io import StringIO
-from .utility import get_version_info, write_output, load_milestones
-
-
+# RHL generate the block schedule diagram from the milestones with
+# Summary Chart entries.
 
 
 def blockschedule(args, milestones):
@@ -13,4 +11,4 @@ def blockschedule(args, milestones):
     ]
 
     for ms in milestones:
-        print (f"{ms.summarychart}, {ms.due}")
+        print(f"{ms.summarychart}, {ms.due}")

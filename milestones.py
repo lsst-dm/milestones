@@ -135,7 +135,8 @@ def parse_args():
     blockschedule = subparsers.add_parser(
         "blockschedule", help="Generate the summry block schedule."
     )
-    blockschedule.add_argument("--output", help="Filename for output", default="blockschedule.pdf")
+    blockschedule.add_argument("--output", help="Filename for output",
+                               default="blockschedule.pdf")
     blockschedule.set_defaults(func=milestones.blockschedule)
 
     args = parser.parse_args()
