@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        repo: [lsst-sitcom/sitcomtn-052, lsst-dm/dmtn-158, lsst/ldm-564, lsst/ldm-503, lsst-dm/dmtn-232]
+        repo: [lsst-sitcom/sitcomtn-052, lsst-dm/dmtn-158, lsst/ldm-564, lsst/ldm-503]
     steps:
       - uses: actions/checkout@v3
         with:
@@ -61,7 +61,7 @@ jobs:
 
       # auto merge for dmtn-232 is a too public so will manually check and merge it
       - name: Enable Pull Request Automerge
-        if: steps.cpr.outputs.pull-request-operation == 'created' and matrix.repo != 'lsst-dm/dmtn-232'
+        if: steps.cpr.outputs.pull-request-operation == 'created'
         uses: peter-evans/enable-pull-request-automerge@v1
         # requires branch protection
         with:
