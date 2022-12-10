@@ -3,8 +3,7 @@
 #
 __all__ = ["categoryNrow", "categoryGrouping", "categoryColors",
            "specials", "wrappedDescrip", "nRowOfMilestones", "milestoneHeight",
-           "legend_location",
-]
+           "legend_location"]
 
 
 nRowOfMilestones = 3
@@ -30,13 +29,14 @@ categoryNrow = dict(
 # Tweak specific activities;  (nrow, rotation, advanceRow)
 #
 specials = {
-    "Dome" : (None, None, -6),
-    "Light Windscreen" : (None, 0, 3),
-    "Ring Gear Install" : (None, None, 3),
-    "Calibration Screen" : (None, None, 9),
+    "Dome": (None, None, -6),
+    "Light Windscreen": (None, 0, 3),
+    "Ring Gear Install": (None, None, 3),
+    "Calibration Screen": (None, None, 9),
 }
 #
-# Group categories onto single lines, and define the order that the categories are laid out (top to bottom)
+# Group categories onto single lines, and define the order that the categories
+# are laid out (top to bottom)
 #
 categoryGrouping = [
     ("Dome",),
@@ -66,5 +66,5 @@ categoryColors = dict(
 # Override descriptions that the code wraps badly
 #
 wrappedDescrip = {
-    "ComCam Off TMA on Cart" : "ComCam Off\nTMA on Cart",
+    "ComCam Off TMA on Cart": "ComCam Off\nTMA on Cart",
 }

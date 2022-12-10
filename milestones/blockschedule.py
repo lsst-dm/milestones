@@ -3,12 +3,11 @@
 
 import os
 import sys
-import textwrap
 
 import numpy as np
 import matplotlib.pyplot as plt
 
-from .cartoon import *
+from .cartoon import show_activities, add_legend, Activity, AdvanceRow, Milestone, Nrow, Rotation
 from .cartoon_config import \
     categoryNrow, categoryColors, wrappedDescrip, categoryGrouping, specials, \
     nRowOfMilestones, milestoneHeight, legend_location
@@ -21,7 +20,7 @@ def blockschedule(args, milestones):
 
     blocks = create_blocks(activities, celebrations)
 
-    fig = plt.figure(figsize=(10, 8))
+    plt.figure(figsize=(10, 8))
     show_activities(blocks, height=1, fontsize=5, show_today=True, title=os.path.split(args.pmcs_data)[1],
                     show_weeks=args.show_weeks, startDate=args.start_date, endDate=args.end_date)
 
@@ -53,24 +52,23 @@ def create_blocks(activities, celebrations):
         row += 1
 
         for descrip in sorted(activities[category]):
-            code  =        [code  for (code, start, due) in activities[category][descrip]]
             start = np.min([start for (code, start, due) in activities[category][descrip]])
-            due   = np.max([due   for (code, start, due) in activities[category][descrip]])
+            due   = np.max([due   for (code, start, due) in activities[category][descrip]])  # noqa: E221,E272
 
             if descrip in specials:
-                nrow, rot, advanceRow = specials[descrip]
+                nrow, rot, nadvance = specials[descrip]
                 if nrow is not None:
                     blocks[category].append(Nrow(nrow))
                 if rot is not None:
                     blocks[category].append(Rotation(rot))
-                if advanceRow is not None:
-                    blocks[category].append(AdvanceRow(advanceRow))
+                if nadvance is not None:
+                    blocks[category].append(AdvanceRow(nadvance))
 
             if descrip[0] == '"' and descrip[-1] == '"':
                 descrip = descrip[1:-1]
 
             blocks[category].append(Activity(descrip, start, due, color, border,
-                                                wrappedDescrip=wrappedDescrip.get(descrip)))
+                                             wrappedDescrip=wrappedDescrip.get(descrip)))
 
     #
     # Order/group according to categoryGrouping[]
@@ -78,7 +76,7 @@ def create_blocks(activities, celebrations):
     if categoryGrouping is None:
         grouping = [[cat] for cat in activities]
     else:
-        grouping = categoryGrouping        
+        grouping = categoryGrouping
 
     _blocks = []
     for cats in grouping:
@@ -103,13 +101,14 @@ def create_blocks(activities, celebrations):
 
     milestones = sorted(milestones, key=lambda a: a.t0)
     for i, ml in enumerate(milestones):
-        ml.drow = i%nRowOfMilestones
+        ml.drow = i % nRowOfMilestones
 
     milestones.append(AdvanceRow((nRowOfMilestones - 1)*milestoneHeight))
 
     blocks = [milestones] + blocks
 
     return blocks
+
 
 def process_milestones(milestones):
     # Process Summary Chart activities/milestones and celebrations milestones
@@ -166,5 +165,3 @@ def process_milestones(milestones):
         activities[category][descrip].append((code, start, due))
 
     return activities, celebrations
-
-        

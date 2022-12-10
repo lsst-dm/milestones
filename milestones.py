@@ -137,10 +137,12 @@ def parse_args():
     )
     blockschedule.add_argument("--output", help="Filename for output",
                                default="blockschedule.pdf")
-    blockschedule.add_argument("--start-date", help="Starting date for cartoon (ISO 8601 format)")
-    blockschedule.add_argument("--end-date", help="Ending date for cartoon (ISO 8601 format)")
-    blockschedule.add_argument("--show-weeks", help="Show week boundaries", action='store_true',
-                               default=False)
+    blockschedule.add_argument("--start-date",
+                               help="Starting date for cartoon (ISO 8601 format)")
+    blockschedule.add_argument("--end-date",
+                               help="Ending date for cartoon (ISO 8601 format)")
+    blockschedule.add_argument("--show-weeks", help="Show week boundaries",
+                               action='store_true', default=False)
     blockschedule.set_defaults(func=milestones.blockschedule)
 
     args = parser.parse_args()

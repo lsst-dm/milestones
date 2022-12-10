@@ -1,4 +1,3 @@
-import csv
 from datetime import datetime, timedelta
 import re
 import sys
@@ -11,8 +10,7 @@ import matplotlib.dates as mdates
 import matplotlib.patches as patches
 
 __all__ = ["show_activities", "add_legend", "print_details",
-           "Activity", "Milestone", "AdvanceRow", "Nrow", "Rotation",
-]
+           "Activity", "Milestone", "AdvanceRow", "Nrow", "Rotation", ]
 
 
 class Activity:
@@ -87,8 +85,7 @@ class Activity:
 
     def getData(self):
         return [self.descrip, self.t0.strftime('%Y-%m-%d'), (self.t0 + self.duration).strftime('%Y-%m-%d'),
-                self._color, self._border, self._markerWidth, self.drow,
-               ]
+                self._color, self._border, self._markerWidth, self.drow, ]
 
     def getNrow(self):
         return self.nrow if self._nrow is None else self._nrow
@@ -141,7 +138,7 @@ class Activity:
             width_pts = plt.gcf().get_size_inches()[1]*72
 
             fiddleFactor = 1.5*width_pts/nrowTot
-            textwidth = int(fiddleFactor*nrow/self.fontsize) + 1
+            textwidth = int(fiddleFactor*nrow/fontsize) + 1
         else:
             if totalDuration == 0:
                 fiddleFactor = 3
@@ -149,7 +146,7 @@ class Activity:
                 width_pts = plt.gcf().get_size_inches()[0]*72
                 fiddleFactor = width_pts/totalDuration.days
 
-            textwidth = int(fiddleFactor*self.duration.days/self.fontsize) + 1
+            textwidth = int(fiddleFactor*self.duration.days/fontsize) + 1
 
         if self.wrappedDescrip is None:
             text = textwrap.fill(self.descrip, width=textwidth, break_long_words=False)
@@ -161,7 +158,7 @@ class Activity:
         plt.text(t0 + 0.5*(t1 - t0), 0.5*(y[1] + y[2]), text,
                  rotation=rotation,
                  horizontalalignment='center', verticalalignment='center',
-                 fontsize=self.fontsize)
+                 fontsize=fontsize)
 
         return nrow
 
@@ -251,6 +248,7 @@ class Milestone(Activity):
 class Manipulation:
     """Modify the state of the system, rather than describing an activity or milestone"""
     pass
+
 
 class AdvanceRow(Manipulation):
     """A class used to advance the row counter"""
@@ -372,13 +370,13 @@ def show_activities(activities, height=0.1, fontsize=7,
     Activity.fontsize = fontsize
     Milestone.axvline = show_milestone_vlines
 
-    if re.search("^[-+]?\d+$", startDate):  # a date relative to now, in days
+    if re.search(r"^[-+]?\d+$", startDate):  # a date relative to now, in days
         nday = int(startDate)
         startDate = datetime.now() + timedelta(days=nday)
     elif isinstance(startDate, str):
         startDate = datetime.fromisoformat(startDate)
 
-    if re.search("^[-+]?\d+$", endDate):    # a date relative to now, in days
+    if re.search(r"^[-+]?\d+$", endDate):    # a date relative to now, in days
         nday = int(endDate)
         endDate = datetime.now() + timedelta(days=nday)
     elif isinstance(endDate, str):
@@ -418,7 +416,6 @@ def show_activities(activities, height=0.1, fontsize=7,
     #
     nrowTot = 0
     for aa in activities:
-        nrowTot0 = nrowTot
         nrowTot += calculate_height(aa)
 
     Activity.row = 0
@@ -435,7 +432,7 @@ def show_activities(activities, height=0.1, fontsize=7,
                 elif isinstance(a, Nrow):
                     a.set_default_Nrow()
                 else:
-                    raise NotImplemented(a)
+                    raise NotImplementedError(a)
 
                 continue
 
@@ -504,194 +501,13 @@ def add_legend(categoryColors, activities=None, categoryGrouping=None, legend_lo
                 color, border = color
 
             if usedColors is None or color in usedColors:
-                handles.append(patches.Polygon([(0,0), (10,0), (0,-10)],
+                handles.append(patches.Polygon([(0, 0), (10, 0), (0, -10)],
                                                facecolor=color, edgecolor=border,
                                                label=f"{c.replace('_', ' ')}"))
     # and add it to the figure
     plt.legend(handles=handles, loc=legend_location)
 
     plt.tight_layout()
-
-
-def p6dateStrToIso(dateStr):
-    """Convert a date string such as "5-Feb-58" to ISO standard "2058-02-05"
-
-    Not Y2K compliant!
-    """
-    if re.search(r"^\d{4}-\d{2}-\d{2}", dateStr):
-        return dateStr
-
-    dateStr = re.sub("(\s+A|\*)$", "", dateStr) # "Actual"; Kevin Long says to ignore it
-
-    day, monName, year2 = dateStr.split('-')
-    day = int(day)
-    year2 = int(year2)
-
-    mon = dict(Jan=1, Feb=2, Mar=3, Apr=4, May=5, Jun=6, Jul=7, Aug=8, Sep=9, Oct=10, Nov=11, Dec=12)[monName]
-
-    return f"20{year2}-{mon:02}-{day:02}"
-
-
-def read_activities_from_P6(fileName, milestonesFileName=None, categoryGrouping=None, specials={},
-                            nRowOfMilestones=5, milestoneHeight=4, ignoreZeroLengthActivities=False,
-                            categoryColors={}, categoryNrow={}, wrappedDescrip={}):
-    """Read Kevin Long's csv dump from P6
-
-The file's in the format:
-...
-
-Summary Chart,Activity ID,Start,Finish,Total Float,Original Duration
-M1M3.Install M1M3 with Surrogate,Summit-K1310,17-Jan-23,30-Jan-23,0,10
-...
-M1M3.Install M1M3 with Surrogate,SUMMIT-1923,7-Feb-23,13-Feb-23,0,5
-M1M3.FunctionalTesting with Surrogate,SUMMIT-1927,7-Mar-23,13-Mar-23,0,5
-...
-M1M3.FunctionalTesting with Surrogate,SUMMIT-1929,14-Mar-23,15-Mar-23,0,2
-M1M3.Dynamic Testing with Surrogate,SUMMIT-1928,23-Mar-23,19-Apr-23,0,20
-...
-M1M3.M1M3 on TMA + Thermal control t,SUMMIT-1909,5-Mar-24,15-Mar-24,0,9
-M2.M2 functional testing  on TMA,SUMMIT-1916,24-Jul-23,4-Aug-23,0,10
-...
-M2.M2 on TMA + reintallation,SUMMIT-3081,10-Jul-23,21-Jul-23,0,10
-Refrigeration PathFinder.prep & test  on TMA,SUMMIT-3013,,22-Mar-23,352,0
-...
-    """
-
-    activities = {}
-    celebratory = []
-    with open(fileName, newline='\n') as fd:
-        csvin = csv.reader(fd, skipinitialspace=True)
-
-        for lineNo, line in enumerate(csvin, 1):
-            if False:
-                print(lineNo, line)
-
-            if lineNo == 1:
-                continue
-
-            summary_chart, aid, start, finish, celebrate = line
-            #
-            # handle dates
-            start = None if (start == 'None' or start is None) else start
-            finish = None if (finish == 'None' or finish is None) else finish
-
-            if ignoreZeroLengthActivities:
-                if start is None or finish is None:
-                    continue
-
-            if start is None:
-                if finish is None:             # HACK
-                    print(f"Skipping {lineNo}: {line}")
-                    continue
-                else:
-                    start = finish
-            elif finish is None:
-                finish = start
-    
-            start = datetime.fromisoformat(p6dateStrToIso(start))
-            finish = datetime.fromisoformat(p6dateStrToIso(finish))
-            #
-            # Is it a celebratory milestone rather than an activity?
-            #
-            if celebrate.lower() in ("top", "y"):  # it's a celebratory milestone
-                if celebrate.lower() == "y":
-                    continue
-
-                celebratory.append((aid, finish))
-                continue
-
-            if '.' not in summary_chart:
-                summary_chart = f"{summary_chart}.{summary_chart}"
-
-            category, descrip = summary_chart.split(".")
-            category = category.replace(' ', '_')
-
-            if "," in descrip:
-                descrip = f'"{descrip}"'
-
-            if category not in activities:
-                activities[category] = {}
-
-            if descrip not in activities[category]:
-                activities[category][descrip] = []
-
-            activities[category][descrip].append((aid, start, finish))
-
-    summaries = {}
-    row = 1
-    for category in activities:
-        summaries[category] = []
-
-        nrow = categoryNrow.get(category, 5)
-        nrow, rot = (nrow, None) if isinstance(nrow, int) else nrow
-
-        summaries[category] = [Nrow(nrow), Rotation(rot)]
-
-        color = categoryColors.get(category)
-        if color is None:
-            print(f"No colour is defined for category {category}", file=sys.stderr)
-            color = ("white", "red")
-        color, border = (color, None) if isinstance(color, str) else color
-
-        row += 1
-
-        for descrip in sorted(activities[category]):
-            aids =          [aid    for (aid, start, finish) in activities[category][descrip]]
-            start =  np.min([start  for (aid, start, finish) in activities[category][descrip]])
-            finish = np.max([finish for (aid, start, finish) in activities[category][descrip]])
-
-            if descrip in specials:
-                nrow, rot, advanceRow = specials[descrip]
-                if nrow is not None:
-                    summaries[category].append(Nrow(nrow))
-                if rot is not None:
-                    summaries[category].append(Rotation(rot))
-                if advanceRow is not None:
-                    summaries[category].append(AdvanceRow(advanceRow))
-
-            if descrip[0] == '"' and descrip[-1] == '"':
-                descrip = descrip[1:-1]
-
-            summaries[category].append(Activity(descrip, start, finish, color, border,
-                                                wrappedDescrip=wrappedDescrip.get(descrip)))
-
-    #
-    # Order/group according to grouping[]
-    if categoryGrouping is not None:
-        _summaries = []
-        for cats in categoryGrouping:
-            sub = []
-            for cat in cats:
-                for a in summaries[cat]:
-                    sub.append(a)
-
-            _summaries.append(sub)
-
-        summaries = _summaries
-
-    if False:
-        if milestonesFileName is not None:
-            milestones = read_celeb_milestones(milestonesFileName,
-                                               nRowOfMilestones=nRowOfMilestones, milestoneHeight=milestoneHeight)
-            summaries = [milestones] + summaries
-    else:
-        Milestone.height = milestoneHeight
-        Milestone.rotation = 0
-
-        milestones = []
-        for c in celebratory:
-            name, start = c
-            milestones.append(Milestone(name, start))
-
-        milestones = sorted(milestones, key=lambda a: a.t0)
-        for i, ml in enumerate(milestones):
-            ml.drow = i%nRowOfMilestones
-
-        milestones.append(AdvanceRow((nRowOfMilestones - 1)*milestoneHeight))
-
-        summaries = [milestones] + summaries
-
-    return summaries, activities
 
 
 def print_details(inputs, systems=None, fd=None, indent="   "):
@@ -717,4 +533,3 @@ def print_details(inputs, systems=None, fd=None, indent="   "):
             print(f"{indent}{descrip}", file=fd)
             for (aid, start, finish) in sorted(cpts, key=lambda x: x[2]):
                 print(f"{2*indent}{aid:20} {str(start).split(' ')[0]} -- {str(finish).split(' ')[0]}", file=fd)
-
