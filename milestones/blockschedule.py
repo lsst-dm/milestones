@@ -3,12 +3,16 @@
 
 
 def blockschedule(args, milestones):
-    # pullout Summary Chart milestones
-    milestones = [
-        ms
-        for ms in milestones
-        if ms.summarychart
-    ]
+    # Process Summary Chart activities/milestones and celebratory milestones
 
+    print("Summary Chart, Code, Start, Finish, Celebrate")
     for ms in milestones:
-        print(f"{ms.summarychart}, {ms.due}")
+        celebrate = False
+        if ms.summarychart:
+            pass
+        elif ms.celebrate:
+            celebrate = ms.celebrate
+        else:
+            continue
+
+        print(f"{ms.summarychart}, {ms.code}, {ms.start}, {ms.due}, {celebrate}")
