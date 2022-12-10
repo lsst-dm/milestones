@@ -131,12 +131,16 @@ def parse_args():
     )
     graph.set_defaults(func=milestones.graph)
 
-    #  RHL blockchart
+    #  RHL cartoon based on P6 "summary chart" and "celebratory milestone" entries
     blockschedule = subparsers.add_parser(
-        "blockschedule", help="Generate the summry block schedule."
+        "blockschedule", help="Generate the cartoon of the schedule."
     )
     blockschedule.add_argument("--output", help="Filename for output",
                                default="blockschedule.pdf")
+    blockschedule.add_argument("--start-date", help="Starting date for cartoon (ISO 8601 format)")
+    blockschedule.add_argument("--end-date", help="Ending date for cartoon (ISO 8601 format)")
+    blockschedule.add_argument("--show-weeks", help="Show week boundaries", action='store_true',
+                               default=False)
     blockschedule.set_defaults(func=milestones.blockschedule)
 
     args = parser.parse_args()
