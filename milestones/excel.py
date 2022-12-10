@@ -85,6 +85,15 @@ def extract_task_details(task_sheet, load_tasks):
         level = fetcher("user_field_859", task_sheet.row(rownum))
         level = int(level) if level else None
 
+        date_field = "start_date"
+        d = fetcher(date_field, task_sheet.row(rownum))
+        start = None
+        if d:
+            try:
+                start = extract_date(d)
+            except ValueError:
+                pass
+
         # There are three possible end dates:
         #
         #   base_end_date - according to the baseline project
@@ -134,7 +143,7 @@ def extract_task_details(task_sheet, load_tasks):
                                task_sheet.row(rownum))
 
         milestones.append(Milestone(code, tasktype, name, wbs, level, due, fdue,
-                                    completed, celebrate, summarychart))
+                                    start, completed, celebrate, summarychart))
 
     return milestones
 

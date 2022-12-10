@@ -17,6 +17,7 @@ class Milestone(object):
     level: Optional[int]
     due: datetime
     fdue: datetime
+    start: Optional[datetime] = None
     completed: Optional[datetime] = None
     celebrate: Optional[str] = ""
     summarychart: Optional[str] = ""
