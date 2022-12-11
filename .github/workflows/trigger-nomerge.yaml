@@ -1,0 +1,59 @@
+name: Trigger document updates wihthout merge
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update-docs:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        repo: [lsst-dm/dmtn-232]
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.WOM_MILESTONES_PAT }}
+          repository: ${{ matrix.repo }}
+          fetch-depth: 0
+          submodules: true
+
+      - name: Update milestones submodule
+        run: git submodule update --remote --force milestones
+
+      - name: Check diff
+        run: | #  set an environment variable
+           if git diff --exit-code; then
+              echo "CHANGED=false" >> ${GITHUB_ENV}
+              echo "No changes - no PR"
+           else
+              echo "CHANGED=true" >> ${GITHUB_ENV}
+              echo "Git changes - should make PR"
+           fi
+
+      - name: Create commit
+        if: env.CHANGED == 'true'
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add milestones
+          git commit -m "Update milestones submodule"
+
+      - name: Get date
+        id: get-date
+        run: echo "::set-output name=date::$(/bin/date -u "+%Y-%m-%d %H:%M:%S")"
+        shell: bash
+
+      - name: Create Pull Request
+        id: cpr
+        if: env.CHANGED == 'true'
+        uses: peter-evans/create-pull-request@v4
+        with:
+          token: ${{ secrets.WOM_MILESTONES_PAT }}
+          #IF i leave someone needs to make a new PAT
+          branch: update-milestones
+          branch-suffix: short-commit-hash
+          title: Automatic milestone submodule update, ${{ steps.get-date.outputs.date }}
+          commit-message: Auto Milestones submodule update
+          body: Update milestones submodule so doc is regenerated.
