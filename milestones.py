@@ -131,6 +131,20 @@ def parse_args():
     )
     graph.set_defaults(func=milestones.graph)
 
+    #  RHL cartoon based on P6 "summary chart" and "celebratory milestone" entries
+    blockschedule = subparsers.add_parser(
+        "blockschedule", help="Generate the cartoon of the schedule."
+    )
+    blockschedule.add_argument("--output", help="Filename for output",
+                               default="blockschedule.pdf")
+    blockschedule.add_argument("--start-date",
+                               help="Starting date for cartoon (ISO 8601 format)")
+    blockschedule.add_argument("--end-date",
+                               help="Ending date for cartoon (ISO 8601 format)")
+    blockschedule.add_argument("--show-weeks", help="Show week boundaries",
+                               action='store_true', default=False)
+    blockschedule.set_defaults(func=milestones.blockschedule)
+
     args = parser.parse_args()
 
     log_levels = [logging.WARN, logging.INFO, logging.DEBUG, logging.NOTSET]
@@ -145,7 +159,9 @@ def parse_args():
 if __name__ == "__main__":
     args = parse_args()
     print("Working with "+args.pmcs_data)
-    milestones = milestones.load_milestones(args.pmcs_data, args.local_data)
+    load_tasks = (args.func == milestones.blockschedule)
+    milestones = milestones.load_milestones(args.pmcs_data, args.local_data,
+                                            load_tasks)
     if "months" in args and args.months > 0:
         fpath = get_pmcs_path_months(args.pmcs_data, args.months)
         load_f2due_pmcs_excel(fpath, milestones)

@@ -11,13 +11,16 @@ class Milestone(object):
     # Sound a warning if we override locally
 
     code: str
+    tasktype: str
     name: str
     wbs: str
     level: Optional[int]
     due: datetime
     fdue: datetime
+    start: Optional[datetime] = None
     completed: Optional[datetime] = None
     celebrate: Optional[str] = ""
+    summarychart: Optional[str] = ""
 
     predecessors: Set[str] = field(default_factory=set)
     successors: Set[str] = field(default_factory=set)
