@@ -8,6 +8,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 import matplotlib.patches as patches
+import matplotlib.transforms as transforms
+
 
 __all__ = ["show_activities", "add_legend", "print_details",
            "Activity", "Milestone", "AdvanceRow", "Nrow", "Rotation", ]
@@ -123,14 +125,18 @@ class Activity:
             t1 = endDate
 
         y0 = self.height*(1.1*(self.row - self.drow))
-        x = t0 + (t1 - t0)*np.array([0, 1, 1, 0, 0])
-        y = y0 + (1 + 1.1*(nrow - 1))*self.height*np.array([0, 0, 1, 1, 0])
-        plt.fill(x, y, '-', label=self.descrip, **kwargs)
+        x = t0 + (t1 - t0)*np.array([0, 1, 1, 0])
+        y = y0 + (1 + 1.1*(nrow - 1))*self.height*np.array([0, 0, 1, 1])
+
+        fillkwargs = kwargs.copy()
+        fillkwargs["closed"] = True
+        if "joinstyle" not in fillkwargs:
+            fillkwargs["joinstyle"] = "round"
 
         if not (self.border is None and self._border is None):
-            kwargs["color"] = self.border if self._border is None else self._border
+            fillkwargs["edgecolor"] = self.border if self._border is None else self._border
 
-        plt.plot(x, y, '-', **kwargs)
+        plt.fill(x, y, '-', label=self.descrip, **fillkwargs)
 
         textwidth = 0
         fontsize = self.fontsize if self.fontsize else 10
@@ -235,11 +241,13 @@ class Milestone(Activity):
         if Milestone.axvline:
             plt.axvline(t0, ls='-', alpha=0.1, zorder=-1)
 
+        text = textwrap.fill(self.descrip, width=Milestone.width, break_long_words=False)
+
         horizontalalignment = "left" if self.align == "right" else "right"  # matplotlib is confusing
         plt.text(t0 + markerWidth/2*(1 if self.align == "right" else -1),
-                 y0 + (0.9 if self.valign == "top" else 0.1)*self.height, self.descrip,
+                 y0 + (0.9 if self.valign == "top" else 0.1)*self.height, text,
                  rotation=self.rotation,
-                 horizontalalignment=horizontalalignment, verticalalignment='center',
+                 horizontalalignment=horizontalalignment, verticalalignment='top',
                  fontsize=self.fontsize, zorder=10)
 
         return 1
@@ -330,7 +338,7 @@ def calculate_height(activities):
 
 def show_activities(activities, height=0.1, fontsize=7,
                     rowSpacing=0.5, show_today=True, show_time_axis=True,
-                    title="", show_milestone_vlines=True,
+                    title="", show_milestone_vlines=True, today_height=0.5,
                     startDate=None, endDate=None, show_weeks=True):
     """Plot a set of activities
 
@@ -440,7 +448,16 @@ def show_activities(activities, height=0.1, fontsize=7,
                    startDate=startDate, endDate=endDate)
 
     if show_today and datetime.now() > startDate:
-        plt.axvline(datetime.now(), ls='--', color='black', alpha=0.5, zorder=-1)
+        now = datetime.now()
+
+        plt.axvline(now, ls='--', color='black', alpha=0.5, zorder=-1)
+
+        ax = plt.gca()
+        myTrans = transforms.blended_transform_factory(ax.transData, ax.transAxes)
+
+        plt.text(now, today_height, now.strftime("%Y-%m-%d"),
+                 rotation='vertical', ha='right', transform=myTrans)
+
     plt.grid(axis='x')
 
     if not show_time_axis:
@@ -449,11 +466,11 @@ def show_activities(activities, height=0.1, fontsize=7,
         plt.yticks(ticks=[], labels=[])
 
     ax = plt.gca()
+    ax.xaxis.set_minor_locator(mdates.MonthLocator())  # every month
+
+    # Label the top axis
     ax.fmt_xdata = mdates.DateFormatter('%Y-%m-%d %H:%M:%S.02 ')
-
-    ax.tick_params('x', top=True, labeltop=True)
-
-    plt.gcf().autofmt_xdate(ha='center')   # rotate and make space; center works at top and bottom
+    ax.tick_params('x', top=True, labeltop=True, which='both')
 
     if show_weeks:
         ax.xaxis.set_major_locator(mdates.WeekdayLocator(byweekday=mdates.MO))

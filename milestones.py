@@ -141,6 +141,8 @@ def parse_args():
                                help="Starting date for cartoon (ISO 8601 format)")
     blockschedule.add_argument("--end-date",
                                help="Ending date for cartoon (ISO 8601 format)")
+    blockschedule.add_argument("--fontsize",
+                               help="Fontsize for activities", type=int, default=5)
     blockschedule.add_argument("--show-weeks", help="Show week boundaries",
                                action='store_true', default=False)
     blockschedule.set_defaults(func=milestones.blockschedule)

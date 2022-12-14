@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 from .cartoon import show_activities, add_legend, Activity, AdvanceRow, Milestone, Nrow, Rotation
 from .cartoon_config import \
     categoryNrow, categoryColors, wrappedDescrip, categoryGrouping, specials, \
-    nRowOfMilestones, milestoneHeight, legend_location
+    nRowOfMilestones, milestoneHeight, milestoneWidth, legend_location, today_height
 
 
 def blockschedule(args, milestones):
@@ -21,7 +21,8 @@ def blockschedule(args, milestones):
     blocks = create_blocks(activities, celebrations)
 
     plt.figure(figsize=(10, 8))
-    show_activities(blocks, height=1, fontsize=5, show_today=True, title=os.path.split(args.pmcs_data)[1],
+    show_activities(blocks, height=1, fontsize=args.fontsize, show_today=True,
+                    title=os.path.split(args.pmcs_data)[1], today_height=today_height,
                     show_weeks=args.show_weeks, startDate=args.start_date, endDate=args.end_date)
 
     add_legend(categoryColors, blocks, categoryGrouping, legend_location=legend_location)
@@ -92,6 +93,7 @@ def create_blocks(activities, celebrations):
     # Handle celebrations milestones now that we've ordered the blocks
     #
     Milestone.height = milestoneHeight
+    Milestone.width = milestoneWidth
     Milestone.rotation = 0
 
     milestones = []
