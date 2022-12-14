@@ -2,24 +2,27 @@
 # Configuration for the cartoon, imported by blockschedule.py
 #
 __all__ = ["categoryNrow", "categoryGrouping", "categoryColors",
-           "specials", "wrappedDescrip", "nRowOfMilestones", "milestoneHeight",
-           "legend_location"]
+           "specials", "wrappedDescrip", "nRowOfMilestones",
+           "milestoneHeight", "milestoneWidth",
+           "legend_location", "today_height"]
 
 
-nRowOfMilestones = 3
-milestoneHeight = 3
-legend_location = (0.85, 0.02)
+nRowOfMilestones = 3                    # number of rows of milestones
+milestoneHeight = 4                     # height of each row of milestones
+milestoneWidth = 20                     # width of labels; used to wrap text
+legend_location = (0.81, 0.02)          # plt.legend(loc=legend_location)
+today_height = 0.5                      # height of today's label; fraction of y-axis
 
 #
 # Number of rows needed for boxes, and rotation (0 or 90 degrees; 90 is the default)
 #
 categoryNrow = dict(
     AuxTel=(4, 0),
-    Calibration=15,
+    Calibration=17,
     ComCam=13,
     Commissioning=15,
     Dome=(3, 0),
-    LSSTCam=30,
+    LSSTCam=27,
     M1M3=30,
     M2=30,
     Refrigeration_PathFinder=(8, 0),
@@ -32,7 +35,7 @@ specials = {
     "Dome": (None, None, -6),
     "Light Windscreen": (None, 0, 3),
     "Ring Gear Install": (None, None, 3),
-    "Calibration Screen": (None, None, 9),
+    "Calibration Screen": (None, None, 9+2),
 }
 #
 # Group categories onto single lines, and define the order that the categories
