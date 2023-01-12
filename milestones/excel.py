@@ -85,15 +85,6 @@ def extract_task_details(task_sheet, load_tasks):
         level = fetcher("user_field_859", task_sheet.row(rownum))
         level = int(level) if level else None
 
-        date_field = "start_date"
-        d = fetcher(date_field, task_sheet.row(rownum))
-        start = None
-        if d:
-            try:
-                start = extract_date(d)
-            except ValueError:
-                pass
-
         # There are three possible end dates:
         #
         #   base_end_date - according to the baseline project
@@ -102,19 +93,6 @@ def extract_task_details(task_sheet, load_tasks):
         #   start_date    - the start date in the current project (as above,
         #                   will be the same as the end_date for zero duration
         #                   activities like milestones.
-        #
-        # We use the first available.
-
-        date_order = ["base_end_date", "end_date", "start_date"]
-
-        for date_field in (date_order):
-            d = fetcher(date_field, task_sheet.row(rownum))
-            try:
-                due = extract_date(d)
-            except ValueError:
-                pass
-            else:
-                break
 
         status = fetcher("status_code", task_sheet.row(rownum))
         act_end_date = fetcher("act_end_date", task_sheet.row(rownum))
@@ -122,6 +100,12 @@ def extract_task_details(task_sheet, load_tasks):
         start_date = fetcher("start_date", task_sheet.row(rownum))
         end_date = fetcher("end_date", task_sheet.row(rownum))
 
+        start = due = fdue = None
+
+        if (start_date):
+            start = extract_date(start_date)
+        if (base_end_date):
+            due = extract_date(base_end_date)
         if (end_date):
             fdue = extract_date(end_date)
 

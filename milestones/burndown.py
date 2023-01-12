@@ -21,7 +21,7 @@ def burndown(args, milestones):
         for ms in milestones
         for prefix in prefixes
         if ms.code.startswith(prefix)
-        and ms.due > start_date
+        and (ms.due and ms.due > start_date)
         and (not ms.completed or ms.completed > start_date)
     ]
 
