@@ -109,6 +109,11 @@ def extract_task_details(task_sheet, load_tasks):
         if (end_date):
             fdue = extract_date(end_date)
 
+        if not due and fdue:
+            due = fdue
+        if not due:
+            if tasktype.startswith("Start"):
+                due = start
         completed = None
         if status == "Completed":
             if act_end_date:

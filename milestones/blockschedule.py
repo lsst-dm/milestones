@@ -120,7 +120,7 @@ def process_milestones(milestones):
 
     for ms in milestones:
         summarychart, code, start, due = ms.summarychart, ms.code, ms.start, ms.fdue
-        if ms.due is not None and start is not None and due < start and ms.due >= start:
+        if ms.due and start and due and due < start and ms.due >= start:
             if True:
                 print("Warning: "
                       f"{ms.code} has fdue = {ms.fdue} before start = {ms.start}, "
