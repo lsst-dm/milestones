@@ -10,7 +10,7 @@ __all__ = ["categoryNrow", "categoryGrouping", "categoryColors",
 nRowOfMilestones = 3                    # number of rows of milestones
 milestoneHeight = 4                     # height of each row of milestones
 milestoneWidth = 20                     # width of labels; used to wrap text
-legend_location = (0.81, 0.02)          # plt.legend(loc=legend_location)
+legend_location = (0.83, 0.02)          # plt.legend(loc=legend_location)
 today_height = 0.5                      # height of today's label; fraction of y-axis
 
 #
