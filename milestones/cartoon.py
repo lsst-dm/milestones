@@ -124,6 +124,12 @@ class Activity:
         elif t1 > endDate:
             t1 = endDate
 
+        if self.duration.days < 0:
+            print("Warning: negative duration:"
+                  f"{self.descrip:50s}  {str(self.t0)[:10]}  {str(self.t0 + self.duration)[:10]}",
+                  file=sys.stderr)
+            t1, t0 = t0, t1
+
         y0 = self.height*(1.1*(self.row - self.drow))
         x = t0 + (t1 - t0)*np.array([0, 1, 1, 0])
         y = y0 + (1 + 1.1*(nrow - 1))*self.height*np.array([0, 0, 1, 1])
