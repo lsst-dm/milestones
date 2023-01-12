@@ -119,7 +119,13 @@ def process_milestones(milestones):
     celebrations = []
 
     for ms in milestones:
-        summarychart, code, start, due = ms.summarychart, ms.code, ms.start, ms.due
+        summarychart, code, start, due = ms.summarychart, ms.code, ms.start, ms.fdue
+        if ms.due is not None and start is not None and due < start and ms.due >= start:
+            if False:
+                print("Warning: "
+                      f"{ms.code} has fdue = {ms.fdue} before start = {ms.start}, "
+                      f"but due = {ms.due} is later", file=sys.stderr)
+            due = ms.due
 
         celebrate = False
         if ms.summarychart:
@@ -148,6 +154,11 @@ def process_milestones(milestones):
 
             celebrations.append((ms.name, due))
             continue
+
+        if True:
+            if start > due:
+                print(f"Warning: {ms.code:15s}  {ms.summarychart:40s} {start} {due} "
+                      f": {ms.start} v. {ms.fdue}")
 
         if '.' not in summarychart:
             summarychart = f"{summarychart}.{summarychart}"
