@@ -18,7 +18,7 @@ today_height = 0.5                      # height of today's label; fraction of y
 #
 categoryNrow = dict(
     AuxTel=(4, 0),
-    Calibration=17,
+    Calibration=23,
     ComCam=13,
     Commissioning=15,
     Dome=(3, 0),
