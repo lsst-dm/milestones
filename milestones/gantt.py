@@ -48,7 +48,7 @@ GANTT_PREAMBLE_STANDALONE = """
 \\documentclass{article}
 \\usepackage[
     paperwidth=36cm,
-    paperheight=26cm,  % Manually tweaked to fit chart
+    paperheight=27cm,  % Manually tweaked to fit chart
     left=0mm,
     top=0mm,
     bottom=0mm,
