@@ -1,4 +1,5 @@
 from .burndown import *
+from .report import *
 from .blockschedule import *
 from .csv import *
 from .celeb import *

@@ -1,5 +1,11 @@
 VENVDIR = venv
 
+report.csv: venv
+	@( \
+		source $(VENVDIR)/bin/activate; \
+		python milestones.py report --output report.csv --prefix "SIT COM SUM" --months 2\
+	)
+
 blockschedule.pdf: venv
 	@( \
 		source $(VENVDIR)/bin/activate; \

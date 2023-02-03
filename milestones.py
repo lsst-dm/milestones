@@ -147,6 +147,28 @@ def parse_args():
                                action='store_true', default=False)
     blockschedule.set_defaults(func=milestones.blockschedule)
 
+    #  K. Reil report for schedule
+    report = subparsers.add_parser(
+        "report", help="Generate report with slipage  of the schedule per milestone."
+    )
+    report.add_argument("--output", help="Filename for output", default="report.csv")
+    report.add_argument(
+        "--prefix", help="List of prefixes for report milestones.",
+        default="SIT COM SUM"
+    )
+    report.add_argument(
+        "--months", help="Specify number of months prior to use as 3rd date",
+        type=int, default=2
+    )
+    report.add_argument(
+        "--start-date", type=datetime.fromisoformat, default=burndown_start,
+        help=(
+            f"Start date for the miletones report (YYYY-MM-DD); "
+            f"default={burndown_start}."
+        )
+    )
+    report.set_defaults(func=milestones.report)
+
     args = parser.parse_args()
 
     log_levels = [logging.WARN, logging.INFO, logging.DEBUG, logging.NOTSET]
