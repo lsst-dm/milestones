@@ -37,7 +37,8 @@ def report(args, milestones):
         lmdue = lmmap[ms.code]
         if lmdue is None:  # may be new with no prior
             lmdue = ms.fdue
-        print(f"{ms.code},{ms.fdue.date()},{lmdue.date()},{(ms.fdue-lmdue).days},"
+        print(f"{ms.code},{ms.name},"
+              f"{ms.fdue.date()},{lmdue.date()},{(ms.fdue-lmdue).days},"
               f"{ms.f2due.date()},{(ms.fdue-ms.f2due).days}", file=out)
 
     out.close()
