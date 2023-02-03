@@ -153,7 +153,7 @@ def parse_args():
     )
     report.add_argument("--output", help="Filename for output", default="report.csv")
     report.add_argument(
-        "--prefix", help="List of prefixes for burndown milestones.",
+        "--prefix", help="List of prefixes for report milestones.",
         default="SIT COM SUM"
     )
     report.add_argument(
