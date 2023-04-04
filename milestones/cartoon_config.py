@@ -18,13 +18,13 @@ today_height = 0.5                      # height of today's label; fraction of y
 #
 categoryNrow = dict(
     AuxTel=(4, 0),
-    Calibration=23,
+    Calibration=27,
     ComCam=13,
     Commissioning=15,
     Dome=(3, 0),
-    LSSTCam=27,
-    M1M3=30,
-    M2=30,
+    LSSTCam=29,
+    M1M3=31,
+    M2=28,
     Refrigeration_PathFinder=(8, 0),
     TMA_Verification=(2, 0),
 )
@@ -44,7 +44,8 @@ specials = {
 categoryGrouping = [
     ("Dome",),
     ("Calibration", "TMA_Verification",),
-    ("M1M3", "M2", "Commissioning",),
+    ("M1M3",),
+    ("M2", "Commissioning",),
     ("ComCam",),
     ("Refrigeration_PathFinder",),
     ("LSSTCam",),
