@@ -110,7 +110,7 @@ The Excel sheet is generated from within Primavera as follows:
 #. Select “Spreadsheet - (XLS)” and hit “Next”.
 #. Select “Activities” and “Activity Relationships” and hit “Next”.
 #. Select the open project, and hit “Next”.
-#. Select template “All Milestones” and hit “Next”.
+#. Select template “All Milestones and Tasks” and hit “Next” (its near the very end of the list).
 #. Review the name of the file to be exported, and hit “Next”.
 #. Hit “Finish”.
 #. Commit the file to the ``data/pmcs`` directory of this repository.
