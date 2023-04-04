@@ -141,6 +141,7 @@ Then execute ``python milestones.py --help`` for a listing of available function
   Output targets:
     {gantt,burndown,csv,jira,delayed,predecessors,graph}
       gantt               Generate Gantt chart.
+      blockschedule       Generate a "cartoon" of the activities and milestones
       burndown            Generate milestone burndown chart.
       csv                 Generate a CSV version of the milestone schedule.
       jira                Sync milestone details to Jira.
@@ -172,6 +173,10 @@ Each target has its own ``--help`` option which describes any target-specific op
 Hence to produce the SITCOM type burn down we use::
 
   $  python milestones.py burndown --prefix "SIT COM SUM" --output SIT-COM-SUMburndown.png
+
+or to produce a blockschedule:
+
+  $ python milestones.py --pmcs-data PMCS.xml blockschedule --start-date 2023-01-01 --end-date 2026-01-01 --legend-location "lower right"
 
 
 GitHub Artifacts
