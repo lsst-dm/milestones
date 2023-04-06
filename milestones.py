@@ -143,6 +143,8 @@ def parse_args():
                                help="Ending date for cartoon (ISO 8601 format)")
     blockschedule.add_argument("--fontsize",
                                help="Fontsize for activities", type=int, default=5)
+    blockschedule.add_argument("--legend-location", default=None,
+                               help="Location for legend, overrides config file")
     blockschedule.add_argument("--show-weeks", help="Show week boundaries",
                                action='store_true', default=False)
     blockschedule.set_defaults(func=milestones.blockschedule)

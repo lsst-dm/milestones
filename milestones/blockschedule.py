@@ -25,7 +25,8 @@ def blockschedule(args, milestones):
                     title=os.path.split(args.pmcs_data)[1], today_height=today_height,
                     show_weeks=args.show_weeks, startDate=args.start_date, endDate=args.end_date)
 
-    add_legend(categoryColors, blocks, categoryGrouping, legend_location=legend_location)
+    add_legend(categoryColors, blocks, categoryGrouping,
+               legend_location=args.legend_location if args.legend_location else legend_location)
 
     plt.savefig(args.output)
 

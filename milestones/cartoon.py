@@ -465,6 +465,7 @@ def show_activities(activities, height=0.1, fontsize=7,
                  rotation='vertical', ha='right', transform=myTrans)
 
     plt.grid(axis='x')
+    plt.xlim(startDate, endDate if endDate < datetime.fromisoformat("2058-02-05") else None)
 
     if not show_time_axis:
         plt.xticks(ticks=[], labels=[])
