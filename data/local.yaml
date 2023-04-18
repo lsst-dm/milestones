@@ -1120,3 +1120,14 @@ LDM-503-19:
   jira: DM-38749
   jira_testplan: DM-38748
   test_spec: ''
+LDM-503-18q:
+  description: 'This milestone represents the point at which Qserv completes construction
+     and enters full operation and maintenance. A testplan should be executed showing the requirements are verified.'
+  jira: DM-38759
+  jira_testplan: DM-38758
+  test_spec: ''
+LDM-503-NET:
+  description: 'Network verified'
+  jira:
+  jira_testplan:
+  test_spec: 'LDM-732'
