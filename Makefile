@@ -2,25 +2,25 @@ VENVDIR = venv
 
 report.csv: venv
 	@( \
-		source $(VENVDIR)/bin/activate; \
+		. $(VENVDIR)/bin/activate; \
 		python milestones.py report --output report.csv --prefix "SIT COM SUM" --months 2\
 	)
 
 blockschedule.pdf: venv
 	@( \
-		source $(VENVDIR)/bin/activate; \
+		. $(VENVDIR)/bin/activate; \
 		python milestones.py blockschedule --start-date -20 \
 	)
 
 burndown.png: venv
 	( \
-		source $(VENVDIR)/bin/activate; \
+		. $(VENVDIR)/bin/activate; \
 		python milestones.py  burndown; \
 	)
 
 gantt.pdf: venv
 	( \
-		source $(VENVDIR)/bin/activate; \
+		. $(VENVDIR)/bin/activate; \
 		python milestones.py gantt --output=gantt.tex; \
 		xelatex gantt.tex; \
 		xelatex gantt.tex; \
@@ -30,13 +30,13 @@ gantt.pdf: venv
 venv:
 	python -m venv $(VENVDIR)
 	( \
-		source $(VENVDIR)/bin/activate; \
+		. $(VENVDIR)/bin/activate; \
 		pip install -r requirements.txt; \
 	)
 
 milestones.csv: venv
 	( \
-		source $(VENVDIR)/bin/activate; \
+		. $(VENVDIR)/bin/activate; \
 		python milestones.py csv; \
 	)
 
@@ -49,7 +49,7 @@ celeb: venv
 .PHONY: jira
 jira: venv
 	( \
-		source $(VENVDIR)/bin/activate; \
+		. $(VENVDIR)/bin/activate; \
 		python milestones.py jira; \
 	)
 

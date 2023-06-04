@@ -34,7 +34,8 @@ def report(args, milestones):
 
     print("Code, Forecast end, Last Month, delta1 ,  2 Month, delta2", file=out)
     for ms in milestones:
-        lmdue = lmmap[ms.code]
+        if ms.code in lmmap:
+            lmdue = lmmap[ms.code]
         if lmdue is None:  # may be new with no prior
             lmdue = ms.fdue
         print(f"{ms.code},{ms.name},"
