@@ -169,7 +169,6 @@ DM-AP-17:
     \ available for integration into science payloads. These components must provide\
     \ realistic interfaces, data-flows and products, but it is expected that the details\
     \ of the algorithms will undergo continued refinement."
-  name: Solar System Processing pipeline available.
 DM-AP-18:
   description: The AP Pipeline is now capable of generating per-DIASource alert packets,
     which comply with the current version of the LSST alert schema. This milestone
