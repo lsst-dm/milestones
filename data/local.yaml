@@ -161,8 +161,9 @@ DM-AP-16:
     \ refinement."
   name: Full integration of the Alert Production system within the operational environment.
 DM-AP-17:
+  name:  Solar System Processing pipeline (SSP) available
   aka:
-  - MOPS
+  - SSP
   description: "All of the algorithmic components which comprise the Solar System\
     \ Processing (SSP) pipeline, as described in LDM-151 \xA7\xA76.25\u20136.28, are\
     \ available for integration into science payloads. These components must provide\
