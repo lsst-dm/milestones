@@ -162,13 +162,13 @@ DM-AP-16:
   name: Full integration of the Alert Production system within the operational environment.
 DM-AP-17:
   aka:
-  - MOPS
+  - SSP
+  name: Solar System Processing pipeline (SSP) available.
   description: "All of the algorithmic components which comprise the Solar System\
     \ Processing (SSP) pipeline, as described in LDM-151 \xA7\xA76.25\u20136.28, are\
     \ available for integration into science payloads. These components must provide\
     \ realistic interfaces, data-flows and products, but it is expected that the details\
     \ of the algorithms will undergo continued refinement."
-  name: Solar System Processing pipeline available.
 DM-AP-18:
   description: The AP Pipeline is now capable of generating per-DIASource alert packets,
     which comply with the current version of the LSST alert schema. This milestone
