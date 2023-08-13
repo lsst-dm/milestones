@@ -47,8 +47,8 @@ GANTT_POSTAMBLE_EMBEDDED = """
 GANTT_PREAMBLE_STANDALONE = """
 \\documentclass{article}
 \\usepackage[
-    paperwidth=36cm,
-    paperheight=27cm,  % Manually tweaked to fit chart
+    paperwidth=37cm,
+    paperheight=28cm,  % Manually tweaked to fit chart
     left=0mm,
     top=0mm,
     bottom=0mm,
@@ -71,10 +71,11 @@ GANTT_PREAMBLE_STANDALONE = """
     milestone progress label font=\\sffamily,
     y unit chart=0.55cm,
     y unit title=0.8cm
-]{1}{114}
+]{1}{126}
   \\gantttitle{}{6} \\gantttitle{2018}{12} \\gantttitle{2019}{12}
   \\gantttitle{2020}{12} \\gantttitle{2021}{12} \\gantttitle{2022}{12}
-  \\gantttitle{2023}{12} \\gantttitle{2024}{12} \\gantttitle{Operations}{24} \\
+  \\gantttitle{2023}{12} \\gantttitle{2024}{12} \\gantttitle{2025}{12}
+  \\gantttitle{Operations}{24} \\
   \\ganttnewline\n
 """
 
