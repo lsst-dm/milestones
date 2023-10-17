@@ -1134,3 +1134,5 @@ LDM-503-NET:
   test_spec: 'LDM-732'
 SUMMIT-Oct24-160:
   name: "ComCam Reinstalled on TMA"
+SUMMIT-Oct24-110:
+  summarychart: "ComCam.ComCam on Sky"
