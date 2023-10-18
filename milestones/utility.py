@@ -172,6 +172,7 @@ def load_milestones(pmcs_filename, local_data_filename, load_tasks=False):
                 "test_spec",
                 "jira",
                 "jira_testplan",
+                "summarychart",
             ]:
                 if attribute in local[ms.code]:
                     logger.info(f"Setting {attribute} on {ms.code}")

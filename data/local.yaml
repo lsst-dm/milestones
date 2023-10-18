@@ -1132,3 +1132,7 @@ LDM-503-NET:
   jira:
   jira_testplan: 'IT-3681'
   test_spec: 'LDM-732'
+SUMMIT-Oct24-160:
+  name: "ComCam Reinstalled on TMA"
+SUMMIT-Oct24-110:
+  summarychart: "ComCam.ComCam on Sky"
