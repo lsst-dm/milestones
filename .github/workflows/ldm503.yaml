@@ -16,7 +16,7 @@ jobs:
       - name: Check out LFS files
         run: |
           git lfs install
-          git config -f .lfsconfig lfs.url https://git-lfs.lsst.codes
+          git config -f .lfsconfig lfs.url https://git-lfs.lsst.cloud/lsst-dm/milestones
           git lfs pull
       - uses: actions/setup-python@v2
         with:
