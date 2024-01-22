@@ -206,7 +206,7 @@ def generate_doc(args, milestones):
 
     milestones = sorted(milestones, key=lambda ms: ms.fdue)
 
-    doc = ReSTDocument(options={"tocdepth": 0})
+    doc = ReSTDocument()
     with doc.section("Provenance") as my_section:
         with my_section.paragraph() as p:
             sha, timestamp, p6_date = get_version_info(args.pmcs_data)
