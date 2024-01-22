@@ -1004,11 +1004,12 @@ LDM-503-15a:
   jira_testplan: DM-17136
   test_spec: 'DMTR-231'
 LDM-503-16:
+  name: 'Ops rehearsal for data processing #3'
   description: This milestone builds upon LDM-503-15 to demonstrate the production
-    of a complete data release under simulated operational conditions.
+    of prompt products over several nights.
   jira: DM-17139
   jira_testplan: DM-17138
-  short_name: 'Ops Rehearsal for DRP #3'
+  short_name: 'Ops Rehearsal for processing #3'
   test_spec: ''
 LDM-503-16a:
   description: This milestone describes a software release of the LSST Science Pipelines
