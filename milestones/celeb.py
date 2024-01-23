@@ -1,8 +1,9 @@
+import re
 from io import StringIO
 from .utility import get_version_info, write_output, load_milestones, get_pmcs_path_months
 from contextlib import contextmanager
 import textwrap
-
+import calendar
 
 from abc import ABC, abstractmethod
 
@@ -194,10 +195,12 @@ def generate_doc(args, milestones):
     # pullout celebratory milestones - only Top or Y are the values
     comp_milestones = None
     months = args.months
+    comp_ym = []
     if args.pmcs_comp is not None:
         if months > 0:
             print (f"Ignoring months argument ({months}) since pmcs_comp is set ({args.pmcs_comp})")
         comp_milestones = load_milestones(args.pmcs_comp, args.local_data)
+        comp_ym = re.findall(r'\(d{4}d{2}-', args.pmcs_comp)
     else:
         if months > 0:
             comp_milestones = load_milestones(get_pmcs_path_months(args.pmcs_data, months), args.local_data)
@@ -228,8 +231,18 @@ def generate_doc(args, milestones):
                 f"controls system for {p6_date.strftime('%B %Y')}."
             )
             if (comp_milestones):
+                if months > 0:
+                    yr = p6_date.strftime('%Y')
+                    mo = int(p6_date.strftime('%m')) - months
+                    if mo < 1:
+                        mo = 12 + mo
+                        yr = int(yr) - 1
+                    if mo > 12:
+                        mo = mo - 12
+                        yr = int(yr) + 1
+                    comp_ym = [yr, calendar.month_name[mo]]
                 p.write_line(
-                    f"This compares {args.pmcs_comp} to {args.pmcs_data}."
+                    f"This compares {comp_ym[1]} {comp_ym[0]} data to {p6_date.strftime('%B %Y')}."
                 )
 
     with doc.section("Top milestones") as my_section:
