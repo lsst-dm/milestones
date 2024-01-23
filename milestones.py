@@ -31,6 +31,10 @@ def parse_args():
     celeb = subparsers.add_parser("celeb", help="Generate celebratory milestones.")
     celeb.add_argument("--output", help="Filename for output", default="milestones.rst")
     celeb.add_argument("--pmcs-comp", help="Filename for PMCS compare")
+    celeb.add_argument("--months", help="Specify number of months prior to use as forecast",
+        type=int, default=0
+    )
+
     celeb.add_argument("--inc", help="Top or Y", default="Top")
     celeb.set_defaults(func=milestones.celeb)
 

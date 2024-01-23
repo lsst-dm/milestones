@@ -43,7 +43,7 @@ milestones.csv: venv
 celeb: venv
 	( \
 		. $(VENVDIR)/bin/activate; \
-		python milestones.py  celeb --inc=Y; \
+		python milestones.py  celeb --inc=Y --pmcs-comp=202310-ME.xls; \
 	)
 
 .PHONY: jira

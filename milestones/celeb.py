@@ -1,5 +1,5 @@
 from io import StringIO
-from .utility import get_version_info, write_output, load_milestones
+from .utility import get_version_info, write_output, load_milestones, get_pmcs_path_months
 from contextlib import contextmanager
 import textwrap
 
@@ -193,8 +193,14 @@ def write_list(my_section, milestones, comp_milestones):
 def generate_doc(args, milestones):
     # pullout celebratory milestones - only Top or Y are the values
     comp_milestones = None
+    months = args.months
     if args.pmcs_comp is not None:
+        if months > 0:
+            print (f"Ignoring months argument ({months}) since pmcs_comp is set ({args.pmcs_comp})")
         comp_milestones = load_milestones(args.pmcs_comp, args.local_data)
+    else:
+        if months > 0:
+            comp_milestones = load_milestones(get_pmcs_path_months(args.pmcs_data, months), args.local_data)
 
     inc = args.inc
 
