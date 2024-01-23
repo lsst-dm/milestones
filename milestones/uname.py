@@ -9,11 +9,11 @@ def get_login_cli(service="jira_rest", username=None, prompt=False):
     """
 
     if username is None or prompt:
-        username = input('Jira Username: ')
+        username = input("Jira Username: ")
 
     passwd = keyring.get_password(service, username)
     if passwd is None or prompt:
-        passwd = input('Enter Password: ')
+        passwd = input("Enter Password: ")
         set_password(service, username, passwd)
 
     return (username, passwd)

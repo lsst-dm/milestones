@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import Set, Optional
+from typing import Optional, Set
 
 __all__ = ["Milestone"]
 

@@ -1,9 +1,10 @@
-import numpy
-import sys
-import re
-import xlrd
-from datetime import datetime
 import logging
+import re
+import sys
+from datetime import datetime
+
+import numpy
+import xlrd
 
 from .milestone import Milestone
 
@@ -102,11 +103,11 @@ def extract_task_details(task_sheet, load_tasks):
 
         start = due = fdue = None
 
-        if (start_date):
+        if start_date:
             start = extract_date(start_date)
-        if (base_end_date):
+        if base_end_date:
             due = extract_date(base_end_date)
-        if (end_date):
+        if end_date:
             fdue = extract_date(end_date)
 
         if not due and fdue:
@@ -128,13 +129,26 @@ def extract_task_details(task_sheet, load_tasks):
                 raise ValueError(f"{code} is completed with no date")
 
         wbs = extract_wbs(fetcher("wbs_id", task_sheet.row(rownum)))
-        celebrate = fetcher("actv_code_celebratory_achievements_id",
-                            task_sheet.row(rownum))
-        summarychart = fetcher("actv_code_summary_chart_id",
-                               task_sheet.row(rownum))
+        celebrate = fetcher(
+            "actv_code_celebratory_achievements_id", task_sheet.row(rownum)
+        )
+        summarychart = fetcher("actv_code_summary_chart_id", task_sheet.row(rownum))
 
-        milestones.append(Milestone(code, tasktype, name, wbs, level, due, fdue,
-                                    start, completed, celebrate, summarychart))
+        milestones.append(
+            Milestone(
+                code,
+                tasktype,
+                name,
+                wbs,
+                level,
+                due,
+                fdue,
+                start,
+                completed,
+                celebrate,
+                summarychart,
+            )
+        )
 
     return milestones
 

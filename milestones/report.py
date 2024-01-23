@@ -1,5 +1,5 @@
-from .utility import get_pmcs_path_months
 from .excel import load_pmcs_excel
+from .utility import get_pmcs_path_months
 
 __all__ = ["report"]
 
@@ -9,10 +9,12 @@ def report(args, milestones):
     # and n months prior due date
     start_date = args.start_date
     prefixes = args.prefix.split()
-    out = open(args.output, 'w')
+    out = open(args.output, "w")
 
-    print(f"Report for milestones starting with {prefixes} using last "
-          f"{args.months} month prior forecast")
+    print(
+        f"Report for milestones starting with {prefixes} using last "
+        f"{args.months} month prior forecast"
+    )
 
     # The milestones will have loaded the 2 month already we need to get the 1 month
     fpath = get_pmcs_path_months(args.pmcs_data, 1)
@@ -38,8 +40,11 @@ def report(args, milestones):
             lmdue = lmmap[ms.code]
         if lmdue is None:  # may be new with no prior
             lmdue = ms.fdue
-        print(f"{ms.code},{ms.name},"
-              f"{ms.fdue.date()},{lmdue.date()},{(ms.fdue-lmdue).days},"
-              f"{ms.f2due.date()},{(ms.fdue-ms.f2due).days}", file=out)
+        print(
+            f"{ms.code},{ms.name},"
+            f"{ms.fdue.date()},{lmdue.date()},{(ms.fdue-lmdue).days},"
+            f"{ms.f2due.date()},{(ms.fdue-ms.f2due).days}",
+            file=out,
+        )
 
     out.close()

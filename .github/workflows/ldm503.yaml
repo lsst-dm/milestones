@@ -9,36 +9,38 @@ on:
             - main
 
 jobs:
-  ldm-503-test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Check out LFS files
-        run: |
-          git lfs install
-          git config -f .lfsconfig lfs.url https://git-lfs.lsst.cloud/lsst-dm/milestones
-          git lfs pull
-      - uses: actions/setup-python@v2
-        with:
-          python-version: 3.9
+    ldm-503-test:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - name: Check out LFS files
+              run: |
+                git lfs install
+                git config -f .lfsconfig lfs.url https://git-lfs.lsst.cloud/lsst-dm/milestones
+                git lfs pull
+            - uses: actions/setup-python@v2
+              with:
+                  python-version: 3.9
 
-      - name: Check out LDM-503 source
-        run: GIT_LFS_SKIP_SMUDGE=1 git clone --depth 1 --recurse-submodules --shallow-submodules https://github.com/lsst/ldm-503.git
+            - name: Check out LDM-503 source
+              run: >
+                GIT_LFS_SKIP_SMUDGE=1 git clone --depth 1 --recurse-submodules
+                --shallow-submodules https://github.com/lsst/ldm-503.git
 
-      - name: Replace LDM-503 milestones submodule
-        run: |
-          rm -rf milestones
-          ln -s .. ./milestones
-          make generated
-        working-directory: ./ldm-503
+            - name: Replace LDM-503 milestones submodule
+              run: |
+                rm -rf milestones
+                ln -s .. ./milestones
+                make generated
+              working-directory: ./ldm-503
 
-      - name: Build LDM-503 docker
-        run: |
-          docker run --rm -v `pwd`:/workspace -w /workspace lsstsqre/lsst-texmf:latest sh -c 'make'
+            - name: Build LDM-503 docker
+              run: |
+                docker run --rm -v `pwd`:/workspace -w /workspace lsstsqre/lsst-texmf:latest sh -c 'make'
 
 
-      - name: Upload resulting document as artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: LDM-503 PDF
-          path: ./ldm-503/LDM-503.pdf
+            - name: Upload resulting document as artifact
+              uses: actions/upload-artifact@v2
+              with:
+                  name: LDM-503 PDF
+                  path: ./ldm-503/LDM-503.pdf

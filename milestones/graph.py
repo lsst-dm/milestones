@@ -1,6 +1,5 @@
 import html
 import textwrap
-
 from datetime import datetime
 from io import StringIO
 

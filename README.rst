@@ -188,4 +188,4 @@ GitHub Artifacts
 On push to this repository, some of the artifacts produced by the ``milestone.py`` script are automatically compiled and made available for download.
 These are available from the `Generate Artifacts workflow <https://github.com/lsst-dm/milestones/actions?query=workflow%3A%22Generate+artifacts%22>`_; choose the latest run on the branch you are interested in.
 
-All of the documents with PRs made by this action now have Auto-Merge enabled hence they all update when a change is pushed to this milestones repo. 
+All of the documents with PRs made by this action now have Auto-Merge enabled hence they all update when a change is pushed to this milestones repo.
