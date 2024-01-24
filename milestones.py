@@ -32,9 +32,14 @@ def parse_args():
     celeb.add_argument("--pmcs-comp", help="Filename for PMCS compare")
     celeb.add_argument(
         "--months",
-        help="Specify number of months prior to use as forecast",
+        help="Specify number of months prior to use for comparison",
         type=int,
         default=0,
+    )
+    celeb.add_argument(
+        "--table",
+        help="Generate table for milestones not bullet list",
+        action="store_true",
     )
 
     celeb.add_argument("--inc", help="Top or Y", default="Top")

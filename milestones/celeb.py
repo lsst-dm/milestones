@@ -75,8 +75,32 @@ class BulletList(TextAccumulator):
 BulletListItem = add_context("bullet_list", BulletList)(BulletListItem)
 
 
+class TableRow(TextAccumulator):
+    def write_col(self, line):
+        self._buffer.write(f"- {line}\n")
+
+    def get_result(self):
+        line_start = "   *"
+        indented_result = textwrap.indent(
+            self._buffer.getvalue(), " " * (len(line_start) + 1)
+        )
+        return line_start + indented_result[len(line_start) :]
+
+
+@add_context("row", TableRow)
+class Table(TextAccumulator):
+    def get_result(self):
+        head = ".. list-table::\n   :header-rows: 1"
+        return f"{head}\n\n{super().get_result()}\n\n"
+
+
+# Can't reference Table before it is defined
+TableRow = add_context("table", Table)(TableRow)
+
+
 @add_context("paragraph", Paragraph)
 @add_context("bullet_list", BulletList)
+@add_context("table", Table)
 class Section(TextAccumulator):
     def __init__(self, level, title, anchor=None):
         super().__init__()
@@ -96,6 +120,7 @@ Section = add_context("section", Section, needs_level=True)(Section)
 @add_context("paragraph", Paragraph)
 @add_context("section", Section, needs_level=True)
 @add_context("bullet_list", BulletList)
+@add_context("table", Table)
 class ReSTDocument(TextAccumulator):
     def __init__(self, title="Celebratory Milestones", subtitle=None, options=None):
         super().__init__()
@@ -173,6 +198,34 @@ def find_comp(comps, code):
         if m.code == code:
             comp = m
     return comp
+
+
+def write_row(b, code, name, due, comp):
+    b.write_col(code)
+    b.write_col(name)
+    b.write_col(due)
+    b.write_col(comp)
+
+
+def write_table(my_section, milestones, comp_milestones):
+    # uses fdue - forecast date
+    with my_section.table() as my_table:
+        with my_table.row() as my_row:
+            write_row(my_row, "Code", "Name", "Due", "Previously")
+        for ms in milestones:
+            with my_table.row() as my_row:
+                completed = ""
+                if ms.completed:
+                    completed = "**Completed**"
+                else:
+                    if comp_milestones:
+                        cm = find_comp(comp_milestones, ms.code)
+                        if cm:
+                            completed = f"{cm.fdue.strftime('%Y-%m-%d')}"
+
+                write_row(
+                    my_row, ms.code, ms.name, ms.fdue.strftime("%Y-%m-%d"), completed
+                )
 
 
 def write_list(my_section, milestones, comp_milestones):
@@ -261,7 +314,10 @@ def generate_doc(args, milestones):
     with doc.section("Top milestones") as my_section:
         top_milestones = [ms for ms in milestones if ms.celebrate == "Top"]
         write_html(top_milestones, args.pmcs_data)
-        write_list(my_section, top_milestones, comp_milestones)
+        if args.table:
+            write_table(my_section, top_milestones, comp_milestones)
+        else:
+            write_list(my_section, top_milestones, comp_milestones)
         with my_section.paragraph() as p:
             p.write_line(
                 "A public HTML version for embedding is "
@@ -271,7 +327,10 @@ def generate_doc(args, milestones):
     if "Y" == inc:
         with doc.section("Supporting milestones") as my_section:
             o_milestones = [ms for ms in milestones if ms.celebrate == "Y"]
-            write_list(my_section, o_milestones, comp_milestones)
+            if args.table:
+                write_table(my_section, o_milestones, comp_milestones)
+            else:
+                write_list(my_section, o_milestones, comp_milestones)
 
     return doc.get_result()
 
