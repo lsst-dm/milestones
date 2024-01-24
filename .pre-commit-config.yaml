@@ -4,7 +4,6 @@ repos:
     hooks:
       - id: trailing-whitespace
       - id: check-yaml
-        exclude: 'recipe/meta.yaml'
       - id: check-toml
 
   - repo: https://github.com/PyCQA/isort

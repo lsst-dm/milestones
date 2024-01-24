@@ -1,7 +1,6 @@
 extends: default
 
 ignore: |
-    /.github/workflows/ldm564.yaml
 
 rules:
   document-start: {present: false}
