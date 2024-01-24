@@ -94,6 +94,9 @@ def parse_args():
     csv.set_defaults(func=milestones.csv)
 
     jira = subparsers.add_parser("jira", help="Sync milestone details to Jira.")
+    jira.add_argument(
+        "--prompt", help="Prompt for username/password for jira.", action="store_true"
+    )
     jira.set_defaults(func=milestones.cjira)
 
     remaining = subparsers.add_parser(

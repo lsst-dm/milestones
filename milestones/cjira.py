@@ -1,5 +1,4 @@
 from datetime import timedelta
-from os import environ
 
 from jira import JIRA
 
@@ -32,10 +31,7 @@ def get_jira(username=None, prompt=False):
         Password will be looked up from key chain.
     :String username: Optionally pass the username (prompted othereise)
     """
-    user, pw = environ["JIRA_USER"], environ["JIRA_PW"]
-    if not user or not pw:
-        user, pw = get_login_cli(username=username, prompt=prompt)
-    print("Jira user:" + user)
+    user, pw = get_login_cli(username=username, prompt=prompt)
     ep = "https://jira.lsstcorp.org"
     return (user, pw, JIRA(server=ep, basic_auth=(user, pw)))
 
@@ -74,7 +70,7 @@ def set_jira_due_date(id, due_date, jira=None, issue=None):
 
 
 def cjira(args, milestones):
-    my_jira = get_jira()[2]
+    my_jira = get_jira(prompt=args.prompt)[2]
     for ms in milestones:
         if ms.jira and ms.due:
             set_jira_due_date(ms.jira, ms.due, my_jira)
