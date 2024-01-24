@@ -97,7 +97,7 @@ Section = add_context("section", Section, needs_level=True)(Section)
 @add_context("section", Section, needs_level=True)
 @add_context("bullet_list", BulletList)
 class ReSTDocument(TextAccumulator):
-    def __init__(self, title=None, subtitle=None, options=None):
+    def __init__(self, title="Celebratory Milestones", subtitle=None, options=None):
         super().__init__()
         if title:
             self._buffer.write(underline(title, HEADING_CHARS[0], True) + "\n")
@@ -227,7 +227,7 @@ def generate_doc(args, milestones):
 
     milestones = sorted(milestones, key=lambda ms: ms.fdue)
 
-    doc = ReSTDocument(options={"tocdepth": 0})
+    doc = ReSTDocument()
     with doc.section("Provenance") as my_section:
         with my_section.paragraph() as p:
             sha, timestamp, p6_date = get_version_info(args.pmcs_data)
