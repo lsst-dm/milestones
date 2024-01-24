@@ -1,7 +1,6 @@
 import argparse
 import logging
 import sys
-
 from datetime import datetime
 
 import milestones
@@ -31,6 +30,18 @@ def parse_args():
     celeb = subparsers.add_parser("celeb", help="Generate celebratory milestones.")
     celeb.add_argument("--output", help="Filename for output", default="milestones.rst")
     celeb.add_argument("--pmcs-comp", help="Filename for PMCS compare")
+    celeb.add_argument(
+        "--months",
+        help="Specify number of months prior to use for comparison",
+        type=int,
+        default=0,
+    )
+    celeb.add_argument(
+        "--table",
+        help="Generate table for milestones not bullet list",
+        action="store_true",
+    )
+
     celeb.add_argument("--inc", help="Top or Y", default="Top")
     celeb.set_defaults(func=milestones.celeb)
 
@@ -67,12 +78,15 @@ def parse_args():
     )
     burndown.set_defaults(func=milestones.burndown)
     burndown.add_argument(
-        "--prefix", help="List of prefixes for burndown milestones.",
-        default="DM- DLP- LDM-503-"
+        "--prefix",
+        help="List of prefixes for burndown milestones.",
+        default="DM- DLP- LDM-503-",
     )
     burndown.add_argument(
-        "--months", help="Specify number of months prior to use as forecast",
-        type=int, default=0
+        "--months",
+        help="Specify number of months prior to use as forecast",
+        type=int,
+        default=0,
     )
 
     csv = subparsers.add_parser(
@@ -85,6 +99,9 @@ def parse_args():
     csv.set_defaults(func=milestones.csv)
 
     jira = subparsers.add_parser("jira", help="Sync milestone details to Jira.")
+    jira.add_argument(
+        "--prompt", help="Prompt for username/password for jira.", action="store_true"
+    )
     jira.set_defaults(func=milestones.cjira)
 
     remaining = subparsers.add_parser(
@@ -135,18 +152,26 @@ def parse_args():
     blockschedule = subparsers.add_parser(
         "blockschedule", help="Generate the cartoon of the schedule."
     )
-    blockschedule.add_argument("--output", help="Filename for output",
-                               default="blockschedule.pdf")
-    blockschedule.add_argument("--start-date",
-                               help="Starting date for cartoon (ISO 8601 format)")
-    blockschedule.add_argument("--end-date",
-                               help="Ending date for cartoon (ISO 8601 format)")
-    blockschedule.add_argument("--fontsize",
-                               help="Fontsize for activities", type=int, default=5)
-    blockschedule.add_argument("--legend-location", default=None,
-                               help="Location for legend, overrides config file")
-    blockschedule.add_argument("--show-weeks", help="Show week boundaries",
-                               action='store_true', default=False)
+    blockschedule.add_argument(
+        "--output", help="Filename for output", default="blockschedule.pdf"
+    )
+    blockschedule.add_argument(
+        "--start-date", help="Starting date for cartoon (ISO 8601 format)"
+    )
+    blockschedule.add_argument(
+        "--end-date", help="Ending date for cartoon (ISO 8601 format)"
+    )
+    blockschedule.add_argument(
+        "--fontsize", help="Fontsize for activities", type=int, default=5
+    )
+    blockschedule.add_argument(
+        "--legend-location",
+        default=None,
+        help="Location for legend, overrides config file",
+    )
+    blockschedule.add_argument(
+        "--show-weeks", help="Show week boundaries", action="store_true", default=False
+    )
     blockschedule.set_defaults(func=milestones.blockschedule)
 
     #  K. Reil report for schedule
@@ -155,19 +180,24 @@ def parse_args():
     )
     report.add_argument("--output", help="Filename for output", default="report.csv")
     report.add_argument(
-        "--prefix", help="List of prefixes for report milestones.",
-        default="SIT COM SUM"
+        "--prefix",
+        help="List of prefixes for report milestones.",
+        default="SIT COM SUM",
     )
     report.add_argument(
-        "--months", help="Specify number of months prior to use as 3rd date",
-        type=int, default=2
+        "--months",
+        help="Specify number of months prior to use as 3rd date",
+        type=int,
+        default=2,
     )
     report.add_argument(
-        "--start-date", type=datetime.fromisoformat, default=burndown_start,
+        "--start-date",
+        type=datetime.fromisoformat,
+        default=burndown_start,
         help=(
             f"Start date for the miletones report (YYYY-MM-DD); "
             f"default={burndown_start}."
-        )
+        ),
     )
     report.set_defaults(func=milestones.report)
 
@@ -184,10 +214,9 @@ def parse_args():
 
 if __name__ == "__main__":
     args = parse_args()
-    print("Working with "+args.pmcs_data)
-    load_tasks = (args.func == milestones.blockschedule)
-    milestones = milestones.load_milestones(args.pmcs_data, args.local_data,
-                                            load_tasks)
+    print("Working with " + args.pmcs_data)
+    load_tasks = args.func == milestones.blockschedule
+    milestones = milestones.load_milestones(args.pmcs_data, args.local_data, load_tasks)
     if "months" in args and args.months > 0:
         fpath = get_pmcs_path_months(args.pmcs_data, args.months)
         load_f2due_pmcs_excel(fpath, milestones)

@@ -13,8 +13,10 @@ def burndown(args, milestones):
 
     prefixes = args.prefix.split()
 
-    print(f"Burndown for milestones starting with {prefixes} using "
-          f"{args.months} prior forcast")
+    print(
+        f"Burndown for milestones starting with {prefixes} using "
+        f"{args.months} prior forcast"
+    )
 
     milestones = [
         ms
@@ -75,7 +77,7 @@ def burndown(args, milestones):
                 achieved_months[-1].year + 1,
                 1,
                 achieved_months[-1].day,
-                )
+            )
         )
     else:
         achieved_months.append(

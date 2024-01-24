@@ -4,13 +4,30 @@
 import os
 import sys
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
-from .cartoon import show_activities, add_legend, Activity, AdvanceRow, Milestone, Nrow, Rotation
-from .cartoon_config import \
-    categoryNrow, categoryColors, wrappedDescrip, categoryGrouping, specials, \
-    nRowOfMilestones, milestoneHeight, milestoneWidth, legend_location, today_height
+from .cartoon import (
+    Activity,
+    AdvanceRow,
+    Milestone,
+    Nrow,
+    Rotation,
+    add_legend,
+    show_activities,
+)
+from .cartoon_config import (
+    categoryColors,
+    categoryGrouping,
+    categoryNrow,
+    legend_location,
+    milestoneHeight,
+    milestoneWidth,
+    nRowOfMilestones,
+    specials,
+    today_height,
+    wrappedDescrip,
+)
 
 
 def blockschedule(args, milestones):
@@ -21,12 +38,26 @@ def blockschedule(args, milestones):
     blocks = create_blocks(activities, celebrations)
 
     plt.figure(figsize=(10, 8))
-    show_activities(blocks, height=1, fontsize=args.fontsize, show_today=True,
-                    title=os.path.split(args.pmcs_data)[1], today_height=today_height,
-                    show_weeks=args.show_weeks, startDate=args.start_date, endDate=args.end_date)
+    show_activities(
+        blocks,
+        height=1,
+        fontsize=args.fontsize,
+        show_today=True,
+        title=os.path.split(args.pmcs_data)[1],
+        today_height=today_height,
+        show_weeks=args.show_weeks,
+        startDate=args.start_date,
+        endDate=args.end_date,
+    )
 
-    add_legend(categoryColors, blocks, categoryGrouping,
-               legend_location=args.legend_location if args.legend_location else legend_location)
+    add_legend(
+        categoryColors,
+        blocks,
+        categoryGrouping,
+        legend_location=args.legend_location
+        if args.legend_location
+        else legend_location,
+    )
 
     plt.savefig(args.output)
 
@@ -54,8 +85,12 @@ def create_blocks(activities, celebrations):
         row += 1
 
         for descrip in sorted(activities[category]):
-            start = np.min([start for (code, start, due) in activities[category][descrip]])
-            due   = np.max([due   for (code, start, due) in activities[category][descrip]])  # noqa: E221,E272
+            start = np.min(
+                [start for (code, start, due) in activities[category][descrip]]
+            )
+            due = np.max(
+                [due for (code, start, due) in activities[category][descrip]]
+            )  # noqa: E221,E272
 
             if descrip in specials:
                 nrow, rot, nadvance = specials[descrip]
@@ -69,8 +104,16 @@ def create_blocks(activities, celebrations):
             if descrip[0] == '"' and descrip[-1] == '"':
                 descrip = descrip[1:-1]
 
-            blocks[category].append(Activity(descrip, start, due, color, border,
-                                             wrappedDescrip=wrappedDescrip.get(descrip)))
+            blocks[category].append(
+                Activity(
+                    descrip,
+                    start,
+                    due,
+                    color,
+                    border,
+                    wrappedDescrip=wrappedDescrip.get(descrip),
+                )
+            )
 
     #
     # Order/group according to categoryGrouping[]
@@ -106,7 +149,7 @@ def create_blocks(activities, celebrations):
     for i, ml in enumerate(milestones):
         ml.drow = i % nRowOfMilestones
 
-    milestones.append(AdvanceRow((nRowOfMilestones - 1)*milestoneHeight))
+    milestones.append(AdvanceRow((nRowOfMilestones - 1) * milestoneHeight))
 
     blocks = [milestones] + blocks
 
@@ -123,9 +166,12 @@ def process_milestones(milestones):
         summarychart, code, start, due = ms.summarychart, ms.code, ms.start, ms.fdue
         if ms.due and start and due and due < start and ms.due >= start:
             if True:
-                print("Warning: "
-                      f"{ms.code} has fdue = {ms.fdue} before start = {ms.start}, "
-                      f"but due = {ms.due} is later", file=sys.stderr)
+                print(
+                    "Warning: "
+                    f"{ms.code} has fdue = {ms.fdue} before start = {ms.start}, "
+                    f"but due = {ms.due} is later",
+                    file=sys.stderr,
+                )
             due = ms.due
 
         celebrate = False
@@ -139,7 +185,7 @@ def process_milestones(milestones):
         # handle dates, either of which may have been omitted
         #
         if start is None:
-            if due is None:             # HACK
+            if due is None:  # HACK
                 print(f"{ms} has no date field; skipping", file=sys.stderr)
                 continue
             else:
@@ -158,14 +204,16 @@ def process_milestones(milestones):
 
         if True:
             if start > due:
-                print(f"Warning: {ms.code:15s}  {ms.summarychart:40s} {start} {due} "
-                      f": {ms.start} v. {ms.fdue}")
+                print(
+                    f"Warning: {ms.code:15s}  {ms.summarychart:40s} {start} {due} "
+                    f": {ms.start} v. {ms.fdue}"
+                )
 
-        if '.' not in summarychart:
+        if "." not in summarychart:
             summarychart = f"{summarychart}.{summarychart}"
 
         category, descrip = summarychart.split(".")
-        category = category.replace(' ', '_')
+        category = category.replace(" ", "_")
 
         if "," in descrip:
             descrip = f'"{descrip}"'

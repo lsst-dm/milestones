@@ -1,24 +1,30 @@
-from datetime import datetime, timedelta
 import re
 import sys
 import textwrap
+from datetime import datetime, timedelta
 
-import numpy as np
-
-import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 import matplotlib.patches as patches
+import matplotlib.pyplot as plt
 import matplotlib.transforms as transforms
+import numpy as np
 
-
-__all__ = ["show_activities", "add_legend", "print_details",
-           "Activity", "Milestone", "AdvanceRow", "Nrow", "Rotation", ]
+__all__ = [
+    "show_activities",
+    "add_legend",
+    "print_details",
+    "Activity",
+    "Milestone",
+    "AdvanceRow",
+    "Nrow",
+    "Rotation",
+]
 
 
 class Activity:
     border = None
     color = None
-    nrow = 1                         # number of rows in an Activity
+    nrow = 1  # number of rows in an Activity
     markerWidth = 0
     fontsize = 8
     height = 0.3
@@ -27,8 +33,19 @@ class Activity:
 
     time = None
 
-    def __init__(self, descrip, t0, duration, color=None, border=None, markerWidth=0, rotation=0,
-                 drow=0, nrow=0, wrappedDescrip=None):
+    def __init__(
+        self,
+        descrip,
+        t0,
+        duration,
+        color=None,
+        border=None,
+        markerWidth=0,
+        rotation=0,
+        drow=0,
+        nrow=0,
+        wrappedDescrip=None,
+    ):
         """An activity to be carried out
         descrip: string description; will be wrapped based on a guess on available width
         t0: starting date as string (e.g. 1958-02-05)
@@ -42,7 +59,9 @@ class Activity:
         wrappedDescrip:  hand-line-wrapped version of descrip; usually None, which uses textwrap.fill
         """
         self.descrip = descrip
-        self.wrappedDescrip = wrappedDescrip   # hand-line-wrapped version of descrip; usually None
+        self.wrappedDescrip = (
+            wrappedDescrip  # hand-line-wrapped version of descrip; usually None
+        )
 
         if t0:
             if not isinstance(t0, datetime):
@@ -80,19 +99,28 @@ class Activity:
 
     def __str__(self):
         descrip = self.descrip
-        if ',' in descrip and descrip[0] != '"':
+        if "," in descrip and descrip[0] != '"':
             descrip = f'"{descrip}"'
 
         return f"Activity, {descrip}, {self.t0}, {self.t0 + self.duration}, {self._color}, {self._border}"
 
     def getData(self):
-        return [self.descrip, self.t0.strftime('%Y-%m-%d'), (self.t0 + self.duration).strftime('%Y-%m-%d'),
-                self._color, self._border, self._markerWidth, self.drow, ]
+        return [
+            self.descrip,
+            self.t0.strftime("%Y-%m-%d"),
+            (self.t0 + self.duration).strftime("%Y-%m-%d"),
+            self._color,
+            self._border,
+            self._markerWidth,
+            self.drow,
+        ]
 
     def getNrow(self):
         return self.nrow if self._nrow is None else self._nrow
 
-    def draw(self, totalDuration=0, startDate="1958-02-05", endDate="2099-12-31", **kwargs):
+    def draw(
+        self, totalDuration=0, startDate="1958-02-05", endDate="2099-12-31", **kwargs
+    ):
         kwargs = kwargs.copy()
         if "nrowTot" in kwargs:
             nrowTot = kwargs["nrowTot"]
@@ -125,14 +153,16 @@ class Activity:
             t1 = endDate
 
         if self.duration.days < 0:
-            print("Warning: negative duration:"
-                  f"{self.descrip:50s}  {str(self.t0)[:10]}  {str(self.t0 + self.duration)[:10]}",
-                  file=sys.stderr)
+            print(
+                "Warning: negative duration:"
+                f"{self.descrip:50s}  {str(self.t0)[:10]}  {str(self.t0 + self.duration)[:10]}",
+                file=sys.stderr,
+            )
             t1, t0 = t0, t1
 
-        y0 = self.height*(1.1*(self.row - self.drow))
-        x = t0 + (t1 - t0)*np.array([0, 1, 1, 0])
-        y = y0 + (1 + 1.1*(nrow - 1))*self.height*np.array([0, 0, 1, 1])
+        y0 = self.height * (1.1 * (self.row - self.drow))
+        x = t0 + (t1 - t0) * np.array([0, 1, 1, 0])
+        y = y0 + (1 + 1.1 * (nrow - 1)) * self.height * np.array([0, 0, 1, 1])
 
         fillkwargs = kwargs.copy()
         fillkwargs["closed"] = True
@@ -140,25 +170,27 @@ class Activity:
             fillkwargs["joinstyle"] = "round"
 
         if not (self.border is None and self._border is None):
-            fillkwargs["edgecolor"] = self.border if self._border is None else self._border
+            fillkwargs["edgecolor"] = (
+                self.border if self._border is None else self._border
+            )
 
-        plt.fill(x, y, '-', label=self.descrip, **fillkwargs)
+        plt.fill(x, y, "-", label=self.descrip, **fillkwargs)
 
         textwidth = 0
         fontsize = self.fontsize if self.fontsize else 10
         if rotation == 90:
-            width_pts = plt.gcf().get_size_inches()[1]*72
+            width_pts = plt.gcf().get_size_inches()[1] * 72
 
-            fiddleFactor = 1.5*width_pts/nrowTot
-            textwidth = int(fiddleFactor*nrow/fontsize) + 1
+            fiddleFactor = 1.5 * width_pts / nrowTot
+            textwidth = int(fiddleFactor * nrow / fontsize) + 1
         else:
             if totalDuration == 0:
                 fiddleFactor = 3
             else:
-                width_pts = plt.gcf().get_size_inches()[0]*72
-                fiddleFactor = width_pts/totalDuration.days
+                width_pts = plt.gcf().get_size_inches()[0] * 72
+                fiddleFactor = width_pts / totalDuration.days
 
-            textwidth = int(fiddleFactor*self.duration.days/fontsize) + 1
+            textwidth = int(fiddleFactor * self.duration.days / fontsize) + 1
 
         if self.wrappedDescrip is None:
             text = textwrap.fill(self.descrip, width=textwidth, break_long_words=False)
@@ -167,25 +199,47 @@ class Activity:
 
         if textwidth <= 0:
             textwidth = 10
-        plt.text(t0 + 0.5*(t1 - t0), 0.5*(y[1] + y[2]), text,
-                 rotation=rotation,
-                 horizontalalignment='center', verticalalignment='center',
-                 fontsize=fontsize)
+        plt.text(
+            t0 + 0.5 * (t1 - t0),
+            0.5 * (y[1] + y[2]),
+            text,
+            rotation=rotation,
+            horizontalalignment="center",
+            verticalalignment="center",
+            fontsize=fontsize,
+        )
 
         return nrow
 
 
 class Milestone(Activity):
-    axvline = False                     # draw a vertical line through Milestones
+    axvline = False  # draw a vertical line through Milestones
     markerWidth = 2
     nrow = 1
-    rotation = 0                        # text rotation
+    rotation = 0  # text rotation
     color = None
     border = None
 
-    def __init__(self, descrip, t0, color=None, border=None, align="right", valign="top",
-                 markerWidth=None, drow=0):
-        super().__init__(descrip, t0, 0.0, color=color, border=border, drow=drow, markerWidth=markerWidth)
+    def __init__(
+        self,
+        descrip,
+        t0,
+        color=None,
+        border=None,
+        align="right",
+        valign="top",
+        markerWidth=None,
+        drow=0,
+    ):
+        super().__init__(
+            descrip,
+            t0,
+            0.0,
+            color=color,
+            border=border,
+            drow=drow,
+            markerWidth=markerWidth,
+        )
         self.align = align
         self.valign = valign
 
@@ -193,17 +247,29 @@ class Milestone(Activity):
         return f"Milestone({self.descrip})"
 
     def __str__(self):
-        return f"Milestone, {self.descrip}, {self.t0}, {self._color}, {self._border}, " \
+        return (
+            f"Milestone, {self.descrip}, {self.t0}, {self._color}, {self._border}, "
             f"{self.align}, {self.valign}, {self._markerWidth}, {self.drow}, {self.height}"
+        )
 
     def getData(self):
-        return [self.descrip, self.t0.strftime('%Y-%m-%d'),
-                self._color, self._border, self.align, self.valign, self._markerWidth, self.drow]
+        return [
+            self.descrip,
+            self.t0.strftime("%Y-%m-%d"),
+            self._color,
+            self._border,
+            self.align,
+            self.valign,
+            self._markerWidth,
+            self.drow,
+        ]
 
     def __getNrow(self):
         return self.height
 
-    def draw(self, totalDuration=0, startDate="1958-02-05", endDate="2099-12-31", **kwargs):
+    def draw(
+        self, totalDuration=0, startDate="1958-02-05", endDate="2099-12-31", **kwargs
+    ):
         kwargs = kwargs.copy()
         del kwargs["nrowTot"]
         if "color" not in kwargs:
@@ -216,7 +282,10 @@ class Milestone(Activity):
 
         if kwargs["edgecolor"]:
             import matplotlib
-            kwargs["edgecolor"] = matplotlib.colors.to_rgba(kwargs["edgecolor"], kwargs.get("alpha", 1))
+
+            kwargs["edgecolor"] = matplotlib.colors.to_rgba(
+                kwargs["edgecolor"], kwargs.get("alpha", 1)
+            )
 
         kwargs["linewidth"] = 2
 
@@ -237,30 +306,42 @@ class Milestone(Activity):
         if t0 > endDate:
             return 0
 
-        y0 = self.height*(1.1*(self.row - self.drow))
+        y0 = self.height * (1.1 * (self.row - self.drow))
 
-        markerWidth = timedelta(self.markerWidth if self._markerWidth is None else self._markerWidth)
-        x = t0 + 0.9*markerWidth*np.array([0, 1, 0, -1, 0])
-        y = y0 + 0.9*self.height*np.array([0, 0.5, 1, 0.5, 0])
-        plt.fill(x, y, '-', **kwargs)
+        markerWidth = timedelta(
+            self.markerWidth if self._markerWidth is None else self._markerWidth
+        )
+        x = t0 + 0.9 * markerWidth * np.array([0, 1, 0, -1, 0])
+        y = y0 + 0.9 * self.height * np.array([0, 0.5, 1, 0.5, 0])
+        plt.fill(x, y, "-", **kwargs)
 
         if Milestone.axvline:
-            plt.axvline(t0, ls='-', alpha=0.1, zorder=-1)
+            plt.axvline(t0, ls="-", alpha=0.1, zorder=-1)
 
-        text = textwrap.fill(self.descrip, width=Milestone.width, break_long_words=False)
+        text = textwrap.fill(
+            self.descrip, width=Milestone.width, break_long_words=False
+        )
 
-        horizontalalignment = "left" if self.align == "right" else "right"  # matplotlib is confusing
-        plt.text(t0 + markerWidth/2*(1 if self.align == "right" else -1),
-                 y0 + (0.9 if self.valign == "top" else 0.1)*self.height, text,
-                 rotation=self.rotation,
-                 horizontalalignment=horizontalalignment, verticalalignment='top',
-                 fontsize=self.fontsize, zorder=10)
+        horizontalalignment = (
+            "left" if self.align == "right" else "right"
+        )  # matplotlib is confusing
+        plt.text(
+            t0 + markerWidth / 2 * (1 if self.align == "right" else -1),
+            y0 + (0.9 if self.valign == "top" else 0.1) * self.height,
+            text,
+            rotation=self.rotation,
+            horizontalalignment=horizontalalignment,
+            verticalalignment="top",
+            fontsize=self.fontsize,
+            zorder=10,
+        )
 
         return 1
 
 
 class Manipulation:
     """Modify the state of the system, rather than describing an activity or milestone"""
+
     pass
 
 
@@ -271,6 +352,7 @@ class AdvanceRow(Manipulation):
         self.drow = drow
 
     if False:
+
         def getNrow(self):
             return self.drow
 
@@ -310,7 +392,7 @@ class Rotation(Manipulation):
     """A class used to set the text rotation"""
 
     def __init__(self, rotation):
-        self.rotation = rotation   # angle in degrees
+        self.rotation = rotation  # angle in degrees
 
     def __repr__(self):
         return f"Rotation({self.rotation})"
@@ -342,10 +424,20 @@ def calculate_height(activities):
     return max(heights)
 
 
-def show_activities(activities, height=0.1, fontsize=7,
-                    rowSpacing=0.5, show_today=True, show_time_axis=True,
-                    title="", show_milestone_vlines=True, today_height=0.5,
-                    startDate=None, endDate=None, show_weeks=True):
+def show_activities(
+    activities,
+    height=0.1,
+    fontsize=7,
+    rowSpacing=0.5,
+    show_today=True,
+    show_time_axis=True,
+    title="",
+    show_milestone_vlines=True,
+    today_height=0.5,
+    startDate=None,
+    endDate=None,
+    show_weeks=True,
+):
     """Plot a set of activities
 
     activities: list of list of Activities
@@ -372,8 +464,7 @@ def show_activities(activities, height=0.1, fontsize=7,
             ], [
                 Activity("E", "2021-01-05", "2021-01-31", color="green"),
             ],
-        ]
-"""
+        ]"""
 
     if not startDate:
         startDate = "1958-02-05"
@@ -390,7 +481,7 @@ def show_activities(activities, height=0.1, fontsize=7,
     elif isinstance(startDate, str):
         startDate = datetime.fromisoformat(startDate)
 
-    if re.search(r"^[-+]?\d+$", endDate):    # a date relative to now, in days
+    if re.search(r"^[-+]?\d+$", endDate):  # a date relative to now, in days
         nday = int(endDate)
         endDate = datetime.now() + timedelta(days=nday)
     elif isinstance(endDate, str):
@@ -450,34 +541,46 @@ def show_activities(activities, height=0.1, fontsize=7,
 
                 continue
 
-            a.draw(totalDuration=totalDuration, nrowTot=nrowTot,
-                   startDate=startDate, endDate=endDate)
+            a.draw(
+                totalDuration=totalDuration,
+                nrowTot=nrowTot,
+                startDate=startDate,
+                endDate=endDate,
+            )
 
     if show_today and datetime.now() > startDate:
         now = datetime.now()
 
-        plt.axvline(now, ls='--', color='black', alpha=0.5, zorder=-1)
+        plt.axvline(now, ls="--", color="black", alpha=0.5, zorder=-1)
 
         ax = plt.gca()
         myTrans = transforms.blended_transform_factory(ax.transData, ax.transAxes)
 
-        plt.text(now, today_height, now.strftime("%Y-%m-%d"),
-                 rotation='vertical', ha='right', transform=myTrans)
+        plt.text(
+            now,
+            today_height,
+            now.strftime("%Y-%m-%d"),
+            rotation="vertical",
+            ha="right",
+            transform=myTrans,
+        )
 
-    plt.grid(axis='x')
-    plt.xlim(startDate, endDate if endDate < datetime.fromisoformat("2058-02-05") else None)
+    plt.grid(axis="x")
+    plt.xlim(
+        startDate, endDate if endDate < datetime.fromisoformat("2058-02-05") else None
+    )
 
     if not show_time_axis:
         plt.xticks(ticks=[], labels=[])
-    if True:                            # turn off y-axis labels
+    if True:  # turn off y-axis labels
         plt.yticks(ticks=[], labels=[])
 
     ax = plt.gca()
     ax.xaxis.set_minor_locator(mdates.MonthLocator())  # every month
 
     # Label the top axis
-    ax.fmt_xdata = mdates.DateFormatter('%Y-%m-%d %H:%M:%S.02 ')
-    ax.tick_params('x', top=True, labeltop=True, which='both')
+    ax.fmt_xdata = mdates.DateFormatter("%Y-%m-%d %H:%M:%S.02 ")
+    ax.tick_params("x", top=True, labeltop=True, which="both")
 
     if show_weeks:
         ax.xaxis.set_major_locator(mdates.WeekdayLocator(byweekday=mdates.MO))
@@ -485,11 +588,11 @@ def show_activities(activities, height=0.1, fontsize=7,
         startDate, endDate = [datetime.utcfromtimestamp(x) for x in ax.set_xlim()]
 
         daylen = timedelta(days=1)
-        for i in range(((endDate + 2*daylen) - (startDate - 2*daylen)).days):
-            d = startDate + i*daylen
+        for i in range(((endDate + 2 * daylen) - (startDate - 2 * daylen)).days):
+            d = startDate + i * daylen
             if d.weekday() in [5, 6]:
                 pos = mdates.date2num(d)
-                ax.axvspan(pos - 0, pos + 1, color='lightgray', zorder=-10)
+                ax.axvspan(pos - 0, pos + 1, color="lightgray", zorder=-10)
 
     if title:
         plt.title(title)
@@ -497,7 +600,9 @@ def show_activities(activities, height=0.1, fontsize=7,
     plt.tight_layout()
 
 
-def add_legend(categoryColors, activities=None, categoryGrouping=None, legend_location=None):
+def add_legend(
+    categoryColors, activities=None, categoryGrouping=None, legend_location=None
+):
     """Add a legend to a show_activities() plot
     categoryColors: dict mapping categories to colours
     activities: list of activities shown; if None assume that all categories are present
@@ -506,10 +611,15 @@ def add_legend(categoryColors, activities=None, categoryGrouping=None, legend_lo
     """
     # Lookup which colours are actually used
     if activities is None:
-        usedColors = None               # assume all are used
+        usedColors = None  # assume all are used
     else:
-        usedColors = set([a._color for a in sum(activities, []) if
-                          isinstance(a, Activity) and not isinstance(a, Milestone)])
+        usedColors = set(
+            [
+                a._color
+                for a in sum(activities, [])
+                if isinstance(a, Activity) and not isinstance(a, Milestone)
+            ]
+        )
 
     if categoryGrouping is None:
         categoryGrouping = [sorted(categoryColors)]
@@ -525,9 +635,14 @@ def add_legend(categoryColors, activities=None, categoryGrouping=None, legend_lo
                 color, border = color
 
             if usedColors is None or color in usedColors:
-                handles.append(patches.Polygon([(0, 0), (10, 0), (0, -10)],
-                                               facecolor=color, edgecolor=border,
-                                               label=f"{c.replace('_', ' ')}"))
+                handles.append(
+                    patches.Polygon(
+                        [(0, 0), (10, 0), (0, -10)],
+                        facecolor=color,
+                        edgecolor=border,
+                        label=f"{c.replace('_', ' ')}",
+                    )
+                )
     # and add it to the figure
     plt.legend(handles=handles, loc=legend_location)
 
@@ -548,12 +663,15 @@ def print_details(inputs, systems=None, fd=None, indent="   "):
         systems = set(systems)
 
     for system, aa in inputs.items():
-        system = system.replace('_', ' ')
+        system = system.replace("_", " ")
 
         if systems is not None and system not in systems:
             continue
         print(system, file=fd)
         for descrip, cpts in aa.items():
             print(f"{indent}{descrip}", file=fd)
-            for (aid, start, finish) in sorted(cpts, key=lambda x: x[2]):
-                print(f"{2*indent}{aid:20} {str(start).split(' ')[0]} -- {str(finish).split(' ')[0]}", file=fd)
+            for aid, start, finish in sorted(cpts, key=lambda x: x[2]):
+                print(
+                    f"{2*indent}{aid:20} {str(start).split(' ')[0]} -- {str(finish).split(' ')[0]}",
+                    file=fd,
+                )

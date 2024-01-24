@@ -6,3 +6,5 @@ requests
 pyyaml
 JIRA
 keyring
+pre-commit
+

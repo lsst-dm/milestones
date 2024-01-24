@@ -1,12 +1,13 @@
 import glob
+import logging
 import os
 import re
+import subprocess
 import sys
 import time
-import yaml
-import logging
-import subprocess
 from datetime import datetime
+
+import yaml
 
 from .excel import load_pmcs_excel
 
@@ -52,10 +53,11 @@ DOC_HANDLES = [
 
 
 def get_pmcs_path_months(cpath=None, months=3):
-    """Get the list of pmcs files - find the one passed and take the one months prior.
-    """
-    path = os.path.normpath(os.path.join(os.path.dirname(__file__), "..",
-                                         "data", "pmcs"))
+    """Get the list of pmcs files - find the one passed and
+    take the one months prior."""
+    path = os.path.normpath(
+        os.path.join(os.path.dirname(__file__), "..", "data", "pmcs")
+    )
     all_files = sorted(glob.glob(os.path.join(path, "??????-ME.xls")))
     for ind, f in enumerate(all_files):
         if f.__contains__(cpath) and ind >= months:
@@ -63,8 +65,7 @@ def get_pmcs_path_months(cpath=None, months=3):
 
 
 def get_latest_pmcs_path(path=None):
-    """By default, fetch the latest forecast.
-    """
+    """By default, fetch the latest forecast."""
     if not path:
         path = os.path.normpath(
             os.path.join(os.path.dirname(__file__), "..", "data", "pmcs")
@@ -185,8 +186,8 @@ def get_version_info(pmcs_path=None):
     if pmcs_path is None:
         pmcs_path = get_latest_pmcs_path()
     git_dir = os.path.dirname(pmcs_path)
-    if git_dir == '':
-        git_dir = '.'
+    if git_dir == "":
+        git_dir = "."
     sha, date = (
         subprocess.check_output(
             ["git", "log", "-1", "--pretty=format:'%H %ad'", "--date=unix"], cwd=git_dir

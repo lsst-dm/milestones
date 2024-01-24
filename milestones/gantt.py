@@ -1,7 +1,7 @@
 from datetime import datetime
 from io import StringIO
 
-from .utility import write_output, format_latex
+from .utility import format_latex, write_output
 
 __all__ = ["gantt", "gantt_embedded"]
 

@@ -1,6 +1,7 @@
 from datetime import timedelta
-from os import environ
+
 from jira import JIRA
+
 from milestones.uname import get_login_cli
 
 __all__ = ["cjira"]
@@ -18,22 +19,19 @@ def list_jira_issues(jira, pred2=None, query=None):
         query = """project = DM AND resolution = Unresolved AND
                    (type = epic or type= story) """
 
-    if (pred2 is not None):
+    if pred2 is not None:
         query = f"{query} {pred2}"
     r = jira.search_issues(jql_str=query, fields=fields, maxResults=500)
     return r
 
 
 def get_jira(username=None, prompt=False):
-    """ Setup up the JIRA object endpoint - prompt
+    """Setup up the JIRA object endpoint - prompt
         for username and passwd as needed.
         Password will be looked up from key chain.
     :String username: Optionally pass the username (prompted othereise)
     """
-    user, pw = environ["JIRA_USER"], environ["JIRA_PW"]
-    if not user or not pw:
-        user, pw = get_login_cli(username=username, prompt=prompt)
-    print("Jira user:" + user)
+    user, pw = get_login_cli(username=username, prompt=prompt)
     ep = "https://jira.lsstcorp.org"
     return (user, pw, JIRA(server=ep, basic_auth=(user, pw)))
 
@@ -72,7 +70,7 @@ def set_jira_due_date(id, due_date, jira=None, issue=None):
 
 
 def cjira(args, milestones):
-    my_jira = get_jira()[2]
+    my_jira = get_jira(prompt=args.prompt)[2]
     for ms in milestones:
         if ms.jira and ms.due:
             set_jira_due_date(ms.jira, ms.due, my_jira)
