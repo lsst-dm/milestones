@@ -12,7 +12,7 @@ jobs:
     ldm-564-test:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v3
+            - uses: actions/checkout@v4
             - name: Check out LFS files
               run: |
                 git lfs install

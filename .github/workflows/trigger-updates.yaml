@@ -12,7 +12,7 @@ jobs:
       matrix:
         repo: [lsst-sitcom/sitcomtn-052, lsst-dm/dmtn-158, lsst/ldm-564, lsst/ldm-503]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           token: ${{ secrets.WOM_MILESTONES_PAT }}
           repository: ${{ matrix.repo }}
