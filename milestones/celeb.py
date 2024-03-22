@@ -143,7 +143,7 @@ class ReSTDocument(TextAccumulator):
         return super().get_result()
 
 
-def write_html(top_milestones, pmcs_data):
+def write_html(top_milestones, pmcs_data, comp_milestones, compline):
     # simple html page for inclusion by communications
     # uses fdue - forecast date
     file_name = "top_milestones.html"
@@ -170,23 +170,23 @@ def write_html(top_milestones, pmcs_data):
         "</head> <body>\n"
         '<table id="top_miles">'
         "<tr><th>Due</th><th>"
-        "Name</th></tr>",
+        "Name</th><th>",
+        "Previously</th></tr>",
         file=ofile,
     )
 
     for m in top_milestones:
         date = m.fdue.strftime("%d-%b-%Y")
-        completed = ""
-        if m.completed:
-            completed = f" (Completed {m.completed.strftime('%d-%b-%Y')})"
+        completed = completed_or_previosdue(m, comp_milestones)
         print(
-            f"<tr><td>{date}</td> " f"<td>{m.name}{completed}</td>" "</tr>", file=ofile
+            f"<tr><td>{date}</td> " f"<td>{m.name}</td><td>{completed}</td>" "</tr>",
+            file=ofile,
         )
 
     sha, timestamp, p6_date = get_version_info(pmcs_data)
     print(
         f"</table>"
-        f"<p>Using {p6_date.strftime('%B %Y')} project controls data.</p>"
+        f"<p>Using {p6_date.strftime('%B %Y')} project controls data. {compline}</p>"
         f"</body>",
         file=ofile,
     )
@@ -205,6 +205,18 @@ def write_row(b, code, name, due, comp):
     b.write_col(name)
     b.write_col(due)
     b.write_col(comp)
+
+
+def completed_or_previosdue(ms, comp_milestones):
+    completed = ""
+    if ms.completed:
+        completed = "**Completed**"
+    else:
+        if comp_milestones:
+            cm = find_comp(comp_milestones, ms.code)
+            if cm:
+                completed = f"{cm.fdue.strftime('%Y-%m-%d')}"
+    return completed
 
 
 def write_table(my_section, milestones, comp_milestones):
@@ -295,6 +307,7 @@ def generate_doc(args, milestones):
                 f"This corresponds to the status recorded in the project "
                 f"controls system for {p6_date.strftime('%B %Y')}."
             )
+            compline = ""
             if comp_milestones:
                 if months > 0:
                     yr = p6_date.strftime("%Y")
@@ -306,14 +319,12 @@ def generate_doc(args, milestones):
                         mo = mo - 12
                         yr = int(yr) + 1
                     comp_ym = [yr, calendar.month_name[mo]]
-                p.write_line(
-                    f"This compares {comp_ym[1]} {comp_ym[0]} "
-                    f"data to {p6_date.strftime('%B %Y')}."
-                )
+                    compline = f" This compares to {comp_ym[1]} {comp_ym[0]}."
+                p.write_line(f"{compline}")
 
     with doc.section("Top milestones") as my_section:
         top_milestones = [ms for ms in milestones if ms.celebrate == "Top"]
-        write_html(top_milestones, args.pmcs_data)
+        write_html(top_milestones, args.pmcs_data, comp_milestones, compline)
         if args.table:
             write_table(my_section, top_milestones, comp_milestones)
         else:
