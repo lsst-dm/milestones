@@ -303,10 +303,6 @@ def generate_doc(args, milestones):
                 f"`{sha[:8]} <https://github.com/lsst-dm/milestones/commit/{sha}>`_, "
                 f"dated {timestamp.strftime('%Y-%m-%d')}."
             )
-            p.write_line(
-                f"This corresponds to the status recorded in the project "
-                f"controls system for {p6_date.strftime('%B %Y')}."
-            )
             compline = ""
             if comp_milestones:
                 if months > 0:
@@ -320,7 +316,10 @@ def generate_doc(args, milestones):
                         yr = int(yr) + 1
                     comp_ym = [yr, calendar.month_name[mo]]
                     compline = f" This compares to {comp_ym[1]} {comp_ym[0]}."
-                p.write_line(f"{compline}")
+            p.write_line(
+                f"This corresponds to the status recorded in the project "
+                f"controls system for {p6_date.strftime('%B %Y')}. {compline}"
+            )
 
     with doc.section("Top milestones") as my_section:
         top_milestones = [ms for ms in milestones if ms.celebrate == "Top"]
