@@ -286,9 +286,7 @@ def generate_doc(args, milestones):
                 get_pmcs_path_months(args.pmcs_data, months), args.local_data
             )
 
-    inc = args.inc
-
-    milestones = [ms for ms in milestones if ms.celebrate]
+    milestones = [ms for ms in milestones if ms.milestone_tracking]
 
     milestones = sorted(milestones, key=lambda ms: ms.fdue)
 
@@ -321,8 +319,8 @@ def generate_doc(args, milestones):
                 f"controls system for {p6_date.strftime('%B %Y')}. {compline}"
             )
 
-    with doc.section("Top milestones") as my_section:
-        top_milestones = [ms for ms in milestones if ms.celebrate == "Top"]
+    with doc.section("Key milestones") as my_section:
+        top_milestones = [ms for ms in milestones if ms.milestone_tracking]
         write_html(top_milestones, args.pmcs_data, comp_milestones, compline)
         if args.table:
             write_table(my_section, top_milestones, comp_milestones)
@@ -333,14 +331,6 @@ def generate_doc(args, milestones):
                 "A public HTML version for embedding is "
                 "`here <./top_milestones.html>`_."
             )
-
-    if "Y" == inc:
-        with doc.section("Supporting milestones") as my_section:
-            o_milestones = [ms for ms in milestones if ms.celebrate == "Y"]
-            if args.table:
-                write_table(my_section, o_milestones, comp_milestones)
-            else:
-                write_list(my_section, o_milestones, comp_milestones)
 
     return doc.get_result()
 

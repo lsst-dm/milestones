@@ -20,6 +20,7 @@ class Milestone(object):
     start: Optional[datetime] = None
     completed: Optional[datetime] = None
     celebrate: Optional[str] = ""
+    milestone_tracking: Optional[str] = ""
     summarychart: Optional[str] = ""
 
     predecessors: Set[str] = field(default_factory=set)
