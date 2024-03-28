@@ -132,6 +132,11 @@ def extract_task_details(task_sheet, load_tasks):
         celebrate = fetcher(
             "actv_code_celebratory_achievements_id", task_sheet.row(rownum)
         )
+        milestone_tracking = ""
+        if "actv_code_milestone_tracking_id" in fetcher._hdr:
+            milestone_tracking = fetcher(
+                "actv_code_milestone_tracking_id", task_sheet.row(rownum)
+            )
         summarychart = fetcher("actv_code_summary_chart_id", task_sheet.row(rownum))
 
         milestones.append(
@@ -146,6 +151,7 @@ def extract_task_details(task_sheet, load_tasks):
                 start,
                 completed,
                 celebrate,
+                milestone_tracking,
                 summarychart,
             )
         )
