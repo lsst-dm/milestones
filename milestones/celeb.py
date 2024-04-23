@@ -286,9 +286,6 @@ def generate_doc(args, milestones):
                 get_pmcs_path_months(args.pmcs_data, months), args.local_data
             )
 
-    for m in milestones:
-        if m.milestone_tracking == "Y":
-            print(f"Track='{m.milestone_tracking}'", m.code, m.name, m.completed)
     milestones = [ms for ms in milestones if ms.milestone_tracking == "Y"]
 
     milestones = sorted(milestones, key=lambda ms: ms.fdue)
@@ -323,7 +320,7 @@ def generate_doc(args, milestones):
             )
 
     with doc.section("Key milestones") as my_section:
-        top_milestones = [ms for ms in milestones if ms.milestone_tracking]
+        top_milestones = [ms for ms in milestones if ms.milestone_tracking == "Y"]
         write_html(top_milestones, args.pmcs_data, comp_milestones, compline)
         if args.table:
             write_table(my_section, top_milestones, comp_milestones)
