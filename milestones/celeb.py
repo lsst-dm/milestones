@@ -215,7 +215,8 @@ def completed_or_previosdue(ms, comp_milestones):
         if comp_milestones:
             cm = find_comp(comp_milestones, ms.code)
             if cm:
-                completed = f"{cm.fdue.strftime('%Y-%m-%d')}"
+                date = cm.fdue.strftime("%d-%b-%Y")
+                completed = f"{date}"
     return completed
 
 
