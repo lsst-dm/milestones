@@ -32,7 +32,7 @@ def get_jira(username=None, prompt=False):
     :String username: Optionally pass the username (prompted othereise)
     """
     user, pw = get_login_cli(username=username, prompt=prompt)
-    ep = "https://jira.lsstcorp.org"
+    ep = "https://rubinobs.atlassian.net"
     return (user, pw, JIRA(server=ep, basic_auth=(user, pw)))
 
 
