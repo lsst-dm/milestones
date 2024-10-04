@@ -621,9 +621,8 @@ DM-SQRE-4:
   description: Science pipeline developers and members of the verification and validation
     science team use nublado to support their interactive data exploration needs relating
     to ComCam commissioning. They are able to work effectively though in some cases
-    their user experience can be improved. As well as access to EFD, catalogue and
-    pixel data, they have access to any available APIs to the workflow/batch system
-    for non-trivial data processing.  There are curated libraries of continuously
+    their user experience can be improved. This includes  access to EFD, catalogue and
+    pixel data. There are curated libraries of continuously
     integrated notebooks modeling common tasks and they is a reasonable workflow to
     allow Github-based collaboration on those notebooks. Users can refer to documentation
     for how to get started and for answers to common problems. The service is stable
