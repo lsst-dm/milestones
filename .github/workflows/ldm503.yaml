@@ -40,7 +40,7 @@ jobs:
 
 
             - name: Upload resulting document as artifact
-              uses: actions/upload-artifact@v2
+              uses: actions/upload-artifact@v4
               with:
                   name: LDM-503 PDF
                   path: ./ldm-503/LDM-503.pdf

@@ -30,7 +30,7 @@ jobs:
       - name: Generate burndown chart
         run: python milestones.py burndown
       - name: Upload burndown chart as artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: Burndown chart
           path: burndown.png
@@ -38,7 +38,7 @@ jobs:
       - name: Generate CSV milestone listing
         run: python milestones.py csv
       - name: Upload CSV as artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: CSV milestone listing
           path: milestones.csv
@@ -61,7 +61,7 @@ jobs:
       - name: Generate milestone graph from dot
         run: dot -Tpdf graph.dot > graph.pdf
       - name: Upload milestone graph as artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: Milestone graph
           path: |
@@ -79,7 +79,7 @@ jobs:
           pdflatex gantt.tex
           pdflatex gantt.tex
       - name: Upload Gantt chart as artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: Gantt chart
           path: |
