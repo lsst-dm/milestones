@@ -1004,8 +1004,8 @@ LDM-503-15a:
   test_spec: 'DMTR-231'
 LDM-503-16:
   name: 'Ops rehearsal for data processing #3'
-  description: This milestone builds upon LDM-503-15 to demonstrate the production
-    of prompt products over several nights.
+  description: This milestone demonstrates our ability to do multi-site processing
+    with at least one international site.
   jira: DM-17139
   jira_testplan: DM-17138
   short_name: 'Ops Rehearsal for processing #3'
