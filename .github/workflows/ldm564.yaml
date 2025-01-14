@@ -19,9 +19,9 @@ jobs:
                 git config -f .lfsconfig lfs.url https://git-lfs.lsst.cloud/lsst-dm/milestones
                 git lfs pull
 
-            - uses: actions/setup-python@v2
+            - uses: actions/setup-python@v5
               with:
-                  python-version: 3.7
+                  python-version: "3.11"
             - name: Install TeXLive
               run: |
                 sudo apt-get update
