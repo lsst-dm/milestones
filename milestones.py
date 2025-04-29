@@ -57,7 +57,7 @@ def parse_args():
     burndown = subparsers.add_parser(
         "burndown", help="Generate milestone burndown chart."
     )
-    filename, burndown_start, burndown_end = "burndown.png", "2016-10-30", "2025-03-03"
+    filename, burndown_start, burndown_end = "burndown.png", "2016-10-30", "2025-10-03"
     burndown.add_argument(
         "--start-date",
         type=datetime.fromisoformat,
