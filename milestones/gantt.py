@@ -76,7 +76,7 @@ GANTT_PREAMBLE_STANDALONE = """
   \\gantttitle{}{6} \\gantttitle{2018}{12} \\gantttitle{2019}{12}
   \\gantttitle{2020}{12} \\gantttitle{2021}{12} \\gantttitle{2022}{12}
   \\gantttitle{2023}{12} \\gantttitle{2024}{12} \\gantttitle{2025}{12}
-  \\gantttitle{Operations}{24} \\
+  \\gantttitle{2026}{10} \\gantttitle{Operations}{24} \\
   \\ganttnewline\n
 """
 
